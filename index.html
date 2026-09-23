@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高中課內英文線上試題｜Book 1</title>
+<style>
+:root{
+  --ink:#263c35; --muted:#6e7c76; --line:#dfe6df; --paper:#e4e5dc;
+  --lesson:#fffefa; --lesson-border:#d9e2dc;
+  --review:#fbf1d9; --review-border:#eadbbd;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh;
+  font-family:"Microsoft YaHei","Noto Sans TC",system-ui,sans-serif;
+  color:var(--ink);
+  background:#e5f3df;
+}
+.wrap{
+  position:relative;
+  width:min(900px,calc(100% - 36px));
+  margin:auto; padding:64px 0 52px;
+}
+.deco{
+  position:absolute; z-index:-1; color:#aab9b0;
+  opacity:.22; font-weight:800; user-select:none; pointer-events:none;
+}
+.deco.a{top:45px;left:-10px;font-size:1.05rem;letter-spacing:.45em;transform:rotate(-7deg)}
+.deco.b{top:78px;right:6px;font-size:2.1rem;opacity:.12;transform:rotate(8deg)}
+header{text-align:center;margin-bottom:38px}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 13px;border:1px solid var(--line);border-radius:999px;
+  background:rgba(255,255,255,.72);color:var(--muted);
+  font-size:.76rem;font-weight:700;letter-spacing:.13em;
+}
+.badge:before{content:"✦";font-size:.75rem;color:#7e9a89}
+h1{
+  margin:18px 0 7px;font-size:clamp(2rem,5vw,3rem);
+  line-height:1.22;letter-spacing:.035em;
+}
+.book{font-size:1.72rem;font-weight:800;letter-spacing:.14em;color:#52665e}
+.rule{
+  width:54px;height:2px;border-radius:2px;background:#9fb3a7;
+  margin:15px auto 0;opacity:.65;
+}
+.desc{margin:13px auto 0;color:var(--muted);font-size:1.34rem;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{
+  position:relative;overflow:hidden;
+  min-height:142px;display:flex;align-items:center;gap:18px;
+  padding:25px 27px;border-radius:22px;border:1px solid;
+  text-decoration:none;color:var(--ink);
+  box-shadow:0 9px 24px rgba(49,66,58,.075);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.card:after{
+  content:"";position:absolute;width:92px;height:92px;border-radius:50%;
+  right:-42px;bottom:-45px;background:rgba(255,255,255,.38);
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(49,66,58,.115)}
+.lesson{background:var(--lesson);border-color:var(--lesson-border)}
+.lesson .icon{background:#e7f1e8;border-color:#cfdfd2}
+.review{background:var(--review);border-color:var(--review-border)}
+.icon{
+  flex:0 0 48px;width:48px;height:48px;border-radius:15px;
+  display:grid;place-items:center;background:rgba(255,255,255,.63);
+  border:1px solid rgba(72,100,86,.10);font-size:1.35rem;
+}
+.review .icon{background:#f1e3c5;border-color:#e3cfaa}
+.text{position:relative;z-index:1}
+.name{display:block;font-size:1.52rem;font-weight:800;line-height:1.2}
+.note{display:block;margin-top:7px;font-size:.9rem;color:var(--muted)}
+footer{
+  margin-top:32px;padding-top:19px;border-top:1px solid var(--line);
+  text-align:center;color:#89938f;font-size:.77rem;letter-spacing:.03em;
+}
+@media(max-width:640px){
+  .wrap{width:min(100% - 26px,520px);padding:42px 0 32px}
+  .deco.a{left:5px;top:25px}.deco.b{right:3px;top:65px}
+  header{margin-bottom:27px} h1{font-size:1.95rem}
+  .grid{grid-template-columns:1fr;gap:13px}
+  .card{min-height:112px;padding:20px 21px;border-radius:18px}
+  .icon{flex-basis:44px;width:44px;height:44px;border-radius:13px;font-size:1.2rem}
+  .name{font-size:1.33rem}
+}
+@media(prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="deco a">A · B · C</span>
+  <span class="deco b">✎</span>
+
+  <header>
+    <span class="badge">ENGLISH PRACTICE</span>
+    <h1>高中課內英文線上試題</h1>
+    <div class="book">BOOK 1</div>
+    <div class="rule"></div>
+    <p class="desc">選擇課次，開始複習。</p>
+  </header>
+
+  <section class="grid" aria-label="課次選擇">
+    <a class="card lesson" href="lesson-1/">
+      <span class="icon" aria-hidden="true">📖</span>
+      <span class="text"><span class="name">Lesson 1</span><span class="note">課內練習與複習</span></span>
+    </a>
+    <a class="card lesson" href="lesson-2/">
+      <span class="icon" aria-hidden="true">📖</span>
+      <span class="text"><span class="name">Lesson 2</span><span class="note">課內練習與複習</span></span>
+    </a>
+    <a class="card lesson" href="lesson-3/">
+      <span class="icon" aria-hidden="true">📖</span>
+      <span class="text"><span class="name">Lesson 3</span><span class="note">課內練習與複習</span></span>
+    </a>
+    <a class="card review" href="review-1/">
+      <span class="icon" aria-hidden="true">📝</span>
+      <span class="text"><span class="name">Review 1</span><span class="note">階段複習</span></span>
+    </a>
+  </section>
+
+  <footer>Book 1 · 課內英文複習</footer>
+</main>
+</body>
+</html>

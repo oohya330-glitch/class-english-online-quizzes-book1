@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Lesson Three — Do Animals Sleep like You and Me?</title>
+<style>
+:root{--bg:#f5f7f5;--card:#fff;--ink:#18352b;--muted:#66736e;--line:#d7e0dc;--accent:#315e4d;--soft:#eaf1ed;}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:#1e2723;font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.65}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);padding:12px 18px}
+.top{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+h1{font-size:1.35rem;margin:0;color:var(--ink)} .sub{font-size:.9rem;color:var(--muted)}
+.nav{max-width:1180px;margin:10px auto 0;display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.nav button{white-space:nowrap;border:1px solid #9bb0a7;background:white;color:var(--ink);border-radius:999px;padding:8px 14px;font-weight:700;cursor:pointer}
+.nav button:hover{background:var(--soft)}
+main{max-width:1050px;margin:24px auto;padding:0 16px 80px}
+section{scroll-margin-top:120px;margin-bottom:48px} h2{font-size:1.55rem;color:var(--ink);border-left:6px solid var(--accent);padding-left:12px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.qcard,.passage,.editor{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 4px 14px rgba(0,0,0,.04)}
+.qnum{font-weight:800;color:var(--accent);margin-bottom:8px} .stem{font-size:1.12rem;font-weight:650} .zh{font-size:1.18rem}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin:14px 0} .opt{padding:6px 0}
+.reveal,.primary,.secondary{border:0;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer;margin-top:14px}
+.reveal,.primary{background:var(--accent);color:white} .secondary{background:#e7ece9;color:var(--ink);margin-left:8px}
+.answer{clear:both;display:none;margin-top:14px;padding:14px 16px;background:#f0f5f2;border-left:5px solid var(--accent);border-radius:8px}
+.answer.show{display:block} .passagetext{font-family:Georgia,"Times New Roman",serif;font-size:1.08rem;line-height:1.85}
+.bank,.schedule{margin:12px 0;padding:12px 14px;background:#f3f5f4;border:1px solid var(--line);border-radius:10px;font-weight:650}
+.miniwrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px} .mini{border-top:1px solid var(--line);padding-top:12px}
+.miniopts{display:grid;gap:4px;margin-top:6px} .small{padding:7px 10px;font-size:.88rem}
+.write-line{height:34px;border-bottom:2px solid #aab8b2;margin:8px 0 4px}
+.editor label{display:block;font-weight:800;margin:10px 0 5px} textarea{width:100%;min-height:86px;border:1px solid #b9c6c0;border-radius:10px;padding:10px;font:inherit}
+.floatTop{position:fixed;right:18px;bottom:18px;border:0;border-radius:50%;width:48px;height:48px;background:var(--accent);color:white;font-size:20px;cursor:pointer}
+.note{max-width:1180px;margin:0 auto 8px;color:var(--muted);font-size:.9rem}
+@media(max-width:760px){.cards{grid-template-columns:1fr} .opts{grid-template-columns:1fr} .miniwrap{grid-template-columns:1fr} main{padding-left:12px;padding-right:12px} .qcard,.passage{padding:16px} .stem{font-size:1.06rem}}
+@media(min-width:761px) and (max-width:1100px){.cards{grid-template-columns:1fr 1fr}}
+
+/* V3 字級與單題專注模式 */
+.fonttools{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.fonttools button{border:1px solid #9bb0a7;background:#fff;color:var(--ink);border-radius:9px;padding:7px 11px;font-weight:800;cursor:pointer}.fonttools button:hover{background:var(--soft)}
+
+.card-actions{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:14px}
+.card-actions .reveal,.card-actions .focusBtn{margin:0}
+.focusBtn{border:1px solid #9bb0a7;background:white;color:var(--ink);border-radius:10px;padding:9px 12px;font-weight:800;cursor:pointer;margin-top:14px;margin-left:7px}.focusBtn:hover{background:var(--soft)}
+body.focus-mode{overflow:hidden} .focus-overlay{display:none;position:fixed;inset:0;z-index:100;background:rgba(24,53,43,.24);backdrop-filter:blur(2px);padding:28px;overflow:hidden}.focus-overlay.show{display:flex;align-items:center;justify-content:center}.focus-shell{width:min(920px,86vw);max-height:86vh;overflow:auto;border-radius:20px}.focus-toolbar{display:none}.focus-close{border:0;background:var(--accent);color:white;border-radius:10px;padding:10px 16px;font-weight:800;cursor:pointer}.focus-shell .qcard,.focus-shell .passage{margin:0;box-shadow:0 18px 52px rgba(0,0,0,.20);padding:clamp(26px,3.2vw,42px);border:1px solid rgba(49,94,77,.12)}.focus-shell .stem{font-size:clamp(1.35rem,2.1vw,1.9rem);line-height:1.7}.focus-shell .qnum{font-size:clamp(1.1rem,1.7vw,1.4rem)}.focus-shell .opts{font-size:clamp(1.12rem,1.7vw,1.45rem);gap:12px 28px}.focus-shell .answer{font-size:clamp(1.08rem,1.55vw,1.35rem)}.focus-shell .reveal{font-size:1.05rem;padding:12px 18px}.focus-shell .focusBtn{display:none}.focus-shell .write-line{height:60px}
+@media(max-width:760px){.focus-overlay{padding:16px 12px}.focus-shell{width:94vw;max-height:88vh}.focus-shell .qcard,.focus-shell .passage{padding:22px 18px}.focus-shell .opts{grid-template-columns:1fr}}
+.focusReturnInline{display:none}.focus-mode .focusReturnInline{display:inline-flex;margin-left:8px}
+
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+
+/* V3: 文法題一般卡片展開時直接顯示完整解析 */
+#grammar .answer.show .detail-analysis{display:block!important;}
+
+/* V31 confirmed return-home controls */
+.home-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;border:1px solid var(--accent)!important;background:#fff!important;color:var(--accent)!important;border-radius:9px!important;padding:6px 11px!important;font-size:.88rem!important;font-weight:800!important;text-decoration:none!important;line-height:1.35!important;white-space:nowrap!important}
+.home-link:hover{background:var(--soft)!important}
+.titleblock{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.font-side{display:flex;flex-direction:column;align-items:flex-end}
+.nav-return-home{margin-left:auto!important;flex:0 0 auto!important}
+@media(max-width:760px){.home-link{min-height:40px;padding:8px 12px}.nav-return-home{margin-left:0!important}}
+</style><style>
+/* V6: centered teaching focus + right-side controls + detailed analysis */
+body.focus-mode #focusContent .qcard, body.focus-mode #focusContent .passage{position:relative;padding-right:11.5rem;}
+body.focus-mode #focusContent .reveal, body.focus-mode #focusContent .focusReturnInline{position:absolute;right:1.25rem;width:9.2rem;margin:0;}
+body.focus-mode #focusContent .reveal{top:4.2rem;}
+body.focus-mode #focusContent .focusReturnInline{top:7.5rem;}
+body.focus-mode #focusContent .focusBtn{display:none!important;}
+body.focus-mode #focusContent .card-actions{display:block;margin:0;height:0;}
+.detail-analysis{display:none;margin-top:1rem;border-top:1px solid var(--line);padding-top:1rem;}
+body.focus-mode #focusContent .answer.show .detail-analysis{display:block;}
+.detail-section{background:#f7faf8;border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;margin:.65rem 0;}
+.detail-title{font-weight:800;color:var(--accent);margin-bottom:.35rem;}
+.detail-body{line-height:1.75;}
+.vocab-note{font-size:.86em;color:var(--muted);margin-top:.55rem;}
+@media(max-width:760px){
+ body.focus-mode #focusContent .qcard,body.focus-mode #focusContent .passage{padding-right:1rem;padding-bottom:5.2rem;}
+ body.focus-mode #focusContent .reveal,body.focus-mode #focusContent .focusReturnInline{top:auto;bottom:1rem;width:auto;}
+ body.focus-mode #focusContent .reveal{right:8.9rem;}
+ body.focus-mode #focusContent .focusReturnInline{right:1rem;}
+}
+
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+</style><style>.focus-toolbar{display:none!important;}
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+</style><style id="v9-focus-button-fix">
+/* V9：一般題目頁兩顆操作鍵靠右；單題模式維持同樣乾淨的雙按鈕 */
+.qcard>.card-actions{display:flex;justify-content:flex-end;align-items:center;gap:.55rem;flex-wrap:wrap;margin-top:1rem;}
+body.focus-mode #focusContent .card-actions{display:flex!important;justify-content:flex-end;align-items:center;gap:.55rem;flex-wrap:wrap;margin-top:1.15rem!important;height:auto!important;}
+body.focus-mode #focusContent .reveal,
+body.focus-mode #focusContent .focusReturnInline{
+ position:static!important;inset:auto!important;width:auto!important;height:auto!important;
+ white-space:nowrap!important;line-height:1.2!important;padding:.72rem 1rem!important;border-radius:10px!important;
+ font-size:.96rem!important;font-weight:800!important;margin:0!important;
+}
+body.focus-mode #focusContent .reveal{background:var(--accent)!important;color:#fff!important;border:1px solid var(--accent)!important;}
+body.focus-mode #focusContent .focusReturnInline{background:#fff!important;color:var(--accent)!important;border:1px solid var(--accent)!important;}
+body.focus-mode #focusContent .qcard,body.focus-mode #focusContent .passage{padding-right:1.35rem!important;padding-bottom:1.35rem!important;}
+@media(max-width:560px){
+ .qcard>.card-actions,body.focus-mode #focusContent .card-actions{gap:.45rem;}
+ body.focus-mode #focusContent .reveal,body.focus-mode #focusContent .focusReturnInline{font-size:.9rem!important;padding:.68rem .8rem!important;}
+}
+
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+</style><style id="v10-dual-analysis">
+/* V10：全部題目頁＝簡答；單題模式＝完整教學解析 */
+.detail-analysis{display:none!important;}
+body.focus-mode #focusContent .answer.show .detail-analysis{display:block!important;}
+body:not(.focus-mode) .answer .simple-note{display:block;}
+body.focus-mode #focusContent .answer .simple-note{display:none;}
+.detail-analysis{margin-top:1rem;border-top:1px solid var(--line);padding-top:1rem;}
+.detail-section{background:#f7faf8;border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;margin:.7rem 0;}
+.detail-title{font-weight:800;color:var(--accent);margin-bottom:.38rem;}
+.detail-body{line-height:1.8;}
+.detail-body .word{display:inline-block;margin-right:.8rem;margin-bottom:.25rem;}
+.level6{background:#fffaf1;border-color:#ead9b5;}
+
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+</style><style id="v12-wrong-print">
+.wrongBtn{border:1px solid #c4a96a;background:#fffdf6;color:#6d5725;border-radius:10px;padding:9px 12px;font-weight:800;cursor:pointer;white-space:nowrap}.wrongBtn.active{background:#fff3cf;border-color:#b89035;color:#5b4517}.wrong-summary{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:16px}.wrong-summary b{margin-right:12px}.wrong-summary #wrongCount{color:var(--muted)}.wrong-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.wrong-tools .primary,.wrong-tools .secondary{margin:0}.wrong-empty{padding:24px;text-align:center;background:#fff;border:1px dashed #b9c6c0;border-radius:14px;color:var(--muted)}.wrong-card-select{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-weight:800;color:var(--accent)}.wrong-card-select input{width:18px;height:18px}.wrong-review-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:12px}.wrong-review-actions button{margin:0}.print-sheet{display:none}.print-question{break-inside:avoid;margin:0 0 18px;padding:0 0 14px;border-bottom:1px solid #bbb}.print-question .print-qnum{font-weight:800;margin-bottom:6px}.print-question .stem{font-size:12pt}.print-question .opts{font-size:11.5pt;margin:7px 0}.print-question .answer{display:block!important;background:none;border:0;padding:8px 0 0;margin:6px 0 0}.print-question .detail-analysis{display:block!important}.print-student .answer{display:none!important}.print-student .write-line{height:44px}.print-head{text-align:center;margin-bottom:18px}.print-head h1{font-size:18pt}.print-meta{display:flex;justify-content:space-between;border-bottom:1px solid #444;padding-bottom:8px;margin-bottom:18px;font-size:11pt}
+@media(max-width:760px){.wrong-tools{width:100%}.wrong-tools button{flex:1 1 auto}.wrongBtn{padding:8px 10px}}
+@media print{@page{size:A4;margin:14mm 13mm}body>*{display:none!important}body main{display:block!important;margin:0!important;padding:0!important;max-width:none!important}body main>*{display:none!important}#printSheet{display:block!important;color:#000!important;font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif!important}#printSheet *{box-shadow:none!important}.print-question{page-break-inside:avoid}.print-question .card-actions,.print-question .focusBtn,.print-question .wrongBtn,.print-question button{display:none!important}.print-question .qcard,.print-question .passage{border:0!important;padding:0!important}.print-question .detail-section{border:1px solid #ccc!important;background:#fff!important}.floatTop,.focus-overlay{display:none!important}}
+
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+</style>
+<style id="v13-tabbed-sections">
+/* V13：分類按鈕改為單頁切換，不再使用快速滾動定位 */
+.nav button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+main>section.view-hidden{display:none!important;}
+main>section.view-active{display:block;}
+body.single-section main{padding-top:0;}
+body.single-section main>section.view-active{margin-top:0;}
+@media(max-width:760px){.nav{scrollbar-width:thin}.nav button{padding:8px 12px}}
+
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+</style>
+<style id="v15-wide-long-wrong">
+/* V15：篇章結構／文意選填錯題改為寬版閱讀，文章與選項左右並列 */
+.wrong-category-group.wrong-long-group .wrong-category-cards{grid-template-columns:1fr!important;}
+.wrong-review-card.wrong-long-card{width:100%;max-width:none;box-sizing:border-box;}
+.wrong-long-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,.85fr);gap:24px;align-items:start;margin-top:8px;}
+.wrong-long-main{min-width:0;}
+.wrong-long-side{min-width:0;position:sticky;top:132px;}
+.wrong-long-side .bank{margin:0;line-height:1.75;font-size:.98rem;}
+.wrong-long-main .passagetext{margin:0;line-height:1.72;}
+.wrong-long-card .wrong-review-actions{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;}
+@media(min-width:1180px){
+ body:has(#wrongBank.section-active) main{max-width:1280px;}
+ .wrong-long-layout{grid-template-columns:minmax(0,1.75fr) minmax(320px,.85fr);gap:30px;}
+}
+@media(max-width:900px){
+ .wrong-long-layout{grid-template-columns:1fr;}
+ .wrong-long-side{position:static;order:-1;}
+}
+</style>
+<style id="v18-long-reading-layout">
+/* V18 — 以 V15 為基礎：長文章左右分欄，減少上下來回捲動 */
+@media (min-width: 980px){
+  #cloze article.passage{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(330px,.85fr);grid-template-areas:"title title" "text questions";gap:14px 28px;align-items:start;}
+  #cloze article.passage>h3{grid-area:title;margin-bottom:0;}
+  #cloze article.passage>.passagetext{grid-area:text;max-height:66vh;overflow:auto;padding-right:10px;scrollbar-gutter:stable;}
+  #cloze article.passage>.miniwrap{grid-area:questions;display:block;max-height:66vh;overflow:auto;padding-right:7px;scrollbar-gutter:stable;}
+  #cloze .mini{margin-bottom:12px;}
+  #reading .reading-split{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);gap:28px;align-items:start;}
+  #reading .reading-article{max-height:68vh;overflow:auto;scrollbar-gutter:stable;}
+  #reading .reading-questions{display:block;max-height:68vh;overflow:auto;scrollbar-gutter:stable;padding-right:7px;}
+  #reading .reading-questions .qcard{margin-bottom:14px;}
+  #reading .reading-questions .qcard:last-child{margin-bottom:0;}
+}
+/* 綜合測驗的小題詳解在顯示答案後即可閱讀 */
+#cloze .mini .answer.show .detail-analysis{display:block!important;}
+#cloze .mini .detail-section{font-size:.94rem;}
+/* 長題型詳解可讀性 */
+#wordbank .answer.show .detail-analysis,#structure .answer.show .detail-analysis{display:block!important;}
+/* V19：篇章結構桌機版改為文章左、選項右；選項在題組內保持可見且不覆蓋文章 */
+@media (min-width: 980px){
+  #structure article.passage{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(330px,.8fr);grid-template-areas:"text bank" "actions bank" "answer answer";gap:16px 28px;align-items:start;}
+  #structure article.passage>.passagetext{grid-area:text;}
+  #structure article.passage>.bank{grid-area:bank;position:sticky;top:150px;max-height:calc(100vh - 175px);overflow:auto;scrollbar-gutter:stable;z-index:1;margin:0;}
+  #structure article.passage>.card-actions{grid-area:actions;}
+  #structure article.passage>.answer{grid-area:answer;}
+}
+</style><style id="v20-wrong-focus-fix">
+/* V20：只修正長篇單題放大與錯題來源返回邏輯。 */
+body.focus-mode #focusOverlay.long-focus .focus-shell{
+  overflow:hidden;
+}
+body.focus-mode #focusOverlay.long-focus #focusContent{
+  height:100%;
+}
+body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="structure"],
+body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="wordbank"]{
+  height:86vh;
+  max-height:86vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+/* 標題與共用選項固定在放大視窗上方，不與文章重疊。 */
+body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > h3,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > h3,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .bank,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .bank{
+  flex:0 0 auto;
+}
+body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .bank,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .bank{
+  max-height:28vh;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scrollbar-gutter:stable;
+  margin-bottom:12px;
+}
+/* 只有文章區向下捲動；選項留在原位。 */
+body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .passagetext,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .passagetext{
+  flex:1 1 auto;
+  min-height:0;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  padding-right:10px;
+  scrollbar-gutter:stable;
+}
+body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .card-actions,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .card-actions{
+  flex:0 0 auto;
+  margin-top:12px!important;
+}
+body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .answer,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .answer{
+  flex:0 0 auto;
+  max-height:34vh;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+}
+@media(max-width:760px){
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="structure"],
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="wordbank"]{
+    height:88vh;max-height:88vh;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .bank,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .bank{max-height:30vh;}
+}
+</style>
+<style id="v21-review-mode">
+/* V21：作答維持左右雙欄；檢討改為中央大型解析卡。 */
+.review-overlay{position:fixed;inset:0;background:rgba(24,53,43,.28);backdrop-filter:blur(2px);z-index:2600;display:none;align-items:center;justify-content:center;padding:24px;}
+.review-overlay.show{display:flex;}
+.review-shell{width:min(1180px,94vw);height:min(88vh,900px);background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 22px 70px rgba(20,45,36,.22);display:flex;flex-direction:column;overflow:hidden;}
+.review-toolbar{flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line);background:#fff;}
+.review-toolbar h3{margin:0;font-size:1.15rem;color:var(--ink);}
+.review-close{border:1px solid var(--accent);background:#fff;color:var(--accent);border-radius:10px;padding:9px 14px;font-weight:800;cursor:pointer;}
+.review-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;padding:24px 30px 34px;scrollbar-gutter:stable;}
+.review-passage{background:#f7faf8;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:22px;font-size:1.08rem;line-height:1.9;}
+.review-question{border-top:1px solid var(--line);padding:20px 2px 6px;margin-top:8px;}
+.review-question:first-of-type{border-top:0;}
+.review-question .qnum,.review-question .mini-title{font-weight:900;color:var(--accent);margin-bottom:8px;font-size:1.05rem;}
+.review-question .stem{font-size:1.08rem;font-weight:800;margin-bottom:10px;}
+.review-question .opts{margin-bottom:12px;}
+.review-question .answer{display:block!important;background:#f7faf8;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:12px;}
+.review-question .detail-analysis{display:block!important;margin-top:12px;}
+.review-question .card-actions,.review-question button,.review-question .wrongBtn,.review-question .focusBtn{display:none!important;}
+/* 顯示全部答案時，答案同步回填原文空格。 */
+.inline-blank .filled-answer{display:none;}
+.passagetext.answers-inline .inline-blank .blank-slot{display:none;}
+.passagetext.answers-inline .inline-blank .filled-answer{display:inline;font-weight:900;color:var(--accent);background:#edf5f1;border-radius:6px;padding:1px 6px;}
+.passagetext.answers-inline .structure-blank .filled-answer{font-weight:800;line-height:1.7;}
+@media(max-width:760px){.review-overlay{padding:10px}.review-shell{width:98vw;height:92vh;border-radius:16px}.review-scroll{padding:18px 16px 26px}.review-toolbar{padding:12px 14px}.review-passage{padding:15px 14px;font-size:1rem}}
+</style>
+<style id="v25-concentrated-review">
+/* V25：長篇完整解析視覺集中。保留左右雙欄與各自捲動，只縮小整體閱讀工作區。 */
+@media (min-width:901px){
+  .review-shell{width:min(1240px,90vw);height:min(84vh,860px)}
+  .review-body{grid-template-columns:minmax(0,1.52fr) minmax(330px,.88fr);gap:14px;padding:18px 20px 20px}
+  .review-passage{max-width:720px;padding:18px 20px;font-size:1.02rem;line-height:1.78}
+  .review-explain-pane{padding-left:14px;padding-right:4px}
+  .review-toolbar{padding-left:20px;padding-right:20px}
+}
+@media (min-width:901px) and (max-width:1250px){
+  .review-shell{width:min(1120px,92vw)}
+  .review-body{grid-template-columns:minmax(0,1.48fr) minmax(320px,.92fr)}
+}
+</style>
+<style>
+.answer-grammar-note{margin-top:8px;line-height:1.65;color:#33443d;font-size:.96em}.answer-grammar-note strong{color:var(--accent)}
+</style></head>
+<body>
+<header><div class="top"><div class="titleblock"><h1>Lesson Three — Do Animals Sleep like You and Me?</h1><a class="home-link" href="../">回課內試題首頁</a></div><div class="font-side"><div class="fonttools"><span class="sub">字級</span><button onclick="changeFont(-1)">A−</button><button onclick="resetFont()">A</button><button onclick="changeFont(1)">A+</button></div></div></div>
+<div aria-label="題型切換" class="nav" role="tablist"><button class="active" data-view="all" onclick="showSection('all',this)">全部題目</button><button data-view="vocab" onclick="showSection('vocab',this)">文意字彙</button><button data-view="grammar" onclick="showSection('grammar',this)">文法</button><button data-view="cloze" onclick="showSection('cloze',this)">綜合測驗</button><button data-view="wordbank" onclick="showSection('wordbank',this)">文意選填</button><button data-view="structure" onclick="showSection('structure',this)">篇章結構</button><button data-view="reading" onclick="showSection('reading',this)">素養閱讀</button><button data-view="translation" onclick="showSection('translation',this)">翻譯</button><button data-view="wrongBank" onclick="showSection('wrongBank',this)">★ 我的錯題</button><button data-view="custom" onclick="showSection('custom',this)">自訂題目</button><a class="home-link nav-return-home" href="../">回課內試題首頁</a></div></header>
+<main>
+<section id="vocab"><h2>文意字彙</h2><div class="cards"><article class="qcard" data-category="vocab" data-qid="vocab-1" data-sec="vocab"><div class="qnum">文意字彙 1</div><div class="stem">A good teacher always inspires his or her students to keep on working hard. T_____e, his or her students never feel discouraged when they fail.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：Therefore　因此；所以</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">A good teacher always inspires his or her students to keep on working hard. T<b>Therefore</b>e, his or her students never feel discouraged when they fail.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">好老師總會鼓勵學生繼續努力。因此，學生失敗時不會感到氣餒。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">前後句為因果關係，Therefore 表示「因此」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-2" data-sec="vocab"><div class="qnum">文意字彙 2</div><div class="stem">If you make good use of your time, you can a_____d staying up late and taking naps in class.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：avoid　避免</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">If you make good use of your time, you can a<b>avoid</b>d staying up late and taking naps in class.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">如果善用時間，就可以避免熬夜和上課打瞌睡。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">avoid 後接名詞或 V-ing：avoid staying up late。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-3" data-sec="vocab"><div class="qnum">文意字彙 3</div><div class="stem">People suffering from Acute Mountain Sickness (AMS) may have trouble b_____hing or sleeping.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：breathing　呼吸</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">People suffering from Acute Mountain Sickness (AMS) may have trouble b<b>breathing</b>hing or sleeping.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">罹患急性高山症的人可能會有呼吸或睡眠困難。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">have trouble + V-ing 表示「做……有困難」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-4" data-sec="vocab"><div class="qnum">文意字彙 4</div><div class="stem">Human beings cannot s_____e in space without a suit to protect them because there is no oxygen to breathe.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：survive　生存；存活</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Human beings cannot s<b>survive</b>e in space without a suit to protect them because there is no oxygen to breathe.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">人類若沒有太空衣保護，無法在太空中生存，因為沒有氧氣可呼吸。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">survive 可作不及物動詞，表示「存活」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-5" data-sec="vocab"><div class="qnum">文意字彙 5</div><div class="stem">Helen usually scores above a_____e on her exams because she always studies much harder than her classmates.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：average　平均；平均水準</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Helen usually scores above a<b>average</b>e on her exams because she always studies much harder than her classmates.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">Helen 考試通常高於平均，因為她總是比同學更用功。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">above average 為固定搭配，表示「高於平均」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-6" data-sec="vocab"><div class="qnum">文意字彙 6</div><div class="stem">Miraculously, all the passengers s_____ed the plane crash because the pilot safely landed the plane on the water.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：survived　倖存；從……中生還</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Miraculously, all the passengers s<b>survived</b>ed the plane crash because the pilot safely landed the plane on the water.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">奇蹟般地，所有乘客都在墜機事故中生還。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">過去事件用 survived；survive + 事故可表示「從……中生還」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-7" data-sec="vocab"><div class="qnum">文意字彙 7</div><div class="stem">The traveler spoke with a strange accent. Local people w_____red where he was from.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：wondered　想知道</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">The traveler spoke with a strange accent. Local people w<b>wondered</b>red where he was from.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">旅客帶著奇怪口音說話，當地人想知道他來自哪裡。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">wonder + wh-名詞子句；過去情境用 wondered。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-8" data-sec="vocab"><div class="qnum">文意字彙 8</div><div class="stem">Tourists all over the world find Taipei 101 i_____e when they see it for the first time.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：impressive　令人印象深刻的</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Tourists all over the world find Taipei 101 i<b>impressive</b>e when they see it for the first time.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">世界各地的觀光客第一次看到台北 101 時，都覺得它令人印象深刻。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">find + O + adj.；impressive 修飾事物。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-9" data-sec="vocab"><div class="qnum">文意字彙 9</div><div class="stem">Lisa didn’t sleep well last night, so she had a hard time staying a_____e this morning.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：awake　醒著的</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Lisa didn’t sleep well last night, so she had a hard time staying a<b>awake</b>e this morning.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">Lisa 昨晚沒睡好，所以今天早上很難保持清醒。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">stay + adj.；awake 表示「醒著的」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-10" data-sec="vocab"><div class="qnum">文意字彙 10</div><div class="stem">Peter has dinner with his parents every evening because he lives within walking d_____e of their house.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：distance　距離</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Peter has dinner with his parents every evening because he lives within walking d<b>distance</b>e of their house.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">Peter 每晚和父母吃飯，因為他住在離父母家步行可達的距離內。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">within walking distance of... 表示「離……走路可到」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-11" data-sec="vocab"><div class="qnum">文意字彙 11</div><div class="stem">Some scientists believe that dolphins are the smartest of all the c_____es in the ocean.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：creatures　生物</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Some scientists believe that dolphins are the smartest of all the c<b>creatures</b>es in the ocean.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">有些科學家認為海豚是海洋所有生物中最聰明的。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">creature 為可數名詞；all the creatures 用複數。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-12" data-sec="vocab"><div class="qnum">文意字彙 12</div><div class="stem">Recent scientific studies have turned up some a_____g facts. Many people are surprised by them.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：amazing　令人驚奇的</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Recent scientific studies have turned up some a<b>amazing</b>g facts. Many people are surprised by them.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">最近的科學研究發現了一些令人驚奇的事實。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">amazing 修飾令人驚奇的事物；amazed 修飾人的感受。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-13" data-sec="vocab"><div class="qnum">文意字彙 13</div><div class="stem">Since the s_____e of the lake is covered with a thick layer of ice during winter, it is an ideal place for villagers to go skating.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：surface　表面</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Since the s<b>surface</b>e of the lake is covered with a thick layer of ice during winter, it is an ideal place for villagers to go skating.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">冬天湖面覆蓋厚冰，因此是村民溜冰的理想場所。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">the surface of... 表示「……的表面」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-14" data-sec="vocab"><div class="qnum">文意字彙 14</div><div class="stem">Some migratory birds keep flying for a long time over a great distance during their j_____y to and from Asia.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：journey　旅程</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Some migratory birds keep flying for a long time over a great distance during their j<b>journey</b>y to and from Asia.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">有些候鳥在往返亞洲的旅程中，會長時間飛越很遠的距離。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">journey 指一段旅程。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-15" data-sec="vocab"><div class="qnum">文意字彙 15</div><div class="stem">Mr. Yang is an e_____t in math. I’m glad to have him as my tutor.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：expert　專家</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Mr. Yang is an e<b>expert</b>t in math. I’m glad to have him as my tutor.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">楊先生是數學專家，我很高興請他當家教。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">an expert in + 領域 表示「……方面的專家」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-16" data-sec="vocab"><div class="qnum">文意字彙 16</div><div class="stem">It’s very i_____e that besides Chinese and English, Jane can speak French very fluently.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：impressive　令人印象深刻的</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">It’s very i<b>impressive</b>e that besides Chinese and English, Jane can speak French very fluently.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">除了中英文之外，Jane 還能流利說法文，這非常令人印象深刻。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">It is impressive that... 表示「……令人印象深刻」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-17" data-sec="vocab"><div class="qnum">文意字彙 17</div><div class="stem">On a_____e, Alex jogs three miles a day.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：average　平均而言</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">On a<b>average</b>e, Alex jogs three miles a day.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">平均而言，Alex 每天慢跑三英里。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">on average 固定片語，表示「平均而言」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-18" data-sec="vocab"><div class="qnum">文意字彙 18</div><div class="stem">The people on Times Square held their b_____hs as they counted down the last few seconds of the year.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：breaths　呼吸；氣息</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">The people on Times Square held their b<b>breaths</b>hs as they counted down the last few seconds of the year.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">時代廣場的人們倒數一年最後幾秒時都屏住呼吸。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">hold one’s breath；主詞 people 對應 their breaths。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-19" data-sec="vocab"><div class="qnum">文意字彙 19</div><div class="stem">Leonard has an extensive background and knowledge in physics, which is why people consider him to be an e_____t in this field.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：expert　專家</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Leonard has an extensive background and knowledge in physics, which is why people consider him to be an e<b>expert</b>t in this field.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">Leonard 在物理方面背景與知識廣博，因此大家認為他是此領域的專家。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">consider sb. to be an expert in...。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-20" data-sec="vocab"><div class="qnum">文意字彙 20</div><div class="stem">In large cities in Taiwan, it is common to find more than one restaurant within walking d_____e of one’s home.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：distance　距離</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">In large cities in Taiwan, it is common to find more than one restaurant within walking d<b>distance</b>e of one’s home.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">在台灣的大城市，住家步行可達範圍內有不只一家餐廳很常見。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">within walking distance of... 固定搭配。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-21" data-sec="vocab"><div class="qnum">文意字彙 21</div><div class="stem">The first man to walk on the s_____e of the moon was an American astronaut, Neil Armstrong.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：surface　表面</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">The first man to walk on the s<b>surface</b>e of the moon was an American astronaut, Neil Armstrong.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">第一位踏上月球表面的人是美國太空人 Neil Armstrong。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">the surface of the moon。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-22" data-sec="vocab"><div class="qnum">文意字彙 22</div><div class="stem">If we look at the earth from outer space, we can easily see that many parts of the earth’s s_____e are covered with water.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：surface　表面</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">If we look at the earth from outer space, we can easily see that many parts of the earth’s s<b>surface</b>e are covered with water.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">從外太空看地球，可以清楚看到地表許多部分被水覆蓋。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">earth’s surface 表示「地球表面」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-23" data-sec="vocab"><div class="qnum">文意字彙 23</div><div class="stem">Wendy was in a great mood when she a_____e to clear skies and sunshine this morning.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：awoke　醒來</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Wendy was in a great mood when she a<b>awoke</b>e to clear skies and sunshine this morning.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">Wendy 今早醒來看到晴空和陽光時心情很好。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">awake 的過去式可為 awoke；awake to... 表示「醒來面對／看到……」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-24" data-sec="vocab"><div class="qnum">文意字彙 24</div><div class="stem">Facing north on sunny days, you can see those d_____t mountains from the top of the building.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：distant　遙遠的</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Facing north on sunny days, you can see those d<b>distant</b>t mountains from the top of the building.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">晴天面向北方時，可以從樓頂看到那些遙遠的山。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">distant 為形容詞，修飾 mountains。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-25" data-sec="vocab"><div class="qnum">文意字彙 25</div><div class="stem">The children like to put their toy boats or rubber ducks in the pond and watch them f_____t.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：float　漂浮</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">The children like to put their toy boats or rubber ducks in the pond and watch them f<b>float</b>t.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">孩子們喜歡把玩具船或橡皮鴨放進池塘，看著它們漂浮。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">watch + O + 原形動詞可表示觀看完整動作。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-26" data-sec="vocab"><div class="qnum">文意字彙 26</div><div class="stem">“Welcome aboard!” said the f_____t attendant to every passenger.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：flight　飛行；班機（flight attendant 空服員）</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">“Welcome aboard!” said the f<b>flight</b>t attendant to every passenger.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">空服員對每位乘客說：「歡迎登機！」</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">flight attendant 固定搭配，表示「空服員」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-27" data-sec="vocab"><div class="qnum">文意字彙 27</div><div class="stem">The teacher caught the student n_____pping in class and woke him up angrily.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：napping　打瞌睡；小睡</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">The teacher caught the student n<b>napping</b>pping in class and woke him up angrily.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">老師抓到學生上課打瞌睡，生氣地把他叫醒。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">catch + O + V-ing 表示「撞見某人正在做……」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-28" data-sec="vocab"><div class="qnum">文意字彙 28</div><div class="stem">The a_____e number of students in each class is twenty-five.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：average　平均的</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">The a<b>average</b>e number of students in each class is twenty-five.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">每班平均學生人數是二十五人。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">average 作形容詞修飾 number。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-29" data-sec="vocab"><div class="qnum">文意字彙 29</div><div class="stem">For those who suffer from stress, it is enjoyable to go mountain climbing and b_____e the fresh air.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：breathe　呼吸</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">For those who suffer from stress, it is enjoyable to go mountain climbing and b<b>breathe</b>e the fresh air.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">對承受壓力的人而言，爬山並呼吸新鮮空氣很愉快。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">breathe 是動詞；breath 是名詞。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-30" data-sec="vocab"><div class="qnum">文意字彙 30</div><div class="stem">It is said that a near neighbor is better than a _____ (distance) relative.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：distant　遠方的；疏遠的</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">It is said that a near neighbor is better than a <b>distant</b> (distance) relative.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">俗話說遠親不如近鄰。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">空格修飾 relative，需用形容詞 distant。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-31" data-sec="vocab"><div class="qnum">文意字彙 31</div><div class="stem">People enjoy buffets because there is a huge _____ (various) of food available to choose from.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：variety　多樣；種類</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">People enjoy buffets because there is a huge <b>variety</b> (various) of food available to choose from.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">人們喜歡自助餐，因為有各式各樣的食物可選。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">a variety of + 複數名詞。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-32" data-sec="vocab"><div class="qnum">文意字彙 32</div><div class="stem">The motorcyclist sent to the emergency room the day before was declared to have a low chance of _____ (survive) due to severe brain damage.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：survival　存活；生還</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">The motorcyclist sent to the emergency room the day before was declared to have a low chance of <b>survival</b> (survive) due to severe brain damage.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">前一天被送到急診室的機車騎士因嚴重腦傷，被判定生還機率很低。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">介系詞 of 後接名詞 survival。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-33" data-sec="vocab"><div class="qnum">文意字彙 33</div><div class="stem">Martin’s confident way of speaking always makes a good _____ (impress) on people.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：impression　印象</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Martin’s confident way of speaking always makes a good <b>impression</b> (impress) on people.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">Martin 自信的說話方式總能給人好印象。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">make a good impression on sb. 固定搭配。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-34" data-sec="vocab"><div class="qnum">文意字彙 34</div><div class="stem">To the _____ (amaze) of every passerby, the magician controlled the rain and made the raindrops fly.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：amazement　驚訝</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">To the <b>amazement</b> (amaze) of every passerby, the magician controlled the rain and made the raindrops fly.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">令每位路人驚訝的是，魔術師控制雨水，讓雨滴飛舞。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">to one’s amazement 表示「令某人驚訝的是」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="vocab-35" data-sec="vocab"><div class="qnum">文意字彙 35</div><div class="stem">Brian quit his job for _____ (variety) reasons, including low pay and poor working conditions.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：various　各式各樣的</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Brian quit his job for <b>various</b> (variety) reasons, including low pay and poor working conditions.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">Brian 因各種原因辭職，包括低薪和不佳的工作條件。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">修飾複數名詞 reasons，需用形容詞 various。</div></div></div></div></article></div></section><section id="grammar"><h2>文法</h2><div class="cards"><article class="qcard" data-category="grammar" data-qid="grammar-1" data-sec="grammar"><div class="qnum">文法 1</div><div class="stem">Have you _____ wondered why there are seven days in a week?</div><div class="options"><span>(A) before</span> <span>(B) ever</span> <span>(C) once</span> <span>(D) much</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：B — ever</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>現在完成式與 ever</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">Have you ever wondered why there are seven days in a week?</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">你曾經想過為什麼一星期有七天嗎？</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">句型 Have you ever + p.p.? 用來詢問『是否曾經有過某種經驗』。wondered 是 wonder 的過去分詞，因此搭配 ever 最自然。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">ever『曾經』常見於現在完成式疑問句；before『以前』通常放在句尾；once『曾經／一次』不放在 have 與 p.p. 之間表此義；much 不能修飾 wondered。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-2" data-sec="grammar"><div class="qnum">文法 2</div><div class="stem">Can you tell me _____?</div><div class="options"><span>(A) which bus goes to the zoo</span> <span>(B) how often does the zoo bus run</span> <span>(C) is there a zoo around here</span> <span>(D) is this the right way to the zoo</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：A — which bus goes to the zoo</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>wh-疑問詞引導的間接問句</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">Can you tell me which bus goes to the zoo?</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">你可以告訴我哪一班公車開往動物園嗎？</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">tell me 後面接的是名詞子句／間接問句，必須使用陳述句語序。which bus 在子句中本身就是主詞，所以直接接 goes。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">(B) 應改為 how often the zoo bus runs；(C) 應改為 if/whether there is a zoo around here；(D) 應改為 if/whether this is the right way to the zoo。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-3" data-sec="grammar"><div class="qnum">文法 3</div><div class="stem">‘The body clock’ is the mechanism in our body that controls _____ go to sleep.</div><div class="options"><span>(A) when should we</span> <span>(B) where should we</span> <span>(C) when we should</span> <span>(D) the time which we should</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：C — when we should</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>間接問句：wh- + S + V</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">‘The body clock’ is the mechanism in our body that controls when we should go to sleep.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">『生理時鐘』是我們體內控制我們何時該入睡的機制。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">controls 後面需要一個名詞子句作受詞。間接問句不用疑問句倒裝，因此應為 when we should go to sleep。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">直接問句是 When should we go to sleep?；放入另一個句子後改成 when we should go to sleep。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-4" data-sec="grammar"><div class="qnum">文法 4</div><div class="stem">When Felix patted the boy’s head, the boy’s father looked angrily at him. Yet, he didn’t know _____.</div><div class="options"><span>(A) what went wrong</span> <span>(B) what did it go wrong</span> <span>(C) why was it wrong</span> <span>(D) how it goes wrong</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：A — what went wrong</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>名詞子句與 what 作主詞</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">When Felix patted the boy’s head, the boy’s father looked angrily at him. Yet, he didn’t know what went wrong.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">Felix 拍了那男孩的頭後，男孩的父親生氣地看著他。然而，他不知道出了什麼問題。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">know 後面接名詞子句。what 在 what went wrong 中作主詞，因此語序本來就是 what + went wrong，不需使用 did。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">go wrong 表『出錯；出問題』。間接問句若 wh-詞本身作主詞，不另外加入助動詞 do/does/did。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-5" data-sec="grammar"><div class="qnum">文法 5</div><div class="stem">Could you please tell me _____?</div><div class="options"><span>(A) when will you be back</span> <span>(B) where does the cat sleep</span> <span>(C) who the man in black is</span> <span>(D) what we can finish the job</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：C — who the man in black is</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>間接問句的陳述句語序</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">Could you please tell me who the man in black is?</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">可以請你告訴我那位穿黑衣的男子是誰嗎？</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">tell me 後面是間接問句，應使用陳述句語序 who + 主詞 + be，因此為 who the man in black is。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">(A) 應為 when you will be back；(B) 應為 where the cat sleeps；(D) what 後面缺少適當句型，不能說 what we can finish the job。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-6" data-sec="grammar"><div class="qnum">文法 6</div><div class="stem">Choose the incorrect sentence.</div><div class="options"><span>(A) What you have to do is to take a break.</span> <span>(B) I wonder how does the system work.</span> <span>(C) No one knows what will happen next.</span> <span>(D) Max is not what he used to be.</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：B — I wonder how does the system work.</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>間接問句不可倒裝</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">錯誤句：I wonder how does the system work. → 正確：I wonder how the system works.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">選出錯誤的句子。B：I wonder how does the system work.（錯）</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">wonder 後面接間接問句，應用陳述句語序，所以 B 應改成 I wonder how the system works.。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">(A) What you have to do 是名詞子句作主詞；(C) what will happen next 中 what 作主詞；(D) what he used to be 表『他以前的樣子／身分』，皆可成立。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-7" data-sec="grammar"><div class="qnum">文法 7</div><div class="stem">Dolphins have one of the most _____ sleeping secrets: only half their brain is asleep at one time!</div><div class="options"><span>(A) amaze</span> <span>(B) amazing</span> <span>(C) amazingly</span> <span>(D) amazed</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：B — amazing</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>-ing / -ed 形容詞與 one of the most</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">Dolphins have one of the most amazing sleeping secrets: only half their brain is asleep at one time!</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">海豚有最令人驚奇的睡眠祕密之一：牠們一次只讓一半的大腦睡著！</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">空格修飾事物 sleeping secrets，表示『令人驚奇的』，用 amazing。結構為 one of the most + 形容詞 + 複數名詞。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">amazed 表『感到驚訝的』，通常形容人的感受；amazingly 是副詞；amaze 是動詞。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-8" data-sec="grammar"><div class="qnum">文法 8</div><div class="stem">_____ my brother, I am not interested in comic books. Novels attract me more.</div><div class="options"><span>(A) As</span> <span>(B) Like</span> <span>(C) To</span> <span>(D) Unlike</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：D — Unlike</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>Unlike + 名詞</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">Unlike my brother, I am not interested in comic books. Novels attract me more.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">不像我哥哥，我對漫畫沒有興趣；小說更吸引我。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">句意是在比較『我』與『哥哥』不同，因此用介系詞 Unlike『不像；與……不同』，後接名詞 my brother。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">Like 表『像……一樣』，語意相反；As 常表示『身為／如同……方式』，此處不合。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-9" data-sec="grammar"><div class="qnum">文法 9</div><div class="stem">I thought that everybody always talked about my zit for the rest of the year. _____, what I thought was totally different after I talked to my best friend.</div><div class="options"><span>(A) However</span> <span>(B) Therefore</span> <span>(C) For instance</span> <span>(D) In addition</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：A — However</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>轉承副詞 However</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">I thought that everybody always talked about my zit for the rest of the year. However, what I thought was totally different after I talked to my best friend.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">我原本以為那一年剩下的時間大家都一直在談我的痘痘。然而，和最好的朋友談過之後，我的想法完全不同了。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">前句描述原本的想法，後句表示談過之後想法改變，前後形成轉折，因此使用 However『然而』。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">Therefore 表結果；For instance 表舉例；In addition 表補充，均不符合轉折關係。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-10" data-sec="grammar"><div class="qnum">文法 10</div><div class="stem">It’s hard for a giraffe to stand up from a curled lying position very quickly. _____, a giraffe never naps for too long.</div><div class="options"><span>(A) Luckily</span> <span>(B) However</span> <span>(C) Therefore</span> <span>(D) Moreover</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：C — Therefore</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>因果連接副詞 Therefore</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">It’s hard for a giraffe to stand up from a curled lying position very quickly. Therefore, a giraffe never naps for too long.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">長頸鹿要從蜷曲躺姿迅速站起來很困難。因此，長頸鹿從不睡太久。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">前句『很難迅速站起』是原因，後句『不會睡太久』是由此導出的結果，因此用 Therefore『因此』。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">However 表轉折；Moreover 表補充；Luckily 表『幸運地』，都無法準確表達此因果關係。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-11" data-sec="grammar"><div class="qnum">文法 11</div><div class="stem">Bill Gates is one of the world’s _____ people, and he gives away a large amount of money to help the poor.</div><div class="options"><span>(A) more rich</span> <span>(B) richer</span> <span>(C) richest</span> <span>(D) most rich</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：C — richest</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>one of the + 最高級 + 複數名詞</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">Bill Gates is one of the world’s richest people, and he gives away a large amount of money to help the poor.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">比爾・蓋茲是世界上最富有的人之一，而且他捐出大量金錢幫助窮人。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">one of the + 最高級 + 複數名詞表示『最……的……之一』。rich 的最高級是 richest，因此為 one of the world's richest people。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">rich → richer → richest。不能用 more rich / most rich；本題也不是兩者比較，所以 richer 不合。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-12" data-sec="grammar"><div class="qnum">文法 12</div><div class="stem">Jenny didn’t buy the bag because it was _____ more expensive than she expected.</div><div class="options"><span>(A) much</span> <span>(B) very</span> <span>(C) too</span> <span>(D) so</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：A — much</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>much 修飾比較級</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">Jenny didn’t buy the bag because it was much more expensive than she expected.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">Jenny 沒買那個包包，因為它比她預期的貴很多。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">more expensive 是比較級；much 可放在比較級前加強程度，表示『……得多』，因此用 much more expensive。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">very 通常修飾原級形容詞，不能說 very more expensive；too / so 也不能直接用此結構修飾比較級。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-13" data-sec="grammar"><div class="qnum">文法 13</div><div class="stem">There is nothing we can do _____ the disease from spreading to other areas.</div><div class="options"><span>(A) stop</span> <span>(B) stopping</span> <span>(C) to stop</span> <span>(D) to stopping</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：C — to stop</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>不定詞表目的；stop A from V-ing</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">There is nothing we can do to stop the disease from spreading to other areas.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">我們沒有任何辦法可以阻止疾病擴散到其他地區。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">to stop 在此是不定詞表目的／用途，修飾前面的 something/nothing we can do：『可以做來阻止……的事』。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">stop + 受詞 + from + V-ing 表『阻止……做……』：stop the disease from spreading。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-14" data-sec="grammar"><div class="qnum">文法 14</div><div class="stem">Adrian has to work overtime to earn extra money _____ back his debts.</div><div class="options"><span>(A) pay</span> <span>(B) paying</span> <span>(C) in order to pay</span> <span>(D) as to pay</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：C — in order to pay</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>in order to + 原形動詞表目的</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">Adrian has to work overtime to earn extra money in order to pay back his debts.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">Adrian 必須加班賺額外的錢，以便償還債務。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">in order to + VR 明確表示目的，後接原形動詞 pay，因此 in order to pay back his debts 正確。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">pay back debts 表『償還債務』。單獨 pay 雖是原形，但本題空格需要完整目的結構；as to pay 不成立。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-15" data-sec="grammar"><div class="qnum">文法 15</div><div class="stem">_____ this show perfect, we must plan everything down to the last detail.</div><div class="options"><span>(A) Just make</span> <span>(B) Making</span> <span>(C) Made</span> <span>(D) To make</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：D — To make</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>句首不定詞片語表目的</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">To make this show perfect, we must plan everything down to the last detail.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">為了讓這場表演完美，我們必須把每件事都規劃到最後一個細節。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">To make this show perfect 是句首不定詞片語，表示主句動作 plan everything 的目的。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">make + O + adj.：make this show perfect『使這場表演完美』。Making 會變成動名詞／分詞結構，無法表達本題明確的目的。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-16" data-sec="grammar"><div class="qnum">文法 16</div><div class="stem">If you avoid _____ the same mistake, you can do much better this time.</div><div class="options"><span>(A) making</span> <span>(B) to make</span> <span>(C) in making</span> <span>(D) to making</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：A — making</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>avoid + V-ing</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">If you avoid making the same mistake, you can do much better this time.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">如果你避免犯同樣的錯誤，這次就能做得好很多。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">avoid 後面接名詞或動名詞 V-ing，不能接 to V，因此用 avoid making the same mistake。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">常見搭配：avoid doing sth.『避免做某事』；make a mistake『犯錯』。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-17" data-sec="grammar"><div class="qnum">文法 17</div><div class="stem">The tourists are waiting to see dolphins swim _____ the surface to breathe.</div><div class="options"><span>(A) in</span> <span>(B) to</span> <span>(C) on</span> <span>(D) above</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：B — to</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>方向介系詞 to；不定詞表目的</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">The tourists are waiting to see dolphins swim to the surface to breathe.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">遊客正等著看海豚游到水面呼吸。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">swim to + 地點表示『游向／游到……』，因此為 swim to the surface。後面的 to breathe 則是不定詞表目的『為了呼吸』。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">surface 指『水面』。on the surface 是『在表面上』；above the surface 是『在水面上方』，與 swim 的方向不符。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-18" data-sec="grammar"><div class="qnum">文法 18</div><div class="stem">Lisa likes to share with others, so she only ate one half of the little cake and left _____ half for her sister.</div><div class="options"><span>(A) other</span> <span>(B) another</span> <span>(C) others</span> <span>(D) the other</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：D — the other</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>one ... the other：兩者中的另一個</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">Lisa likes to share with others, so she only ate one half of the little cake and left the other half for her sister.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">Lisa 喜歡與人分享，所以她只吃了小蛋糕的一半，把另一半留給妹妹。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">蛋糕被分成兩半，已限定為兩者。兩者中的『另一個』使用 the other，因此是 one half ... the other half。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">another 表不特定的『另一個／再一個』；other 後通常接複數名詞或不可數名詞；others 是代名詞，後面不能再接 half。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-19" data-sec="grammar"><div class="qnum">文法 19</div><div class="stem">When one half of their brain sleeps, _____ half stays awake to help them breathe, swim, and watch out for danger.</div><div class="options"><span>(A) the other</span> <span>(B) the others</span> <span>(C) another</span> <span>(D) other</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：A — the other</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>the other：兩者中的另一個</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">When one half of their brain sleeps, the other half stays awake to help them breathe, swim, and watch out for danger.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">當牠們一半的大腦睡著時，另一半保持清醒，幫助牠們呼吸、游泳並留意危險。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">大腦在此分成兩半，前面已出現 one half，因此另一半應用 the other half。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">one ... the other 是固定的兩者對應結構。the others 表某一群中的其餘多個；another 表三者以上不特定的另一個。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-20" data-sec="grammar"><div class="qnum">文法 20</div><div class="stem">In order to breathe, swim, and watch carefully for danger, only one half of their brain goes to sleep while _____ half stays awake.</div><div class="options"><span>(A) another</span> <span>(B) other</span> <span>(C) others</span> <span>(D) the other</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：D — the other</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>one ... the other；while 對比</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">In order to breathe, swim, and watch carefully for danger, only one half of their brain goes to sleep while the other half stays awake.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">為了呼吸、游泳並小心留意危險，牠們只有一半的大腦進入睡眠，而另一半保持清醒。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">only one half 與另一半形成兩者對應，所以用 the other half。while 在此連接兩個同時存在且形成對比的狀態。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">one ... the other 表『一個……另一個……』；another 不用於已明確限定的兩者。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-21" data-sec="grammar"><div class="qnum">文法 21</div><div class="stem">There are many things we can do to protect the environment. _____, we can bring our own bags when we go shopping instead of buying new plastic ones.</div><div class="options"><span>(A) However</span> <span>(B) Therefore</span> <span>(C) For example</span> <span>(D) Such as</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：C — For example</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>For example 舉例</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">There are many things we can do to protect the environment. For example, we can bring our own bags when we go shopping instead of buying new plastic ones.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">我們可以做很多事來保護環境。例如，購物時可以自備袋子，而不是購買新的塑膠袋。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">第一句先提出概括說法，第二句提供具體做法，因此句首用 For example『例如』。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">such as 後面通常直接接名詞／名詞片語作例子，不能像本題這樣單獨接完整句；However 表轉折，Therefore 表結果。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-22" data-sec="grammar"><div class="qnum">文法 22</div><div class="stem">Birds of this species can fly for a long time _____ a great distance during their journey to and from Africa.</div><div class="options"><span>(A) for</span> <span>(B) over</span> <span>(C) upon</span> <span>(D) with</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：B — over</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>over + 距離</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">Birds of this species can fly for a long time over a great distance during their journey to and from Africa.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">這種鳥在往返非洲的旅途中，可以長時間飛行並跨越很長的距離。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">over a great distance 是常見搭配，表示『跨越很長的距離』，因此選 over。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">for a long time 表時間長度；over a great distance 表空間距離，兩者在句中分別修飾飛行的時間與範圍。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-23" data-sec="grammar"><div class="qnum">文法 23</div><div class="stem">Instead of reaching for _____ cup of coffee, try some green tea.</div><div class="options"><span>(A) the other</span> <span>(B) another</span> <span>(C) others</span> <span>(D) one another</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：B — another</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>another + 單數可數名詞</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">Instead of reaching for another cup of coffee, try some green tea.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">與其再拿一杯咖啡，不如試試綠茶。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">another + 單數可數名詞表示『另一個／再一個』，所以 another cup of coffee =『再一杯咖啡』。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">the other 用於兩者中已特定的另一個；others 是代名詞；one another 表『彼此』。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-24" data-sec="grammar"><div class="qnum">文法 24</div><div class="stem">Mrs. Brown asked her children to be quiet, but they just _____ talking.</div><div class="options"><span>(A) allowed</span> <span>(B) stopped</span> <span>(C) kept</span> <span>(D) finished</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：C — kept</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>keep + V-ing</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">Mrs. Brown asked her children to be quiet, but they just kept talking.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">Brown 太太叫孩子們安靜，但他們還是一直說話。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">keep + V-ing 表示『持續做某事』，因此 kept talking =『一直說話』。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">stop talking 是『停止說話』，與 but 後語意相反；finish 通常接 V-ing，但 finished talking 表『講完』，也不符合『仍繼續』。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-25" data-sec="grammar"><div class="qnum">文法 25</div><div class="stem">Adele noticed that her son seemed _____ and asked him what was wrong.</div><div class="options"><span>(A) be upset</span> <span>(B) upset</span> <span>(C) to upset</span> <span>(D) upsetting</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：B — upset</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>連綴動詞 seem + 形容詞</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">Adele noticed that her son seemed upset and asked him what was wrong.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">Adele 注意到兒子似乎很難過，便問他怎麼了。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">seem 是連綴動詞，後面可直接接形容詞作主詞補語，因此用 upset『難過的；心煩的』。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">也可說 seem to be upset。upsetting 表『令人心煩的』，通常形容事物；to upset 是不定詞，不能直接作 seem 的形容詞補語。</div></div>
+</div></div></article><article class="qcard" data-category="grammar" data-qid="grammar-26" data-sec="grammar"><div class="qnum">文法 26</div><div class="stem">_____ I was just saying, I think it’s better to leave Sam alone.</div><div class="options"><span>(A) As</span> <span>(B) Before</span> <span>(C) Although</span> <span>(D) If</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：A — As</b><div class="detail-analysis">
+<div class="detail-section"><div class="detail-title">文法重點</div><div class="detail-body"><strong>As 引導方式／關聯副詞子句</strong></div></div>
+<div class="detail-section"><div class="detail-title">完整英文句子</div><div class="detail-body">As I was just saying, I think it’s better to leave Sam alone.</div></div>
+<div class="detail-section"><div class="detail-title">中文翻譯</div><div class="detail-body">正如我剛才所說，我認為最好讓 Sam 一個人靜一靜。</div></div>
+<div class="detail-section"><div class="detail-title">為什麼選這個答案</div><div class="detail-body">As I was just saying 是常用表達，As 表『正如；如同』，用來承接前面已說過的內容。</div></div>
+<div class="detail-section"><div class="detail-title">選項辨析／補充</div><div class="detail-body">Before 表『在……之前』；Although 表讓步；If 表條件，皆不符合『正如我剛才所說』的語意。</div></div>
+</div></div></article></div></section><section id="cloze"><h2>綜合測驗</h2><article class="passage" data-category="cloze" data-qid="cloze-1" data-sec="cloze"><h3>第一篇</h3><div class="passagetext"><p>Different animals have different ways of sleeping. These ways show __1__. The following are four examples.</p><p>A giraffe curls its long neck and lays its head on its hip when it sleeps. Because a giraffe cannot stand up from this position very quickly, it may be in danger once a predator comes. __2__ the chance of being attacked, a giraffe sleeps only half an hour a day. While sea otters are sleeping, they float on their backs and __3__ each other to avoid being washed away. Dolphins have a great sleeping secret: Only half their brain is asleep at a time! That allows them to swim to the surface __4__ every twenty minutes so that they can breathe. They can also look out for predators while sleeping. Alpine swifts are able __5__ up in the sky. As long as they stay in the air, almost no animal can hurt them. They can fly for up to two hundred days without landing.</p></div><div class="miniwrap"><div class="mini"><div class="qnum">1</div><div class="stem">__1__</div><div class="options"><span>(A) how they survive in the wild</span> <span>(B) how do they survive in the wild</span> <span>(C) what they survive in the wild</span> <span>(D) what do they survive in the wild</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：A — how they survive in the wild</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">how they survive in the wild</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">牠們如何在野外生存</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">show 後接 wh-名詞子句，使用直述語序。</div></div></div></div></div><div class="mini"><div class="qnum">2</div><div class="stem">__2__</div><div class="options"><span>(A) Lessening</span> <span>(B) Just lessen</span> <span>(C) In order to lessen</span> <span>(D) So as to lessen</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：C — In order to lessen</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">In order to lessen</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">為了降低</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">in order to + VR 表目的。</div></div></div></div></div><div class="mini"><div class="qnum">3</div><div class="stem">__3__</div><div class="options"><span>(A) hang out</span> <span>(B) let out</span> <span>(C) turn to</span> <span>(D) hold on to</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：D — hold on to</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">hold on to</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">緊抓住</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">hold on to each other 表示彼此緊抓。</div></div></div></div></div><div class="mini"><div class="qnum">4</div><div class="stem">__4__</div><div class="options"><span>(A) ever</span> <span>(B) much</span> <span>(C) rather</span> <span>(D) once</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：D — once</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">once</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">一次</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">once every twenty minutes 表示每二十分鐘一次。</div></div></div></div></div><div class="mini"><div class="qnum">5</div><div class="stem">__5__</div><div class="options"><span>(A) sleep</span> <span>(B) to sleep</span> <span>(C) sleeping</span> <span>(D) of sleeping</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：B — to sleep</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">to sleep</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">睡覺</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">be able to + VR。</div></div></div></div></div></div><div class="card-actions"><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div></article><article class="passage" data-category="cloze" data-qid="cloze-2" data-sec="cloze"><h3>第二篇</h3><div class="passagetext"><p>An animal’s sleeping habits can be a matter of life and death in the wild. __1__ respond to predators quickly, many animals are surprisingly light sleepers. Take giraffes __2__. These tall, slow-moving animals do not really sleep at all but take thirty-minute naps only.</p><p>Another light sleeper in the animal kingdom is the Alpine swift. To avoid __3__ up by other animals, these birds seldom set foot on the ground. During their migratory __4__ from Europe to Africa and back, they stay in the air for up to six months. Scientists are amazed at this fact and wonder when __5__ the ground to catch some z’s. The truth is that they don’t. Alpine swifts eat and nap while __6__. In fact, they land only in emergencies, such as during a violent storm.</p><p>__7__ studies, zebras sleep only 2.9 hours a day, and they sleep standing up in a group. However, all the members of the herd never sleep at the same time; some members always stay __8__ to serve as guards. While their friends are sleeping, two or three zebras help to __9__ their predators, such as lions and tigers. The herd survives only when its members work closely together in this way. The wide __10__ of ways in which different animals sleep is really impressive.</p></div><div class="miniwrap"><div class="mini"><div class="qnum">1</div><div class="stem">__1__</div><div class="options"><span>(A) According to</span> <span>(B) In case of</span> <span>(C) In addition to</span> <span>(D) In order to</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：D — In order to</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">In order to</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">為了</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">in order to + VR 表目的。</div></div></div></div></div><div class="mini"><div class="qnum">2</div><div class="stem">__2__</div><div class="options"><span>(A) in fact</span> <span>(B) for example</span> <span>(C) therefore</span> <span>(D) at a time</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：B — for example</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">for example</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">例如</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">take ... for example 表「以……為例」。</div></div></div></div></div><div class="mini"><div class="qnum">3</div><div class="stem">__3__</div><div class="options"><span>(A) being eaten</span> <span>(B) to be eaten</span> <span>(C) eating</span> <span>(D) to eat</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：A — being eaten</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">being eaten</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">被吃掉</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">avoid + V-ing；此處為被動 being eaten。</div></div></div></div></div><div class="mini"><div class="qnum">4</div><div class="stem">__4__</div><div class="options"><span>(A) message</span> <span>(B) creature</span> <span>(C) journey</span> <span>(D) distance</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：C — journey</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">journey</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">旅程</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">migratory journey 遷徙旅程。</div></div></div></div></div><div class="mini"><div class="qnum">5</div><div class="stem">__5__</div><div class="options"><span>(A) are these birds touching</span> <span>(B) do these birds touch</span> <span>(C) these birds touching</span> <span>(D) these birds to touch</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：C — these birds touching</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">these birds touching</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">這些鳥碰觸……</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">wonder when + S + V 的間接問句。</div></div></div></div></div><div class="mini"><div class="qnum">6</div><div class="stem">__6__</div><div class="options"><span>(A) on average</span> <span>(B) in danger</span> <span>(C) on the lookout</span> <span>(D) in flight</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：D — in flight</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">in flight</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">飛行中</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">in flight 表「飛行中」。</div></div></div></div></div><div class="mini"><div class="qnum">7</div><div class="stem">__7__</div><div class="options"><span>(A) Because of</span> <span>(B) According to</span> <span>(C) For the rest of</span> <span>(D) So as to</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：B — According to</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">According to</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">根據</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">According to studies 根據研究。</div></div></div></div></div><div class="mini"><div class="qnum">8</div><div class="stem">__8__</div><div class="options"><span>(A) asleep</span> <span>(B) alive</span> <span>(C) afraid</span> <span>(D) awake</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：D — awake</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">awake</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">醒著的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">stay awake 保持清醒。</div></div></div></div></div><div class="mini"><div class="qnum">9</div><div class="stem">__9__</div><div class="options"><span>(A) hang out with</span> <span>(B) look out for</span> <span>(C) hold on to</span> <span>(D) go through</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：B — look out for</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">look out for</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">留意；提防</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">look out for 留意、提防。</div></div></div></div></div><div class="mini"><div class="qnum">10</div><div class="stem">__10__</div><div class="options"><span>(A) variety</span> <span>(B) attention</span> <span>(C) position</span> <span>(D) surface</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：A — variety</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">variety</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">多樣；種類</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">a wide variety of... 各式各樣的……。</div></div></div></div></div></div><div class="card-actions"><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div></article><article class="passage" data-category="cloze" data-qid="cloze-3" data-sec="cloze"><h3>第三篇</h3><div class="passagetext"><p>Sleep patterns vary widely among animal classes and species. Here are some of those amazing animal sleeping habits that you might find hard to believe.</p><p>Sea otters sleep holding hands or will wrap themselves in seaweed! They have developed this cute-sleeping position to protect themselves and avoid __1__ away. Giraffes sleep very little. It is reported that they sleep as little as __2__. Because of their size and incredible neck length, getting up and down from sleep would put a giraffe at greatest risk of capture from a predator. __3__, they’ve evolved to __4__ short naps through the day.</p><p>Some marine animals sleep while staying in the water. Dolphins are one of these creatures. Nature has given dolphins the ability to sleep in one brain hemisphere (only half their brain) __5__. When one half of their brain goes to sleep, __6__ half stays awake, allowing the animal to continue to move. Some migratory birds fly continuously __7__ stopping migration. These migration periods vary based on the species. For example, Alpine swifts have to keep flying from Africa and stay in the air for __8__ 200 days.</p></div><div class="miniwrap"><div class="mini"><div class="qnum">1</div><div class="stem">__1__</div><div class="options"><span>(A) to float</span> <span>(B) be floated</span> <span>(C) floated</span> <span>(D) floating</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：D — floating</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">floating</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">漂浮</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">avoid + V-ing。</div></div></div></div></div><div class="mini"><div class="qnum">2</div><div class="stem">__2__</div><div class="options"><span>(A) thirty minutes the day</span> <span>(B) thirty minutes a day</span> <span>(C) thirty-minutes the day</span> <span>(D) thirty-minutes a day</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：B — thirty minutes a day</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">thirty minutes a day</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">一天三十分鐘</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">thirty minutes a day 表每天三十分鐘。</div></div></div></div></div><div class="mini"><div class="qnum">3</div><div class="stem">__3__</div><div class="options"><span>(A) Therefore</span> <span>(B) However</span> <span>(C) Moreover</span> <span>(D) In addition</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：A — Therefore</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Therefore</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">因此</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">前因後果用 Therefore。</div></div></div></div></div><div class="mini"><div class="qnum">4</div><div class="stem">__4__</div><div class="options"><span>(A) make</span> <span>(B) run</span> <span>(C) do</span> <span>(D) take</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：D — take</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">take</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">進行（take a nap 小睡）</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">take a nap 固定搭配。</div></div></div></div></div><div class="mini"><div class="qnum">5</div><div class="stem">__5__</div><div class="options"><span>(A) at times</span> <span>(B) at a time</span> <span>(C) just in time</span> <span>(D) in no time</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：B — at a time</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">at a time</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">一次；每次</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">at a time 一次。</div></div></div></div></div><div class="mini"><div class="qnum">6</div><div class="stem">__6__</div><div class="options"><span>(A) another</span> <span>(B) other</span> <span>(C) the other</span> <span>(D) the another</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：C — the other</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">the other</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">另一個／另一半</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">one half...the other half。</div></div></div></div></div><div class="mini"><div class="qnum">7</div><div class="stem">__7__</div><div class="options"><span>(A) because of</span> <span>(B) except for</span> <span>(C) without</span> <span>(D) in order to</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：C — without</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">without</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">沒有；不……</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">without + V-ing。</div></div></div></div></div><div class="mini"><div class="qnum">8</div><div class="stem">__8__</div><div class="options"><span>(A) up to</span> <span>(B) so far</span> <span>(C) much than</span> <span>(D) for long</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：A — up to</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">up to</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">高達</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">up to 表「高達」。</div></div></div></div></div></div><div class="card-actions"><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div></article><article class="passage" data-category="cloze" data-qid="cloze-4" data-sec="cloze"><h3>第四篇</h3><div class="passagetext"><p>Have you ever wondered how animals sleep in the wild? If you have, you may __1__ at their unusual sleeping habits. __2__, sea otters sleep on their backs in the water without getting drowned. __3__ themselves from floating away, sea otters will lock their little paws together during the sleep. As for whales and dolphins, they have an amazing technique known __4__ “logging,” during which only half their brains go to sleep. __5__ half of their brains will stay alert enough to regularly rise out of the water and breathe in fresh air while they are sleeping. This __6__ them to get some much-needed rest. In addition, some creatures, like Alpine swifts, don’t seem to care too much about sleep. Every winter Alpine swifts fly over an incredible distance __7__. During the long trip, they eat insects and even nap in the air! This is certainly one of __8__ animal sleeping habits.</p></div><div class="miniwrap"><div class="mini"><div class="qnum">1</div><div class="stem">__1__</div><div class="options"><span>(A) be surprising</span> <span>(B) be surprised</span> <span>(C) surprise</span> <span>(D) have surprised</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：B — be surprised</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">be surprised</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">感到驚訝</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">人感到驚訝用 be surprised。</div></div></div></div></div><div class="mini"><div class="qnum">2</div><div class="stem">__2__</div><div class="options"><span>(A) What’s more</span> <span>(B) In fact</span> <span>(C) As a result</span> <span>(D) For instance</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：D — For instance</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">For instance</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">例如</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">後句舉例，用 For instance。</div></div></div></div></div><div class="mini"><div class="qnum">3</div><div class="stem">__3__</div><div class="options"><span>(A) To keep</span> <span>(B) Keeping</span> <span>(C) Keep</span> <span>(D) To be kept</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：A — To keep</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">To keep</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">為了使……保持</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">不定詞表目的。</div></div></div></div></div><div class="mini"><div class="qnum">4</div><div class="stem">__4__</div><div class="options"><span>(A) for</span> <span>(B) to</span> <span>(C) as</span> <span>(D) with</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：C — as</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">as</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">被稱為；作為</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">be known as... 被稱為……。</div></div></div></div></div><div class="mini"><div class="qnum">5</div><div class="stem">__5__</div><div class="options"><span>(A) Another</span> <span>(B) Other</span> <span>(C) The other</span> <span>(D) Others</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：C — The other</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">The other</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">另一個／另一半</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">one half...the other half。</div></div></div></div></div><div class="mini"><div class="qnum">6</div><div class="stem">__6__</div><div class="options"><span>(A) lets</span> <span>(B) enables</span> <span>(C) makes</span> <span>(D) inspires</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：B — enables</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">enables</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">使……能夠</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">enable + O + to VR。</div></div></div></div></div><div class="mini"><div class="qnum">7</div><div class="stem">__7__</div><div class="options"><span>(A) at once</span> <span>(B) once in a while</span> <span>(C) at a time</span> <span>(D) one by one</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：C — at a time</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">at a time</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">一次；每次</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">at a time 每次、一次。</div></div></div></div></div><div class="mini"><div class="qnum">8</div><div class="stem">__8__</div><div class="options"><span>(A) the much impressive</span> <span>(B) more impressive than</span> <span>(C) most impressive</span> <span>(D) the most impressive</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button></div><div class="answer"><b>答案：D — the most impressive</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">the most impressive</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">最令人印象深刻的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">one of the + 最高級 + 複數名詞。</div></div></div></div></div></div><div class="card-actions"><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div></article></section><section id="wordbank"><h2>文意選填</h2><article class="passage" data-category="wordbank" data-qid="wordbank-1"><h3>第1篇</h3><div class="passagetext"><p>People and animals need sleep, but do insects sleep as well? __1__ some studies, the answer is yes. Let’s take bees, which are among the most studied __2__ on earth, as an example. Scientists have found that, like humans, bees sleep 5-8 hours a day __3__. They go into a relaxed position __4__ they are sleeping. Without enough sleep, they may have difficulty remembering __5__ their hive is after collecting nectar. In order to __6__, bees need a good sleep.</p><p>Since bees sleep, you may __7__ how and where they sleep. Like sea otters, which __8__ each other while asleep, bees also hold each other’s legs when they are sleeping. They can sleep in __9__ places in addition to their hives. __10__, they may sleep on flowers, on the back of a cow, or on the ear of a sheep.</p></div><div class="bank">(A) wonder　(B) according to　(C) where　(D) various　(E) creatures　(F) hold on to　(G) while　(H) survive　(I) on average　(J) for example</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><div class="mini"><div class="qnum">1</div><div class="answer show"><b>答案：B — according to　根據</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">2</div><div class="answer show"><b>答案：E — creatures　生物</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">3</div><div class="answer show"><b>答案：I — on average　平均而言</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">4</div><div class="answer show"><b>答案：G — while　當……時</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">5</div><div class="answer show"><b>答案：C — where　哪裡</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">6</div><div class="answer show"><b>答案：H — survive　生存</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">7</div><div class="answer show"><b>答案：A — wonder　想知道</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">8</div><div class="answer show"><b>答案：F — hold on to　緊抓住</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">9</div><div class="answer show"><b>答案：D — various　各式各樣的</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">10</div><div class="answer show"><b>答案：J — for example　例如</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div></div></article><article class="passage" data-category="wordbank" data-qid="wordbank-2"><h3>第2篇</h3><div class="passagetext"><p>Of all the animals in the world, only human beings have chins. Even primates like monkeys or gorillas don’t have chins. Have you ever __1__ why humans are the only __2__ on earth that have chins? Unlike an exam, where every complicated question has an answer; some things in life just don’t have any solution or explanation. However, __3__ research indicates that there are __4__ possible answers to this question. First, human beings had to rely on the use of language to __5__, cooperate, and develop a complex civilization.</p><p>Moreover, when we are communicating with each other, we are actually training the muscles and bones around our mouth to grow stronger. __6__, as time goes by, these bones and muscles grow strong enough to form our chins. Moreover, our chins may serve as a sexual characteristic which helps us to attract members of the opposite sex. __7__, the male peacock uses its __8__ and colorful feathers to attract mates, and experts say that chins may be used by humans in the same way. __9__, men will have a squarer chin than women as this shows their masculinity. On the other hand, women tend to have a rounder chin to make their faces look smaller. On the __10__, our chins may not look so special.</p></div><div class="bank">(A) scientific　(B) therefore　(C) wondered　(D) on average　(E) various　(F) survive　(G) for example　(H) creatures　(I) surface　(J) amazing</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><div class="mini"><div class="qnum">1</div><div class="answer show"><b>答案：C — wondered　想知道</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">2</div><div class="answer show"><b>答案：H — creatures　生物</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">3</div><div class="answer show"><b>答案：A — scientific　科學的</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">4</div><div class="answer show"><b>答案：E — various　各式各樣的</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">5</div><div class="answer show"><b>答案：F — survive　生存</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">6</div><div class="answer show"><b>答案：B — therefore　因此</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">7</div><div class="answer show"><b>答案：G — for example　例如</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">8</div><div class="answer show"><b>答案：J — amazing　令人驚奇的</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">9</div><div class="answer show"><b>答案：D — on average　平均而言</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div><div class="mini"><div class="qnum">10</div><div class="answer show"><b>答案：I — surface　表面</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">依詞性、固定搭配與前後文語意判斷；答案已附中文意思。</div></div></div></div></div></div></article></section><section id="structure"><h2>篇章結構</h2><article class="passage" data-category="structure" data-qid="structure-1"><div class="passagetext"><p>Human beings have dominated the earth for quite some time now. __1__ What would happen if humans were to completely disappear? Would animals suddenly become the kings of the world? Would the earth be better without us? Let’s try to find out.</p><p>Just a few hours after humans disappear, most of the electricity will shut down because of power plant failures, and all the underground systems will become flooded with ground water, so there will be no more subways. If the absence of underground subways isn’t bad enough for you, the failure of nuclear power plants should certainly freak you out. __2__ This is when the horror will strike. Hundreds of nuclear power plants around the world will explode one after another, causing severe pollution to their surrounding areas. __3__ Although it might take a while, nature always finds a way to restore its power.</p><p>In the end, after 10,000 years, the only evidence of human civilization will be stone structures like the pyramids in Egypt and the four faces of U.S. presidents on Mount Rushmore. __4__ Each of us experiences only a tiny period of our planet’s long history. Looking into what the earth would be like without us might be the key to learning more about the world we live in.</p></div><div class="bank">(A) However, this will not be the end of the world.<br/>(B) Despite the slim chance of human disappearance, it is still worth investigating.<br/>(C) However, to be frank, we are probably not the most suitable rulers of our planet.<br/>(D) Some animals might quickly take over abandoned cities and build their own civilizations.<br/>(E) Without human control, the cooling water of nuclear power plants will eventually vaporize.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><div class="mini"><div class="qnum">1</div><div class="answer show"><b>答案：C — However, to be frank, we are probably not the most suitable rulers of our planet.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">However, to be frank, we are probably not the most suitable rulers of our planet.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">然而，老實說，我們可能不是最適合統治地球的物種。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">承接「人類長期主宰地球」，再轉折提出人類未必適合統治地球，接著引出「若人類消失」。</div></div></div></div></div><div class="mini"><div class="qnum">2</div><div class="answer show"><b>答案：E — Without human control, the cooling water of nuclear power plants will eventually vaporize.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Without human control, the cooling water of nuclear power plants will eventually vaporize.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">若沒有人類控制，核電廠的冷卻水最終會蒸發。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">前文談核電廠故障，後文接「這時恐怖將發生」，E 具體交代冷卻水蒸發的原因。</div></div></div></div></div><div class="mini"><div class="qnum">3</div><div class="answer show"><b>答案：A — However, this will not be the end of the world.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">However, this will not be the end of the world.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">然而，這並不會是世界末日。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">前文是嚴重污染，後文轉向自然終會恢復，因此需要 However 轉折。</div></div></div></div></div><div class="mini"><div class="qnum">4</div><div class="answer show"><b>答案：B — Despite the slim chance of human disappearance, it is still worth investigating.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Despite the slim chance of human disappearance, it is still worth investigating.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">儘管人類消失的可能性很低，這仍值得研究。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">最後一段說明研究此議題的目的，B 可銜接「雖然人類消失機率低，仍值得探討」。</div></div></div></div></div></div></article></section><section id="reading"><h2>素養閱讀</h2><article class="passage" data-category="reading" data-qid="reading-passage"><div class="passagetext"><h3>Comparison of Hibernation Methods</h3><table border="1" cellpadding="8" style="width:100%;border-collapse:collapse"><tr><th>Animal</th><th>Duration</th><th>Hibernation Type</th><th>Facts</th></tr><tr><td>Bat</td><td>Sep. to Apr.</td><td>Hibernation</td><td>Heartbeat drops from 400 to 25 BPM; lose about half of body weight.</td></tr><tr><td>Hedgehog</td><td>Nov. to Mar.</td><td>Hibernation</td><td>Males hibernate earlier than females; body temperature drops from 35°C to 10°C.</td></tr><tr><td>Dormouse</td><td>Oct. to Apr.</td><td>Hibernation</td><td>Temperature, heartbeat and breathing rate are lower.</td></tr><tr><td>Woodchuck</td><td>Nov. to Apr.</td><td>Hibernation</td><td>Spend half a year hibernating; maintain body temperature but breathe once in six minutes.</td></tr><tr><td>Frog/Toad</td><td>Oct. to Jan.</td><td>Hibernation</td><td>Frogs can hibernate underwater; some toad species can hibernate for years.</td></tr><tr><td>Snake</td><td>Depending on temperature</td><td>Brumation</td><td>Cannot digest food; certain species hibernate in groups.</td></tr><tr><td>Box Turtle</td><td>Oct. to Apr.</td><td>Brumation</td><td>Immune system slows with digestion; still move sluggishly.</td></tr><tr><td>Insect</td><td>Oct. to Mar.</td><td>Diapause</td><td>Ladybirds and moths cluster together; queen bees drink nectar to sustain themselves.</td></tr></table></div></article><div class="cards"><article class="qcard" data-category="reading" data-qid="reading-1" data-sec="reading"><div class="qnum">素養閱讀 1</div><div class="stem">Based on the information given, which animal might hibernate for the longest period?</div><div class="options"><span>(A) The Hedgehog.</span> <span>(B) The Woodchuck.</span> <span>(C) The Toad.</span> <span>(D) The Ladybird.</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：C — The Toad.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Based on the information given, which animal might hibernate for the longest period?</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body"><b>The Toad.</b> 在本題中的中文意思／功能為「蟾蜍。」。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">表格指出 some toad species can hibernate for years，因此可能最久。</div></div></div></div></article><article class="qcard" data-category="reading" data-qid="reading-2" data-sec="reading"><div class="qnum">素養閱讀 2</div><div class="stem">When it comes to hibernation, which is not mentioned in the passage?</div><div class="options"><span>(A) The drop of body temperature.</span> <span>(B) The drop of heartbeat.</span> <span>(C) The drop of breathing rate.</span> <span>(D) The drop of blood pressure.</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：D — The drop of blood pressure.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">When it comes to hibernation, which is not mentioned in the passage?</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body"><b>The drop of blood pressure.</b> 在本題中的中文意思／功能為「血壓下降。」。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">表格提到體溫、心跳與呼吸率下降，沒有提到血壓下降。</div></div></div></div></article><article class="qcard" data-category="reading" data-qid="reading-3" data-sec="reading"><div class="qnum">素養閱讀 3</div><div class="stem">Which is true?</div><div class="options"><span>(A) Cold-blooded animals like frogs or snakes all undergo brumation.</span> <span>(B) Some animals cluster together during hibernation.</span> <span>(C) The body temperature always drops for all animals during hibernation.</span> <span>(D) Regardless of gender, animals of the same species hibernate at the same time.</span></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：B — Some animals cluster together during hibernation.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Which is true?</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body"><b>Some animals cluster together during hibernation.</b> 在本題中的中文意思／功能為「有些動物在冬眠期間會群聚在一起。」。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">表格指出某些蛇、瓢蟲與蛾會群聚，因此 B 正確。</div></div></div></div></article></div></section><section id="translation"><h2>翻譯</h2><div class="cards"><article class="qcard" data-category="translation" data-qid="translation-1"><div class="qnum">翻譯 1</div><div class="stem zh">為了不要有錯誤，John在把考卷交給老師前徹底看過考卷，以確定所有的答案是正確的。</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>In order not to make any mistakes, John went through the exam paper to make sure all the answers were correct before he handed it over to the teacher.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">In order not to make any mistakes, John went through the exam paper to make sure all the answers were correct before he handed it over to the teacher.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">為了不要有錯誤，John在把考卷交給老師前徹底看過考卷，以確定所有的答案是正確的。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">in order not to + VR 表「為了不要……」；go through 表「徹底檢查」。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="translation-2"><div class="qnum">翻譯 2</div><div class="stem zh">為了搭上第一班火車，Peter今天早上特別早起。</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>In order to catch the first train, Peter got up particularly early this morning.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">In order to catch the first train, Peter got up particularly early this morning.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">為了搭上第一班火車，Peter今天早上特別早起。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">in order to + VR 表目的。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="translation-3"><div class="qnum">翻譯 3</div><div class="stem zh">根據新聞報導，高達百分之五十的中學生患有長假症候群。</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>According to a news report, up to fifty percent of high school students suffer from post-vacation syndrome.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">According to a news report, up to fifty percent of high school students suffer from post-vacation syndrome.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">根據新聞報導，高達百分之五十的中學生患有長假症候群。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">according to 表「根據」；up to 表「高達」；suffer from 表「患有」。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="translation-4"><div class="qnum">翻譯 4</div><div class="stem zh">當你在這區域開車時，當心有袋鼠跳上馬路。</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>Look out for kangaroos that may jump out onto the road while you are driving in this area.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Look out for kangaroos that may jump out onto the road while you are driving in this area.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">當你在這區域開車時，當心有袋鼠跳上馬路。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">look out for + N 表「當心／留意……」。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="translation-5"><div class="qnum">翻譯 5</div><div class="stem zh">你可以利用一些策略來使面試官印象深刻。例如，自信地介紹自己。</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>You can use some strategies to impress the interviewer. For example, introduce yourself with confidence.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">You can use some strategies to impress the interviewer. For example, introduce yourself with confidence.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">你可以利用一些策略來使面試官印象深刻。例如，自信地介紹自己。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">impress + 人 表「使某人印象深刻」；For example 表「例如」。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="translation-6"><div class="qnum">翻譯 6</div><div class="stem zh">這個標誌告訴你在哪裡可以找到手推車（cart）。</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>The sign tells you where you can find a cart.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">The sign tells you where you can find a cart.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">這個標誌告訴你在哪裡可以找到手推車（cart）。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">tell + 人 + wh-名詞子句；where you can find a cart 使用直述語序。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="translation-7"><div class="qnum">翻譯 7</div><div class="stem zh">Mike正在想他可以從哪裡得到錢來付信用卡帳單。</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>Mike is thinking (about) where he can get money to pay his credit card bill.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Mike is thinking (about) where he can get money to pay his credit card bill.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">Mike正在想他可以從哪裡得到錢來付信用卡帳單。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">think (about) + wh-名詞子句；to pay 表目的。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="translation-8"><div class="qnum">翻譯 8</div><div class="stem zh">小男孩緊緊抓住氣球（balloon），以免它可能被風吹走。</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>The boy held on to his balloon in case (that) it might be/get blown away.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">The boy held on to his balloon in case (that) it might be/get blown away.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">小男孩緊緊抓住氣球（balloon），以免它可能被風吹走。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">hold on to 緊抓；in case (that) 表「以免」。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="translation-9"><div class="qnum">翻譯 9</div><div class="stem zh">根據我的經驗，颱風過後蔬菜比較昂貴。</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>According to my experience, vegetables are more expensive after a typhoon.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">According to my experience, vegetables are more expensive after a typhoon.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">根據我的經驗，颱風過後蔬菜比較昂貴。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">according to + N 表「根據……」；more expensive 為比較級。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="translation-10"><div class="qnum">翻譯 10</div><div class="stem zh">為了不要再度遲到，Ben必須知道他何時該起床。</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>Ben needs to know when he should get up in order not to be late again.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Ben needs to know when he should get up in order not to be late again.</div></div><div class="detail-section"><div class="detail-title">中文翻譯／意思</div><div class="detail-body">為了不要再度遲到，Ben必須知道他何時該起床。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">know + wh-名詞子句；in order not to + VR 表「為了不要……」。</div></div></div></div></article></div></section><section id="wrongBank"><h2>我的錯題</h2>
+<div class="wrong-summary"><div><b>錯題複習區</b><span id="wrongCount">目前 0 題</span></div><div class="wrong-tools"><button class="secondary" onclick="selectAllWrong(true)">全選</button><button class="secondary" onclick="selectAllWrong(false)">取消全選</button><button class="primary" onclick="printWrong('student')">產生學生影印版</button><button class="secondary teacherPrint" onclick="printWrong('teacher')">產生教師答案版</button></div></div>
+<div class="wrong-empty" id="wrongEmpty">目前還沒有錯題。回到題目頁，按「☆ 加入我的錯題」即可收藏。</div>
+<div class="cards" id="wrongList"></div></section>
+<section aria-hidden="true" class="print-sheet" id="printSheet"></section><section id="custom"><h2>自訂題目</h2>
+<article class="editor">
+<label>題目</label><textarea id="cq" placeholder="可直接貼上題目文字"></textarea>
+<label>答案</label><textarea id="ca" placeholder="輸入答案"></textarea>
+<label>解析</label><textarea id="ce" placeholder="可選填解析"></textarea>
+<button class="primary" onclick="addCustom()">加入自訂題目</button>
+<button class="secondary" onclick="clearCustom()">清除所有自訂題目</button>
+</article><div class="cards" id="customList"></div></section>
+</main>
+<button class="floatTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="focus-overlay" id="focusOverlay" onclick="overlayClose(event)"><div class="focus-shell"><div class="focus-toolbar"><button class="focus-close" onclick="closeFocus()">返回全部題目</button></div><div id="focusContent"></div></div></div><div class="review-overlay" id="reviewOverlay" onclick="reviewOverlayClose(event)"><div class="review-shell"><div class="review-toolbar"><h3 id="reviewTitle">集中解析</h3><button class="review-close" onclick="closeLongReview()">返回作答</button></div><div class="review-scroll" id="reviewContent"></div></div></div>
+<script>
+
+let fontStep=Number(localStorage.getItem('lesson1_fontStep')||0);
+function applyFont(){document.documentElement.style.fontSize=(16+fontStep*2)+'px';}
+function changeFont(d){fontStep=Math.max(-2,Math.min(3,fontStep+d));localStorage.setItem('lesson1_fontStep',fontStep);applyFont();}
+function resetFont(){fontStep=0;localStorage.setItem('lesson1_fontStep',0);applyFont();}
+applyFont();
+let focusOriginal=null, focusPlaceholder=null, focusOrigin='normal';
+function openFocus(btn,origin='normal'){
+  const card=btn.closest('.qcard,.passage');if(!card)return;
+  focusOrigin=origin;
+  focusOriginal=card;focusPlaceholder=document.createComment('focus-placeholder');
+  card.parentNode.insertBefore(focusPlaceholder,card);
+  document.getElementById('focusContent').appendChild(card);
+  const overlay=document.getElementById('focusOverlay');
+  const cat=card.dataset.category||'';
+  overlay.classList.toggle('long-focus',cat==='structure'||cat==='wordbank');
+  const reveal=card.querySelector('.reveal');
+  if(reveal&&!card.querySelector('.focusReturnInline')){
+    const back=document.createElement('button');
+    back.className='focus-close focusReturnInline';back.textContent=(focusOrigin==='wrong'?'返回錯題區':'返回全部題目');back.onclick=closeFocus;
+    const actions=card.querySelector('.card-actions');
+    if(actions) actions.appendChild(back); else reveal.insertAdjacentElement('afterend',back);
+  }
+  document.getElementById('focusOverlay').classList.add('show');document.body.classList.add('focus-mode');
+}
+function closeFocus(){
+  if(focusOriginal){const back=focusOriginal.querySelector('.focusReturnInline');if(back)back.remove();}
+  if(focusOriginal&&focusPlaceholder&&focusPlaceholder.parentNode){focusPlaceholder.parentNode.insertBefore(focusOriginal,focusPlaceholder);focusPlaceholder.remove();}
+  const overlay=document.getElementById('focusOverlay');overlay.classList.remove('show','long-focus');document.body.classList.remove('focus-mode');focusOriginal=null;focusPlaceholder=null;focusOrigin='normal';
+}
+function overlayClose(e){if(e.target.id==='focusOverlay')closeFocus();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('focusOverlay').classList.contains('show'))closeFocus();});
+function toggleAns(btn){
+  const mini=btn.closest('.mini');
+  const card=mini || btn.closest('.qcard,.passage');
+  if(!card)return;
+  const a=card.querySelector('.answer');
+  if(!a)return;
+  a.classList.toggle('show');
+  const isShow=a.classList.contains('show');
+  const original=btn.dataset.originalLabel || btn.textContent;
+  if(!btn.dataset.originalLabel) btn.dataset.originalLabel=original;
+  if(isShow){
+    btn.textContent=original.includes('全部')?'隱藏全部答案':(original.includes('參考')?'隱藏參考答案':(original.includes('解析')?'隱藏答案／解析':'隱藏答案'));
+  }else{
+    btn.textContent=btn.dataset.originalLabel;
+  }
+}
+function showSection(id,btn){
+  const sections=[...document.querySelectorAll('main>section')].filter(sec=>sec.id!=='printSheet');
+  const showAll=id==='all';
+  sections.forEach(sec=>{
+    const visible=showAll || sec.id===id;
+    sec.classList.toggle('view-hidden',!visible);
+    sec.classList.toggle('view-active',visible&&!showAll);
+  });
+  document.body.classList.toggle('single-section',!showAll);
+  document.querySelectorAll('.nav button[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===id));
+  if(id==='wrongBank') renderWrongBank();
+  // 切換分類時直接回到內容頂端，不使用平滑捲動動畫。
+  const main=document.querySelector('main');
+  if(main){const y=main.getBoundingClientRect().top+window.scrollY-document.querySelector('header').offsetHeight-8;window.scrollTo({top:Math.max(0,y),behavior:'auto'});}
+  try{sessionStorage.setItem('lesson1_active_view',id)}catch(e){}
+}
+function goTo(id){
+  const b=document.querySelector(`.nav button[data-view="${id}"]`);
+  showSection(id,b);
+}
+function initSectionView(){
+  let id='all';
+  try{id=sessionStorage.getItem('lesson1_active_view')||'all'}catch(e){}
+  if(!document.getElementById(id)&&id!=='all')id='all';
+  const b=document.querySelector(`.nav button[data-view="${id}"]`);
+  showSection(id,b);
+}
+
+function loadCustom(){const data=JSON.parse(localStorage.getItem('lesson3_custom')||'[]');const box=document.getElementById('customList');box.innerHTML='';data.forEach((x,i)=>{const el=document.createElement('article');el.className='qcard';el.innerHTML=`<div class="qnum">自訂題目 ${i+1}</div><div class="stem">${escapeHtml(x.q)}</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button></div><div class="answer"><b>答案：${escapeHtml(x.a)}</b><p>${escapeHtml(x.e||'')}</p></div>`;box.appendChild(el)})}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function addCustom(){const q=document.getElementById('cq').value.trim(),a=document.getElementById('ca').value.trim(),e=document.getElementById('ce').value.trim();if(!q){alert('請先輸入題目');return}const data=JSON.parse(localStorage.getItem('lesson3_custom')||'[]');data.push({q,a,e});localStorage.setItem('lesson3_custom',JSON.stringify(data));document.getElementById('cq').value='';document.getElementById('ca').value='';document.getElementById('ce').value='';loadCustom()}
+function clearCustom(){if(confirm('確定清除所有自訂題目？')){localStorage.removeItem('lesson3_custom');loadCustom()}}
+loadCustom();
+
+
+// V12 我的錯題與 A4 輸出
+const WRONG_KEY='lesson3_wrong_v1';
+function wrongIds(){try{return JSON.parse(localStorage.getItem(WRONG_KEY)||'[]')}catch(e){return[]}}
+function saveWrong(ids){localStorage.setItem(WRONG_KEY,JSON.stringify([...new Set(ids)]));syncWrongButtons();renderWrongBank()}
+function toggleWrong(btn){const card=btn.closest('[data-qid]');if(!card)return;const id=card.dataset.qid;let ids=wrongIds();ids=ids.includes(id)?ids.filter(x=>x!==id):[...ids,id];saveWrong(ids)}
+function syncWrongButtons(){const ids=wrongIds();document.querySelectorAll('[data-qid] .wrongBtn').forEach(b=>{const c=b.closest('[data-qid]');const on=c&&ids.includes(c.dataset.qid);b.classList.toggle('active',!!on);b.textContent=on?'★ 已加入我的錯題':'☆ 加入我的錯題'})}
+function categoryName(id){return ({vocab:'文意字彙',grammar:'文法',cloze:'綜合測驗',wordbank:'文意選填',structure:'篇章結構',reading:'素養閱讀',translation:'翻譯',custom:'自訂題目'})[id]||id}
+function getSourceCard(id){
+  // 只從正式題庫區尋找來源，避免錯題清單或單題浮層中的複本干擾。
+  const esc=CSS.escape(id);
+  return document.querySelector(`main > section:not(#wrongBank) [data-qid="${esc}"]`) ||
+         document.querySelector(`#focusContent [data-qid="${esc}"]`);
+}
+// V22：錯題區一律維持「待重作」狀態，不提前洩漏答案。
+function sanitizeWrongPreview(node){
+  if(!node)return node;
+  node.classList?.remove('answers-inline');
+  node.querySelectorAll?.('.filled-answer').forEach(x=>x.remove());
+  node.querySelectorAll?.('.answer').forEach(a=>{a.classList.remove('show');a.style.display='';});
+  return node;
+}
+function resetSourceForRetry(src){
+  if(!src)return;
+  // V27：再次複習一定回到原始作答狀態，清除上一輪解析模式殘留。
+  src.classList.remove('structure-answer-mode','wordbank-answer-mode');
+  src.querySelectorAll(':scope > .structure-inline-explain,:scope > .wordbank-inline-explain').forEach(x=>x.remove());
+  src.querySelectorAll('.answer').forEach(a=>{a.classList.remove('show');a.style.display='';});
+  src.querySelectorAll('.passagetext.answers-inline').forEach(t=>t.classList.remove('answers-inline'));
+  src.querySelectorAll('.filled-answer').forEach(x=>x.remove());
+  src.querySelectorAll('button.reveal').forEach(b=>{
+    const t=b.textContent.trim();
+    if(t.includes('隱藏')){
+      if((src.dataset.category||'')==='translation') b.textContent='顯示參考答案';
+      else if((src.dataset.category||'')==='wordbank'||(src.dataset.category||'')==='structure') b.textContent='顯示答案與解析';
+      else b.textContent='顯示答案與解析';
+    }
+  });
+}
+function renderWrongBank(){
+  const ids=wrongIds(),list=document.getElementById('wrongList'),empty=document.getElementById('wrongEmpty'),count=document.getElementById('wrongCount');
+  if(!list)return;
+  list.innerHTML='';
+  const valid=ids.map(id=>({id,src:getSourceCard(id)})).filter(x=>x.src);
+  count.textContent=`目前 ${valid.length} 題`;
+  empty.style.display=valid.length?'none':'block';
+  const order=['vocab','grammar','cloze','wordbank','structure','reading','translation','custom'];
+  const groups=new Map();
+  valid.forEach(x=>{const cat=x.src.dataset.category||'other';if(!groups.has(cat))groups.set(cat,[]);groups.get(cat).push(x)});
+  [...groups.keys()].sort((a,b)=>{const ai=order.indexOf(a),bi=order.indexOf(b);return (ai<0?999:ai)-(bi<0?999:bi)}).forEach(cat=>{
+    const items=groups.get(cat);
+    const group=document.createElement('div');group.className='wrong-category-group';
+    const head=document.createElement('div');head.className='wrong-category-head';
+    head.innerHTML=`<h3>${escapeHtml(categoryName(cat))}</h3><span>${items.length} 題</span>`;
+    group.appendChild(head);
+    const grid=document.createElement('div');grid.className='cards wrong-category-cards';
+    const isLongWrong=(cat==='wordbank'||cat==='structure');
+    if(isLongWrong)group.classList.add('wrong-long-group');
+    items.forEach(({id,src})=>{
+      const wrap=document.createElement('article');wrap.className='qcard wrong-review-card'+(isLongWrong?' wrong-long-card':'');wrap.dataset.sourceId=id;wrap.dataset.category=cat;
+      const title=src.querySelector('.qnum')?.textContent || src.querySelector('h3')?.textContent || categoryName(cat);
+      const stem=sanitizeWrongPreview(src.querySelector('.stem,.passagetext')?.cloneNode(true));
+      const opts=sanitizeWrongPreview(src.querySelector('.opts,.miniwrap,.bank')?.cloneNode(true));
+      wrap.innerHTML=`<label class="wrong-card-select"><input type="checkbox" class="wrongPick" value="${id}" checked> ${escapeHtml(title)}</label>`;
+      // V15：篇章結構／文意選填使用整列寬版。文章在左、原選項庫在右，減少上下捲動確認。
+      if(isLongWrong){
+        const layout=document.createElement('div');layout.className='wrong-long-layout';
+        const mainCol=document.createElement('div');mainCol.className='wrong-long-main';
+        const sideCol=document.createElement('div');sideCol.className='wrong-long-side';
+        if(stem)mainCol.appendChild(stem);
+        if(opts)sideCol.appendChild(opts);
+        layout.appendChild(mainCol);layout.appendChild(sideCol);wrap.appendChild(layout);
+      }else{
+        if(src.querySelector('.bank') && opts)wrap.appendChild(opts);
+        if(stem)wrap.appendChild(stem);
+        if(!src.querySelector('.bank') && opts)wrap.appendChild(opts);
+      }
+      const acts=document.createElement('div');acts.className='wrong-review-actions';
+      acts.innerHTML=`<button class="focusBtn" onclick="reviewWrong('${id}')">再次複習</button><button class="secondary" onclick="removeWrong('${id}')">移出錯題</button>`;
+      wrap.appendChild(acts);grid.appendChild(wrap);
+    });
+    group.appendChild(grid);list.appendChild(group);
+  });
+}
+function removeWrong(id){saveWrong(wrongIds().filter(x=>x!==id))}
+function selectAllWrong(on){document.querySelectorAll('.wrongPick').forEach(x=>x.checked=on)}
+function reviewWrong(id){const src=getSourceCard(id);if(!src)return;resetSourceForRetry(src);const b=src.querySelector('.focusBtn');if(b)openFocus(b,'wrong')}
+function pickedWrong(){return [...document.querySelectorAll('.wrongPick:checked')].map(x=>x.value)}
+function cleanPrintClone(src,teacher){const c=src.cloneNode(true);c.querySelectorAll('.card-actions,.focusReturnInline,.wrongBtn,.focusBtn,button').forEach(x=>x.remove());c.querySelectorAll('.answer').forEach(a=>{a.classList.remove('show');if(teacher)a.style.display='block'});return c}
+function printWrong(mode){const ids=pickedWrong();if(!ids.length){alert('請先勾選至少一題錯題。');return}const sheet=document.getElementById('printSheet');const teacher=mode==='teacher';sheet.className='print-sheet '+(teacher?'print-teacher':'print-student');sheet.innerHTML=`<div class="print-head"><h1>Lesson Three ${teacher?'錯題教師答案版':'我的錯題練習'}</h1></div><div class="print-meta"><span>姓名：________________</span><span>日期：________________</span><span>共 ${ids.length} 題</span></div>`;ids.forEach((id,i)=>{const src=getSourceCard(id);if(!src)return;const box=document.createElement('div');box.className='print-question';const label=document.createElement('div');label.className='print-qnum';label.textContent=`${i+1}. ${src.querySelector('.qnum')?.textContent||categoryName(src.dataset.category)}`;box.appendChild(label);const clone=cleanPrintClone(src,teacher);const qn=clone.querySelector('.qnum');if(qn)qn.remove();box.appendChild(clone);sheet.appendChild(box)});sheet.setAttribute('aria-hidden','false');setTimeout(()=>window.print(),80)}
+function initWrongSystem(){syncWrongButtons();renderWrongBank()}
+initWrongSystem();
+initSectionView();
+
+
+/* V21：文意選填／篇章結構顯示答案時同步回填原文。 */
+function setInlineAnswers(card,show){
+  if(!card || !['wordbank','structure'].includes(card.dataset.category||'')) return;
+  const text=card.querySelector('.passagetext'); if(!text) return;
+  text.querySelectorAll('.inline-blank').forEach(blank=>{
+    let filled=blank.querySelector('.filled-answer');
+    if(!filled){
+      filled=document.createElement('span'); filled.className='filled-answer';
+      filled.textContent=blank.dataset.answer||''; blank.appendChild(filled);
+    }
+  });
+  text.classList.toggle('answers-inline',!!show);
+}
+const _v21ToggleAns=toggleAns;
+toggleAns=function(btn){
+  const mini=btn.closest('.mini');
+  const card=mini || btn.closest('.qcard,.passage');
+  _v21ToggleAns(btn);
+  if(card && !mini && ['wordbank','structure'].includes(card.dataset.category||'')){
+    const a=card.querySelector('.answer'); setInlineAnswers(card,!!(a&&a.classList.contains('show')));
+  }
+};
+
+/* V21：綜合測驗／素養閱讀使用中央大型集中解析卡。 */
+function openLongReview(btn){
+  const overlay=document.getElementById('reviewOverlay');
+  const content=document.getElementById('reviewContent');
+  const title=document.getElementById('reviewTitle');
+  content.innerHTML='';
+  if(btn.closest('#cloze')){
+    const passage=btn.closest('article.passage'); if(!passage)return;
+    const h=passage.querySelector('h3'); title.textContent=(h?h.textContent.trim():'綜合測驗')+'｜完整解析';
+    const p=document.createElement('div'); p.className='review-passage';
+    const pt=passage.querySelector('.passagetext'); if(pt)p.innerHTML=pt.innerHTML;
+    content.appendChild(p);
+    passage.querySelectorAll('.mini').forEach((m,i)=>{
+      const q=document.createElement('div'); q.className='review-question';
+      const label=document.createElement('div'); label.className='mini-title'; label.textContent='第 '+(i+1)+' 題'; q.appendChild(label);
+      const opts=m.querySelector('.opts'); if(opts)q.appendChild(opts.cloneNode(true));
+      const ans=m.querySelector('.answer'); if(ans){const ac=ans.cloneNode(true);ac.classList.add('show');q.appendChild(ac);}
+      content.appendChild(q);
+    });
+  }else if(btn.closest('#reading')){
+    const section=document.getElementById('reading'); title.textContent='素養閱讀｜完整解析';
+    const p=document.createElement('div'); p.className='review-passage';
+    const pt=section.querySelector('.reading-article .passagetext'); if(pt)p.innerHTML=pt.innerHTML;
+    content.appendChild(p);
+    section.querySelectorAll('.reading-questions .qcard').forEach(card=>{
+      const q=document.createElement('div'); q.className='review-question';
+      const qn=card.querySelector('.qnum'); if(qn)q.appendChild(qn.cloneNode(true));
+      const stem=card.querySelector('.stem'); if(stem)q.appendChild(stem.cloneNode(true));
+      const opts=card.querySelector('.opts'); if(opts)q.appendChild(opts.cloneNode(true));
+      const ans=card.querySelector('.answer'); if(ans){const ac=ans.cloneNode(true);ac.classList.add('show');q.appendChild(ac);}
+      content.appendChild(q);
+    });
+  }else return;
+  overlay.classList.add('show'); document.body.style.overflow='hidden';
+  content.scrollTop=0;
+}
+function closeLongReview(){document.getElementById('reviewOverlay').classList.remove('show');document.body.style.overflow='';}
+function reviewOverlayClose(e){if(e.target.id==='reviewOverlay')closeLongReview();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('reviewOverlay').classList.contains('show'))closeLongReview();});
+</script>
+<style id="v23-split-review">
+/* V23：長篇題型完整解析改為左側固定文章、右側獨立捲動解析。 */
+.review-shell{width:min(1460px,96vw);height:min(86vh,920px)}
+.review-body{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:minmax(0,1.58fr) minmax(360px,.92fr);gap:22px;padding:22px 24px 24px;overflow:hidden;background:#fff}
+.review-article-pane{min-width:0;min-height:0;display:flex;align-items:flex-start;justify-content:center;overflow:hidden}
+.review-passage{width:100%;max-width:880px;max-height:100%;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;background:#f7faf8;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:0;font-size:1.04rem;line-height:1.82}
+.review-explain-pane{min-width:0;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:0 8px 18px 2px;border-left:1px solid var(--line);padding-left:20px}
+.review-explain-pane .review-question{margin-top:0;padding:18px 2px}
+.review-explain-pane .review-question:first-child{padding-top:2px}
+.review-passage .review-fill{display:inline;font-weight:900;color:var(--accent);background:#e9f3ee;border-radius:6px;padding:1px 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.review-passage.answers-inline .inline-blank .blank-slot{display:none}
+.review-passage.answers-inline .inline-blank .filled-answer{display:inline;font-weight:900;color:var(--accent);background:#e9f3ee;border-radius:6px;padding:1px 6px}
+@media(max-width:900px){.review-body{grid-template-columns:1fr 1fr;gap:14px;padding:16px}.review-explain-pane{padding-left:14px}.review-passage{padding:16px;font-size:1rem}}
+@media(max-width:680px){.review-shell{height:92vh}.review-body{display:flex;flex-direction:column;overflow:hidden}.review-article-pane{flex:0 0 auto;max-height:42%}.review-explain-pane{flex:1 1 auto;border-left:0;border-top:1px solid var(--line);padding:14px 4px 18px}.review-passage{max-height:100%}}
+</style>
+<script id="v23-split-review-script">
+(function(){
+  function answerLetter(node){const b=node&&node.querySelector('.answer>b');const m=b&&b.textContent.match(/答案[：:]\s*([A-J])/i);return m?m[1].toUpperCase():''}
+  function choiceText(mini,letter){
+    const spans=[...mini.querySelectorAll('.miniopts span,.opts span')];
+    const sp=spans.find(x=>new RegExp('\\('+letter+'\\)','i').test(x.textContent));
+    return sp?sp.textContent.replace(new RegExp('^\\s*\\('+letter+'\\)\\s*','i'),'').trim():'';
+  }
+  function completedCloze(passage){
+    const p=document.createElement('div');p.className='review-passage';
+    const pt=passage.querySelector('.passagetext');if(!pt)return p;
+    p.innerHTML=pt.innerHTML;
+    const blanks=[...p.querySelectorAll('b')];
+    passage.querySelectorAll('.mini').forEach((mini,i)=>{
+      const n=i+1, letter=answerLetter(mini), raw=choiceText(mini,letter);
+      let parts=raw.split(';').map(x=>x.trim());
+      if(raw==='（不填）'||raw==='(不填)'||raw==='不填')parts=[''];
+      const targets=blanks.filter(b=>new RegExp('^\\s*'+n+'\\.').test(b.textContent));
+      targets.forEach((b,j)=>{
+        const val=parts[Math.min(j,parts.length-1)]||'';
+        b.innerHTML=n+'. '+(val?'<span class="review-fill">'+val.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</span>':'<span class="review-fill">（不填）</span>');
+      });
+    });
+    return p;
+  }
+  function completedInline(card){
+    const p=document.createElement('div');p.className='review-passage answers-inline';
+    const pt=card.querySelector('.passagetext');if(!pt)return p;
+    p.innerHTML=pt.innerHTML;
+    p.querySelectorAll('.inline-blank').forEach(blank=>{
+      blank.querySelectorAll('.filled-answer').forEach(x=>x.remove());
+      const f=document.createElement('span');f.className='filled-answer';f.textContent=blank.dataset.answer||'';blank.appendChild(f);
+    });
+    return p;
+  }
+  function buildQuestionsFromMinis(passage){
+    const pane=document.createElement('div');pane.className='review-explain-pane';
+    passage.querySelectorAll('.mini').forEach((m,i)=>{
+      const q=document.createElement('div');q.className='review-question';
+      const label=document.createElement('div');label.className='mini-title';label.textContent='第 '+(i+1)+' 題';q.appendChild(label);
+      const opts=m.querySelector('.miniopts,.opts');if(opts)q.appendChild(opts.cloneNode(true));
+      const ans=m.querySelector('.answer');if(ans){const ac=ans.cloneNode(true);ac.classList.add('show');q.appendChild(ac)}
+      pane.appendChild(q);
+    });return pane;
+  }
+  function buildQuestionsFromAnswer(card){
+    const pane=document.createElement('div');pane.className='review-explain-pane';
+    const ans=card.querySelector('.answer');
+    if(ans){const detail=ans.querySelector('.detail-analysis');if(detail){[...detail.children].forEach((sec,i)=>{const q=document.createElement('div');q.className='review-question';q.appendChild(sec.cloneNode(true));pane.appendChild(q)})}else{const q=document.createElement('div');q.className='review-question';q.appendChild(ans.cloneNode(true));pane.appendChild(q)}}
+    return pane;
+  }
+  function showSplitReview(titleText,article,pane,returnText){
+    const overlay=document.getElementById('reviewOverlay'),content=document.getElementById('reviewContent'),title=document.getElementById('reviewTitle'),close=overlay.querySelector('.review-close');
+    title.textContent=titleText;close.textContent=returnText||'返回作答';content.innerHTML='';content.className='review-body';
+    const left=document.createElement('div');left.className='review-article-pane';left.appendChild(article);content.appendChild(left);content.appendChild(pane);
+    overlay.classList.add('show');document.body.style.overflow='hidden';pane.scrollTop=0;article.scrollTop=0;
+  }
+  window.openLongReview=function(btn){
+    if(btn.closest('#cloze')){
+      const passage=btn.closest('article.passage');if(!passage)return;const h=passage.querySelector('h3');
+      showSplitReview((h?h.textContent.trim():'綜合測驗')+'｜完整解析',completedCloze(passage),buildQuestionsFromMinis(passage),window.focusOrigin==='wrong'?'返回錯題區':'返回作答');return;
+    }
+    if(btn.closest('#reading')){
+      const section=document.getElementById('reading'),p=document.createElement('div');p.className='review-passage';const pt=section.querySelector('.reading-article .passagetext');if(pt)p.innerHTML=pt.innerHTML;
+      const pane=document.createElement('div');pane.className='review-explain-pane';section.querySelectorAll('.reading-questions .qcard').forEach(card=>{const q=document.createElement('div');q.className='review-question';['.qnum','.stem','.opts','.answer'].forEach(sel=>{const x=card.querySelector(sel);if(x){const c=x.cloneNode(true);if(sel==='.answer')c.classList.add('show');q.appendChild(c)}});pane.appendChild(q)});
+      showSplitReview('素養閱讀｜完整解析',p,pane,window.focusOrigin==='wrong'?'返回錯題區':'返回作答');return;
+    }
+  };
+  const prevToggle=window.toggleAns;
+  window.toggleAns=function(btn){
+    const card=btn.closest('.qcard,.passage');const cat=card&&card.dataset.category;
+    if(card && (cat==='wordbank'||cat==='structure') && document.getElementById('focusOverlay').classList.contains('show')){
+      setInlineAnswers(card,true);
+      const h=card.querySelector('h3');
+      showSplitReview((h?h.textContent.trim():categoryName(cat))+'｜完整解析',completedInline(card),buildQuestionsFromAnswer(card),window.focusOrigin==='wrong'?'返回錯題區':'返回作答');
+      return;
+    }
+    return prevToggle(btn);
+  };
+  const oldClose=window.closeLongReview;
+  window.closeLongReview=function(){
+    const content=document.getElementById('reviewContent');content.className='review-scroll';
+    document.getElementById('reviewOverlay').classList.remove('show');document.body.style.overflow='';
+    if(document.getElementById('focusOverlay').classList.contains('show')) document.body.classList.add('focus-mode');
+  };
+})();
+</script>
+<style id="v24-long-focus-side-options">
+/* V24：文意選填／篇章結構「再次複習」放大畫面：左文章可捲動、右選項固定。
+   顯示答案後仍沿用 V23：左側完成文章、右側解析獨立捲動。 */
+@media (min-width: 900px){
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="structure"],
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="wordbank"]{
+    height:82vh;
+    max-height:82vh;
+    display:grid;
+    grid-template-columns:minmax(0,1.72fr) minmax(320px,.78fr);
+    grid-template-rows:auto minmax(0,1fr) auto;
+    grid-template-areas:
+      "title title"
+      "text bank"
+      "actions actions";
+    column-gap:24px;
+    row-gap:14px;
+    overflow:hidden;
+    align-items:stretch;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > h3,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > h3{
+    grid-area:title;
+    margin:0;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .passagetext,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .passagetext{
+    grid-area:text;
+    min-width:0;
+    min-height:0;
+    height:100%;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-gutter:stable;
+    padding:16px 18px 18px 2px;
+    margin:0;
+    line-height:1.82;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .bank,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .bank{
+    grid-area:bank;
+    position:static;
+    align-self:start;
+    width:auto;
+    min-width:0;
+    max-height:100%;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-gutter:stable;
+    margin:0;
+    padding:16px 18px;
+    line-height:1.72;
+    background:#f7faf8;
+    border:1px solid var(--line);
+    border-radius:14px;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .card-actions,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .card-actions{
+    grid-area:actions;
+    margin-top:0!important;
+    justify-self:end;
+    align-self:end;
+  }
+  /* 原卡片答案區不佔再次複習版面；按顯示答案後由 V23 集中解析卡呈現。 */
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .answer,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .answer{
+    display:none!important;
+  }
+}
+@media (max-width:899px){
+  /* 小螢幕維持上下配置，避免左右欄過窄。 */
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="structure"],
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="wordbank"]{
+    display:flex;
+    flex-direction:column;
+  }
+}
+</style>
+<style id="v26-desktop-tablet-concentrated">
+/* V27：解析視窗沿用題目放大卡片寬度；解析只切換內容，不突然放寬外框。 */
+@media (min-width: 901px){
+  .review-overlay{padding:22px 28px;}
+  .review-shell{
+    width:min(920px,86vw)!important;
+    height:min(82vh,820px)!important;
+    max-width:920px!important;
+  }
+  .review-body{
+    grid-template-columns:minmax(0,1.5fr) minmax(310px,.9fr)!important;
+    gap:12px!important;
+    padding:16px 18px 18px!important;
+  }
+  .review-passage{
+    width:100%!important;
+    max-width:650px!important;
+    padding:17px 18px!important;
+    font-size:1.01rem!important;
+    line-height:1.76!important;
+  }
+  .review-explain-pane{
+    padding-left:12px!important;
+    padding-right:2px!important;
+  }
+  .review-toolbar{padding:14px 18px!important;}
+}
+/* 平板橫向／較窄桌機：仍保留左右雙欄，但閱讀區維持集中。 */
+@media (min-width: 768px) and (max-width: 1100px){
+  .review-overlay{padding:16px;}
+  .review-shell{width:min(920px,90vw)!important;height:min(84vh,800px)!important;}
+  .review-body{grid-template-columns:minmax(0,1.42fr) minmax(290px,.92fr)!important;gap:10px!important;padding:14px!important;}
+  .review-passage{max-width:560px!important;padding:15px 16px!important;font-size:1rem!important;}
+  .review-explain-pane{padding-left:10px!important;}
+}
+/* 篇章結構一般頁：答案顯示後，右欄由選項切換成可捲動解析。 */
+@media (min-width: 768px){
+  #structure article.passage.structure-answer-mode{
+    grid-template-columns:minmax(0,1.62fr) minmax(330px,.82fr);
+    grid-template-areas:"text explain" "actions explain";
+    gap:16px 22px;
+  }
+  #structure article.passage.structure-answer-mode > h3{display:none;}
+  #structure article.passage.structure-answer-mode > .passagetext{
+    grid-area:text;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;padding-right:10px;
+  }
+  #structure article.passage.structure-answer-mode > .bank{display:none!important;}
+  #structure article.passage.structure-answer-mode > .card-actions{grid-area:actions;}
+  #structure article.passage.structure-answer-mode > .answer{display:none!important;}
+  #structure .structure-inline-explain{
+    grid-area:explain;min-width:0;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;
+    border-left:1px solid var(--line);padding:0 4px 12px 16px;
+  }
+  #structure .structure-inline-explain .detail-section{
+    background:#f7faf8;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 12px;
+  }
+  #structure .structure-inline-explain .detail-title{font-weight:900;color:var(--accent);margin-bottom:8px;}
+  #structure .structure-inline-explain .detail-body{line-height:1.72;}
+
+  /* V27：文意選填一般頁顯示答案後，同一張題目卡內切成左文章、右解析。 */
+  #wordbank article.passage.wordbank-answer-mode{
+    display:grid;grid-template-columns:minmax(0,2.05fr) minmax(285px,.95fr);
+    grid-template-areas:"text explain" "actions explain";gap:16px 18px;align-items:start;
+  }
+  #wordbank article.passage.wordbank-answer-mode > h3{display:none;}
+  #wordbank article.passage.wordbank-answer-mode > .passagetext{
+    grid-area:text;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;padding-right:10px;
+  }
+  #wordbank article.passage.wordbank-answer-mode > .bank{display:none!important;}
+  #wordbank article.passage.wordbank-answer-mode > .card-actions{grid-area:actions;}
+  #wordbank article.passage.wordbank-answer-mode > .answer{display:none!important;}
+  #wordbank .wordbank-inline-explain{
+    grid-area:explain;min-width:0;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;
+    border-left:1px solid var(--line);padding:0 4px 12px 14px;
+  }
+  #wordbank .wordbank-inline-explain .detail-section{
+    background:#f7faf8;border:1px solid var(--line);border-radius:14px;padding:13px 14px;margin:0 0 11px;
+  }
+  #wordbank .wordbank-inline-explain .detail-title{font-weight:900;color:var(--accent);margin-bottom:7px;}
+  #wordbank .wordbank-inline-explain .detail-body{line-height:1.68;}
+}
+</style>
+<style id="lesson3-v2-wordbank-fixed-options-layout">
+/* Lesson 3 V2：依 Lesson 2 V4 正式母版修正文意選填。
+   桌機／平板：左側文章獨立捲動，右側選項固定；顯示答案後沿用同寬雙欄解析。 */
+@media (min-width: 768px){
+  #wordbank article.passage:not(.wordbank-answer-mode){
+    display:grid;
+    grid-template-columns:minmax(0,2.05fr) minmax(285px,.95fr);
+    grid-template-rows:auto minmax(0,1fr) auto;
+    grid-template-areas:
+      "title title"
+      "text bank"
+      "actions bank";
+    column-gap:18px;
+    row-gap:14px;
+    align-items:stretch;
+    overflow:hidden;
+  }
+  #wordbank article.passage:not(.wordbank-answer-mode) > h3{grid-area:title;margin-bottom:0;}
+  #wordbank article.passage:not(.wordbank-answer-mode) > .passagetext{
+    grid-area:text;min-width:0;min-height:0;max-height:66vh;overflow-y:auto;
+    overscroll-behavior:contain;scrollbar-gutter:stable;padding-right:10px;margin:0;
+  }
+  #wordbank article.passage:not(.wordbank-answer-mode) > .bank{
+    grid-area:bank;position:static;align-self:start;min-width:0;width:auto;max-height:66vh;
+    overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;margin:0;
+  }
+  #wordbank article.passage:not(.wordbank-answer-mode) > .card-actions{grid-area:actions;margin-top:0;}
+  #wordbank article.passage:not(.wordbank-answer-mode) > .answer{display:none;}
+}
+</style>
+<script id="v26-structure-answer-switch">
+(function(){
+  const previous=window.toggleAns;
+  window.toggleAns=function(btn){
+    const card=btn.closest('.passage');
+    const isStructure=card && card.dataset.category==='structure';
+    const inFocus=!!btn.closest('#focusOverlay');
+    const result=previous(btn);
+    if(isStructure && !inFocus){
+      const ans=card.querySelector(':scope > .answer');
+      const showing=!!(ans && ans.classList.contains('show'));
+      let pane=card.querySelector(':scope > .structure-inline-explain');
+      if(showing){
+        if(!pane){
+          pane=document.createElement('div');
+          pane.className='structure-inline-explain';
+          const detail=ans && ans.querySelector('.detail-analysis');
+          if(detail) [...detail.children].forEach(x=>pane.appendChild(x.cloneNode(true)));
+          card.appendChild(pane);
+        }
+        card.classList.add('structure-answer-mode');
+      }else{
+        card.classList.remove('structure-answer-mode');
+        if(pane) pane.remove();
+      }
+    }
+    return result;
+  };
+})();
+</script>
+<script id="v27-wordbank-answer-switch-and-retry-fix">
+(function(){
+  const previous=window.toggleAns;
+  window.toggleAns=function(btn){
+    const card=btn.closest('.passage');
+    const isWordbank=card && card.dataset.category==='wordbank';
+    const inFocus=!!btn.closest('#focusOverlay');
+    const result=previous(btn);
+    if(isWordbank && !inFocus){
+      const ans=card.querySelector(':scope > .answer');
+      const showing=!!(ans && ans.classList.contains('show'));
+      let pane=card.querySelector(':scope > .wordbank-inline-explain');
+      if(showing){
+        if(!pane){
+          pane=document.createElement('div');
+          pane.className='wordbank-inline-explain';
+          const detail=ans.querySelector('.detail-analysis');
+          if(detail) [...detail.children].forEach(x=>pane.appendChild(x.cloneNode(true)));
+          card.appendChild(pane);
+        }
+        card.classList.add('wordbank-answer-mode');
+      }else{
+        card.classList.remove('wordbank-answer-mode');
+        if(pane) pane.remove();
+      }
+    }
+    return result;
+  };
+})();
+</script>
+</body></html>

@@ -3,17 +3,13 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Lesson One — Firsts in Life</title>
+<title>Lesson One｜線上試題講解卷</title>
 <style>
 :root{--bg:#f5f7f5;--card:#fff;--ink:#18352b;--muted:#66736e;--line:#d7e0dc;--accent:#315e4d;--soft:#eaf1ed;}
 *{box-sizing:border-box} body{margin:0;background:var(--bg);color:#1e2723;font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.65}
 header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);padding:12px 18px}
 .top{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 h1{font-size:1.35rem;margin:0;color:var(--ink)} .sub{font-size:.9rem;color:var(--muted)}
-.titleblock{display:flex;flex-direction:column;align-items:flex-start;gap:7px}
-.home-link{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--accent);background:#fff;color:var(--accent);border-radius:9px;padding:6px 11px;font-size:.88rem;font-weight:800;text-decoration:none;line-height:1.35;white-space:nowrap}
-.home-link:hover{background:var(--soft)}
-@media(max-width:760px){.home-link{min-height:40px;padding:8px 12px}}
 .nav{max-width:1180px;margin:10px auto 0;display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
 .nav button{white-space:nowrap;border:1px solid #9bb0a7;background:white;color:var(--ink);border-radius:999px;padding:8px 14px;font-weight:700;cursor:pointer}
 .nav button:hover{background:var(--soft)}
@@ -38,8 +34,6 @@ section{scroll-margin-top:120px;margin-bottom:48px} h2{font-size:1.55rem;color:v
 @media(min-width:761px) and (max-width:1100px){.cards{grid-template-columns:1fr 1fr}}
 
 /* V3 字級與單題專注模式 */
-.font-side{display:flex;flex-direction:column;align-items:flex-end;gap:7px}@media(max-width:760px){.font-side{align-items:flex-start}}
-.nav-return-home{margin-left:auto;flex:0 0 auto}
 .fonttools{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.fonttools button{border:1px solid #9bb0a7;background:#fff;color:var(--ink);border-radius:9px;padding:7px 11px;font-weight:800;cursor:pointer}.fonttools button:hover{background:var(--soft)}
 
 .card-actions{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:14px}
@@ -282,7 +276,6 @@ body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .a
   body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .bank{max-height:30vh;}
 }
 </style>
-
 <style id="v21-review-mode">
 /* V21：作答維持左右雙欄；檢討改為中央大型解析卡。 */
 .review-overlay{position:fixed;inset:0;background:rgba(24,53,43,.28);backdrop-filter:blur(2px);z-index:2600;display:none;align-items:center;justify-content:center;padding:24px;}
@@ -308,7 +301,6 @@ body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .a
 .passagetext.answers-inline .structure-blank .filled-answer{font-weight:800;line-height:1.7;}
 @media(max-width:760px){.review-overlay{padding:10px}.review-shell{width:98vw;height:92vh;border-radius:16px}.review-scroll{padding:18px 16px 26px}.review-toolbar{padding:12px 14px}.review-passage{padding:15px 14px;font-size:1rem}}
 </style>
-
 <style id="v25-concentrated-review">
 /* V25：長篇完整解析視覺集中。保留左右雙欄與各自捲動，只縮小整體閱讀工作區。 */
 @media (min-width:901px){
@@ -323,10 +315,28 @@ body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .a
   .review-body{grid-template-columns:minmax(0,1.48fr) minmax(320px,.92fr)}
 }
 </style>
-</head>
+<style id="lesson1-literacy-schedule-fix">
+/* Lesson 1 素養閱讀：補回教材原有 Weekly Course Schedule；只作用於素養閱讀資料區。 */
+#reading .literacy-table-wrap{margin-top:16px;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px;background:#fff;}
+#reading .literacy-schedule{width:100%;min-width:720px;border-collapse:collapse;table-layout:fixed;font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif;font-size:.92rem;line-height:1.35;}
+#reading .literacy-schedule th,#reading .literacy-schedule td{border:1px solid #aeb9b4;padding:8px 7px;text-align:center;vertical-align:middle;overflow-wrap:normal;word-break:normal;}
+#reading .literacy-schedule thead th,#reading .literacy-schedule tbody th{background:#f2f4f3;font-weight:700;}
+#reading .literacy-schedule thead th:first-child{width:16%;}
+#reading .literacy-schedule thead th:not(:first-child){width:16.8%;}
+@media(max-width:760px){#reading .literacy-table-wrap{margin-top:12px}#reading .literacy-schedule{font-size:.88rem;min-width:690px}#reading .literacy-schedule th,#reading .literacy-schedule td{padding:7px 6px}}
+</style>
+<style>
+/* 正式版：回課內試題首頁按鈕 */
+.home-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;border:1px solid var(--accent)!important;background:#fff!important;color:var(--accent)!important;border-radius:9px!important;padding:6px 11px!important;font-size:.88rem!important;font-weight:800!important;text-decoration:none!important;line-height:1.35!important;white-space:nowrap!important}
+.home-link:hover{background:var(--soft)!important}
+.titleblock{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.font-side{display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.nav-return-home{margin-left:auto!important;flex:0 0 auto!important}
+@media(max-width:760px){.home-link{min-height:40px!important;padding:8px 12px!important}.font-side{align-items:flex-start}.nav-return-home{margin-left:0!important}}
+</style></head>
 <body>
-<header><div class="top"><div class="titleblock"><h1>Lesson One — Firsts in Life</h1><a class="home-link" href="../">回課內試題首頁</a></div><div class="font-side"><div class="fonttools"><span class="sub">字級</span><button onclick="changeFont(-1)">A−</button><button onclick="resetFont()">A</button><button onclick="changeFont(1)">A+</button></div></div></div>
-<div aria-label="題型切換" class="nav" role="tablist"><button class="active" data-view="all" onclick="showSection('all',this)">全部題目</button><button data-view="vocab" onclick="showSection('vocab',this)">文意字彙</button><button data-view="grammar" onclick="showSection('grammar',this)">文法</button><button data-view="cloze" onclick="showSection('cloze',this)">綜合測驗</button><button data-view="wordbank" onclick="showSection('wordbank',this)">文意選填</button><button data-view="structure" onclick="showSection('structure',this)">篇章結構</button><button data-view="reading" onclick="showSection('reading',this)">素養閱讀</button><button data-view="translation" onclick="showSection('translation',this)">翻譯</button><button data-view="wrongBank" onclick="showSection('wrongBank',this)">★ 我的錯題</button><button data-view="custom" onclick="showSection('custom',this)">自訂題目</button><a class="home-link nav-return-home" href="../">回課內試題首頁</a></div></header>
+<header><div class="top"><div class="titleblock"><h1>Lesson One — Firsts in Life</h1><a class="home-link" href="../index.html">回課內試題首頁</a></div><div class="font-side"><div class="fonttools"><span class="sub">字級</span><button onclick="changeFont(-1)">A−</button><button onclick="resetFont()">A</button><button onclick="changeFont(1)">A+</button></div></div><div class="sub">學生先作答 → 老師手動顯示答案</div></div>
+<div aria-label="題型切換" class="nav" role="tablist"><button class="active" data-view="all" onclick="showSection('all',this)">全部題目</button><button data-view="vocab" onclick="showSection('vocab',this)">文意字彙</button><button data-view="grammar" onclick="showSection('grammar',this)">文法</button><button data-view="cloze" onclick="showSection('cloze',this)">綜合測驗</button><button data-view="wordbank" onclick="showSection('wordbank',this)">文意選填</button><button data-view="structure" onclick="showSection('structure',this)">篇章結構</button><button data-view="reading" onclick="showSection('reading',this)">素養閱讀</button><button data-view="translation" onclick="showSection('translation',this)">翻譯</button><button data-view="wrongBank" onclick="showSection('wrongBank',this)">★ 我的錯題</button><button data-view="custom" onclick="showSection('custom',this)">自訂題目</button><a class="home-link nav-return-home" href="../index.html">回課內試題首頁</a></div></header>
 <main>
 <div class="note"><b>使用方式：</b>全部題目頁只提供快速核對答案；進入「單題放大」後再按「顯示答案與解析」，會看到完整句子、中文翻譯、判斷重點與題目中應注意的高中單字。</div>
 <section id="vocab"><h2>文意字彙</h2><div class="cards"><article class="qcard" data-category="vocab" data-qid="vocab-1" data-sec="vocab"><div class="qnum">文意字彙 1</div><div class="stem">Bob’s only son, who was a college student, had a car a_____t and died last month.</div>
@@ -428,7 +438,19 @@ body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .a
 <div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示全部答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>1. J　2. E　3. G　4. A　5. H　6. B　7. I　8. D　9. F　10. C</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">第 1 題：connected</div><div class="detail-body">feel connected to ... 表示「與……有連結」；connected 與後面的 to 搭配。</div></div><div class="detail-section"><div class="detail-title">第 2 題：inspired</div><div class="detail-body">be inspired to + V 表示「受到啟發而去……」。</div></div><div class="detail-section"><div class="detail-title">第 3 題：compare</div><div class="detail-body">compare A to/with B 表示「把 A 與 B 比較」。</div></div><div class="detail-section"><div class="detail-title">第 4 題：judge</div><div class="detail-body">judge oneself 表示「評斷自己」，符合因外表而自我批判的語意。</div></div><div class="detail-section"><div class="detail-title">第 5 題：perfect</div><div class="detail-body">the perfect selfies：形容詞 perfect 修飾 selfies。</div></div><div class="detail-section"><div class="detail-title">第 6 題：anxiety</div><div class="detail-body">stress and anxiety 為常見並列，兩者都是名詞。</div></div><div class="detail-section"><div class="detail-title">第 7 題：upset</div><div class="detail-body">feel upset that ...：feel 後接形容詞，表示感到難過。</div></div><div class="detail-section"><div class="detail-title">第 8 題：depress</div><div class="detail-body">can 後接原形；depress 作動詞表示「使沮喪」。</div></div><div class="detail-section"><div class="detail-title">第 9 題：relief</div><div class="detail-body">find relief 表示「獲得／找到解脫」。</div></div><div class="detail-section"><div class="detail-title">第 10 題：reflect</div><div class="detail-body">reflect reality 表示「反映現實」。</div></div><div class="detail-section"><div class="detail-title">閱讀策略</div><div class="detail-body">先判斷空格詞性，再看固定搭配與上下文語意；答案必須同時符合句型與文章邏輯。</div></div></div></div></article><article class="passage" data-category="wordbank" data-qid="wordbank-66"><h3>文意選填 第二篇</h3><div class="bank">(A) realize　(B) depressed　(C) memorable　(D) also　(E) perfect　(F) another　(G) mix　(H) feeling　(I) that　(J) what</div><div class="passagetext">Upon beginning high school, everything may feel new and fresh. It’s challenging to determine when you’ll stop <b class="inline-blank" data-answer="feeling" data-num="1">1. <span class="blank-slot">_____</span></b> like a beginner. A(n) <b class="inline-blank" data-answer="mix" data-num="2">2. <span class="blank-slot">_____</span></b> of excitement and anxiety accompanies you everywhere. You may feel <b class="inline-blank" data-answer="depressed" data-num="3">3. <span class="blank-slot">_____</span></b> because it seems impossible to keep everything under control. Firstly, establish a(n) <b class="inline-blank" data-answer="perfect" data-num="4">4. <span class="blank-slot">_____</span></b> study plan. You need to <b class="inline-blank" data-answer="realize" data-num="5">5. <span class="blank-slot">_____</span></b> what type of learner you are. Once you identify <b class="inline-blank" data-answer="what" data-num="6">6. <span class="blank-slot">_____</span></b> works best for you, stick to it. <b class="inline-blank" data-answer="another" data-num="7">7. <span class="blank-slot">_____</span></b> approach is to actively participate in class. <b class="inline-blank" data-answer="also" data-num="8">8. <span class="blank-slot">_____</span></b>, build friendships with your classmates. Some argue <b class="inline-blank" data-answer="that" data-num="9">9. <span class="blank-slot">_____</span></b> high school is only a short period in your life. However, <b class="inline-blank" data-answer="memorable" data-num="10">10. <span class="blank-slot">_____</span></b> first-time experiences like high school can be priceless.</div>
 <div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示全部答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>1. H　2. G　3. B　4. E　5. A　6. J　7. F　8. D　9. I　10. C</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">第 1 題：connected</div><div class="detail-body">feel connected to ... 表示「與……有連結」；connected 與後面的 to 搭配。</div></div><div class="detail-section"><div class="detail-title">第 2 題：inspired</div><div class="detail-body">be inspired to + V 表示「受到啟發而去……」。</div></div><div class="detail-section"><div class="detail-title">第 3 題：compare</div><div class="detail-body">compare A to/with B 表示「把 A 與 B 比較」。</div></div><div class="detail-section"><div class="detail-title">第 4 題：judge</div><div class="detail-body">judge oneself 表示「評斷自己」，符合因外表而自我批判的語意。</div></div><div class="detail-section"><div class="detail-title">第 5 題：perfect</div><div class="detail-body">the perfect selfies：形容詞 perfect 修飾 selfies。</div></div><div class="detail-section"><div class="detail-title">第 6 題：anxiety</div><div class="detail-body">stress and anxiety 為常見並列，兩者都是名詞。</div></div><div class="detail-section"><div class="detail-title">第 7 題：upset</div><div class="detail-body">feel upset that ...：feel 後接形容詞，表示感到難過。</div></div><div class="detail-section"><div class="detail-title">第 8 題：depress</div><div class="detail-body">can 後接原形；depress 作動詞表示「使沮喪」。</div></div><div class="detail-section"><div class="detail-title">第 9 題：relief</div><div class="detail-body">find relief 表示「獲得／找到解脫」。</div></div><div class="detail-section"><div class="detail-title">第 10 題：reflect</div><div class="detail-body">reflect reality 表示「反映現實」。</div></div><div class="detail-section"><div class="detail-title">閱讀策略</div><div class="detail-body">先判斷空格詞性，再看固定搭配與上下文語意；答案必須同時符合句型與文章邏輯。</div></div></div></div></article></section><section id="structure"><h2>篇章結構</h2><article class="passage" data-category="structure" data-qid="structure-67"><div class="bank">(A) I talked back to my parents and teachers.<br/>(B) I realized that I had been living for others for my entire life.<br/>(C) She was like a lighthouse for me as I drifted alone in a dark ocean.<br/>(D) I knew I had to study harder if I wanted to make my parents proud.<br/>(E) At home, I always did whatever my parents asked me to do so that I could be their perfect son.</div>
 <div class="passagetext">When I was a student in elementary school, I always tried my best to be the perfect kid. <b class="inline-blank structure-blank" data-answer="At home, I always did whatever my parents asked me to do so that I could be their perfect son." data-num="1">1. <span class="blank-slot">_____</span></b> At school, I always challenged myself to score highest on every test and quiz so that I could be the perfect student for my teacher.<br/><br/>Unfortunately, my reputation as a perfect kid was broken when I entered junior high school; I started to violate every house rule and school rule. <b class="inline-blank structure-blank" data-answer="I talked back to my parents and teachers." data-num="2">2. <span class="blank-slot">_____</span></b> I couldn’t have cared less about any test or exam. Instead, I put all my time into fooling around with my friends, playing video games, and shouting at adults.<br/><br/>However, when I was in my darkest hour, there was one woman who didn’t give up on me: my English teacher. She saw the potential in me and encouraged me to get back on my feet. <b class="inline-blank structure-blank" data-answer="She was like a lighthouse for me as I drifted alone in a dark ocean." data-num="3">3. <span class="blank-slot">_____</span></b> In addition, because of her, I realized my talent and passion for English.<br/><br/>I told myself that I needed to be a whole new person. In the past, I had tried to be perfect for others to gain attention, but I had failed. Then, I had tried to be worthless to avoid attention, but I had failed again. <b class="inline-blank structure-blank" data-answer="I realized that I had been living for others for my entire life." data-num="4">4. <span class="blank-slot">_____</span></b> I needed to start living for myself.</div>
-<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>1. E　2. A　3. C　4. B</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">第 1 題：E</div><div class="detail-body">前文說作者努力成為 the perfect kid；E 的 At home 與後文 At school 形成「在家 → 在學校」的平行結構，perfect son 也承接 perfect kid。</div></div><div class="detail-section"><div class="detail-title">第 2 題：A</div><div class="detail-body">前句說進入國中後開始違反家規與校規；A 的 talked back to my parents and teachers 具體補充叛逆行為，後句又接不在乎考試，語意連續。</div></div><div class="detail-section"><div class="detail-title">第 3 題：C</div><div class="detail-body">前文提到英文老師在作者低潮時幫助他；C 用 lighthouse 比喻老師帶來方向，後句 In addition, because of her 也明確指回這位老師。</div></div><div class="detail-section"><div class="detail-title">第 4 題：B</div><div class="detail-body">前文回顧為別人追求完美與故意變得一文不值都失敗；B 的 realized that I had been living for others 總結原因，並自然銜接後句 I needed to start living for myself。</div></div><div class="detail-section"><div class="detail-title">高中必備單字（題目實際出現）</div><div class="detail-body">reputation 名聲；violate 違反；potential 潛力；encourage 鼓勵；passion 熱情；worthless 無價值的</div></div></div></div></article></section><section id="reading"><h2>素養閱讀</h2><div class="reading-split"><div class="reading-article"><article class="passage"><div class="passagetext">Jerry is a senior high school student. He always reviews what he has learned after class and previews what he will learn the next day. He is good at English. Every time he studies English, he feels joyous. However, he does very poorly in math and geoscience. Therefore, it takes him a lot of time to understand those subjects. He is also a member of the dancing club. Dancing has been his favorite activity ever since he entered junior high school. He even stays at school to practice dancing with his friends after his classes are finished.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>1. E　2. A　3. C　4. B</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">第 1 題：E</div><div class="detail-body">前文說作者努力成為 the perfect kid；E 的 At home 與後文 At school 形成「在家 → 在學校」的平行結構，perfect son 也承接 perfect kid。</div></div><div class="detail-section"><div class="detail-title">第 2 題：A</div><div class="detail-body">前句說進入國中後開始違反家規與校規；A 的 talked back to my parents and teachers 具體補充叛逆行為，後句又接不在乎考試，語意連續。</div></div><div class="detail-section"><div class="detail-title">第 3 題：C</div><div class="detail-body">前文提到英文老師在作者低潮時幫助他；C 用 lighthouse 比喻老師帶來方向，後句 In addition, because of her 也明確指回這位老師。</div></div><div class="detail-section"><div class="detail-title">第 4 題：B</div><div class="detail-body">前文回顧為別人追求完美與故意變得一文不值都失敗；B 的 realized that I had been living for others 總結原因，並自然銜接後句 I needed to start living for myself。</div></div><div class="detail-section"><div class="detail-title">高中必備單字（題目實際出現）</div><div class="detail-body">reputation 名聲；violate 違反；potential 潛力；encourage 鼓勵；passion 熱情；worthless 無價值的</div></div></div></div></article></section><section id="reading"><h2>素養閱讀</h2><div class="reading-split"><div class="reading-article"><article class="passage"><div class="passagetext">Jerry is a senior high school student. He always reviews what he has learned after class and previews what he will learn the next day. He is good at English. Every time he studies English, he feels joyous. However, he does very poorly in math and geoscience. Therefore, it takes him a lot of time to understand those subjects. He is also a member of the dancing club. Dancing has been his favorite activity ever since he entered junior high school. He even stays at school to practice dancing with his friends after his classes are finished. Here is his weekly course schedule:
+<div aria-label="Jerry's weekly course schedule" class="literacy-table-wrap" role="region" tabindex="0">
+<table class="literacy-schedule">
+<thead><tr><th></th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr></thead>
+<tbody>
+<tr><th>8:10~9:00</th><td>Technology</td><td>English</td><td>Math</td><td>Math</td><td>Physics</td></tr>
+<tr><th>9:10~10:00</th><td>Math</td><td>Chemistry</td><td>Experiment</td><td>History</td><td>Music</td></tr>
+<tr><th>10:10~11:00</th><td>Chinese</td><td>Civics</td><td>Experiment</td><td>Art</td><td>Math</td></tr>
+<tr><th>11:10~12:00</th><td>Chinese</td><td>Civics</td><td>Physical<br/>Education</td><td>Chemistry</td><td>Math</td></tr>
+<tr><th>13:10~14:00</th><td>Physical<br/>Education</td><td>Chinese</td><td>English</td><td>English</td><td>Geoscience</td></tr>
+<tr><th>14:10~15:00</th><td>English</td><td>Physics</td><td>Biology</td><td>Geography</td><td>Club Activity</td></tr>
+<tr><th>15:10~16:00</th><td>Culture</td><td>History</td><td>Chinese</td><td>Geography</td><td>Club Activity</td></tr>
+</tbody></table></div></div>
 </article></div><div class="reading-questions"><article class="qcard" data-category="reading" data-qid="reading-68"><div class="qnum">素養閱讀 1</div><div class="stem">On which morning does Jerry most likely feel happy?</div><div class="opts"><div class="opt"><b>(A)</b> Monday morning.</div><div class="opt"><b>(B)</b> Tuesday morning.</div><div class="opt"><b>(C)</b> Wednesday morning.</div><div class="opt"><b>(D)</b> Thursday morning.</div></div>
 <div class="card-actions"><button class="reveal" onclick="openLongReview(this)">查看答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：B</b><p>星期二早上有英文課，且文章說他讀英文時感到開心。</p></div></article><article class="qcard" data-category="reading" data-qid="reading-69"><div class="qnum">素養閱讀 2</div><div class="stem">On which weekday does Jerry need to spend the most time previewing his lessons?</div><div class="opts"><div class="opt"><b>(A)</b> Tuesday.</div><div class="opt"><b>(B)</b> Wednesday.</div><div class="opt"><b>(C)</b> Thursday.</div><div class="opt"><b>(D)</b> Friday.</div></div>
 <div class="card-actions"><button class="reveal" onclick="openLongReview(this)">查看答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>答案：C</b><p>依課表與文章資訊判斷，星期四需預習星期五較吃力的數學與地球科學。</p></div></article><article class="qcard" data-category="reading" data-qid="reading-70"><div class="qnum">素養閱讀 3</div><div class="stem">Which of the following statements about Jerry and his schedule is NOT true?</div><div class="opts"><div class="opt"><b>(A)</b> Jerry has two physical education classes every week.</div><div class="opt"><b>(B)</b> Jerry has more math classes than English classes.</div><div class="opt"><b>(C)</b> Monday is a wonderful day for Jerry, for he can do what he enjoys.</div><div class="opt"><b>(D)</b> There are as many history classes as geography classes.</div></div>
@@ -698,7 +720,6 @@ function closeLongReview(){document.getElementById('reviewOverlay').classList.re
 function reviewOverlayClose(e){if(e.target.id==='reviewOverlay')closeLongReview();}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('reviewOverlay').classList.contains('show'))closeLongReview();});
 </script>
-
 <style id="v23-split-review">
 /* V23：長篇題型完整解析改為左側固定文章、右側獨立捲動解析。 */
 .review-shell{width:min(1460px,96vw);height:min(86vh,920px)}
@@ -801,8 +822,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElement
   };
 })();
 </script>
-
-
 <style id="v24-long-focus-side-options">
 /* V24：文意選填／篇章結構「再次複習」放大畫面：左文章可捲動、右選項固定。
    顯示答案後仍沿用 V23：左側完成文章、右側解析獨立捲動。 */
@@ -881,8 +900,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElement
   }
 }
 </style>
-
-
 <style id="v26-desktop-tablet-concentrated">
 /* V27：解析視窗沿用題目放大卡片寬度；解析只切換內容，不突然放寬外框。 */
 @media (min-width: 901px){
@@ -1025,5 +1042,49 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElement
   };
 })();
 </script>
+<script id="l1-v34-reading-focus-answer-state-fix">
+(function(){
+  /* Lesson 1 素養閱讀：
+     1. 進入單題放大時，一律先收起該題答案。
+     2. 單題放大內的「查看答案與解析」只控制目前這一題，
+        不直接跳到整篇完整解析層。
+     3. 一般素養閱讀頁原本的完整解析功能不變。 */
 
-</body></html>
+  const originalOpenFocus = window.openFocus;
+  window.openFocus = function(btn, origin='normal'){
+    const card = btn.closest('.qcard,.passage');
+    if(card && card.dataset.category === 'reading'){
+      const ans = card.querySelector('.answer');
+      if(ans){
+        ans.classList.remove('show');
+        ans.style.display = '';
+        ans.hidden = false;
+      }
+      const reveal = card.querySelector('button.reveal');
+      if(reveal){
+        reveal.textContent = '查看答案與解析';
+        delete reveal.dataset.originalLabel;
+      }
+    }
+    return originalOpenFocus(btn, origin);
+  };
+
+  const originalOpenLongReview = window.openLongReview;
+  window.openLongReview = function(btn){
+    const card = btn.closest('.qcard,.passage');
+    const inFocus = !!btn.closest('#focusOverlay');
+
+    if(inFocus && card && card.dataset.category === 'reading'){
+      const ans = card.querySelector('.answer');
+      if(!ans) return;
+
+      ans.classList.toggle('show');
+      const showing = ans.classList.contains('show');
+      btn.textContent = showing ? '隱藏答案與解析' : '查看答案與解析';
+      return;
+    }
+
+    return originalOpenLongReview(btn);
+  };
+})();
+</script></body></html>

@@ -570,6 +570,23 @@ body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .a
   #reading .l9-nuclear-table{min-width:720px;}
 }
 </style>
+<style id="review3-tablet-reading-overlay-border-fix">
+/* Tablet-only: preserve the original reading data table grid inside the full-analysis overlay. */
+@media (min-width:700px) and (max-width:1199px){
+  #reviewOverlay[data-review-kind="reading"] .review-passage .l9-nuclear-table{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-passage .l9-nuclear-table th,
+  #reviewOverlay[data-review-kind="reading"] .review-passage .l9-nuclear-table td{
+    border:1px solid #9aa8a1;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-passage .l9-nuclear-table th{
+    background:#f3f5f4;
+  }
+}
+</style>
 </head>
 <body>
 <header><div class="top"><div class="titleblock"><h1>Review Three — An Island’s Beauty, an Islander’s Duty</h1><a class="home-link" href="../">回課內試題首頁</a></div><div class="font-side"><div class="fonttools"><span class="sub">字級</span><button onclick="changeFont(-1)">A−</button><button onclick="resetFont()">A</button><button onclick="changeFont(1)">A+</button></div></div><div class="sub">學生先作答 → 老師手動顯示答案</div></div>

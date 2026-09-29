@@ -824,8 +824,6 @@ body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .a
 </style>
 
 
-
-
 <style id="review3-reading-table-density-final">
 /* Final density pass for Review 3 literacy-reading table.
    Desktop + tablet only. Mobile remains on the existing horizontal-scroll rules. */
@@ -996,6 +994,72 @@ body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .a
 }
 </style>
 
+
+<style id="name-only-A">
+@media (min-width:700px){
+#reading .l9-nuclear-table .r3-person-name,
+#reviewOverlay[data-review-kind="reading"] .l9-nuclear-table .r3-person-name,
+#wrongBank .l9-nuclear-table .r3-person-name,
+#printSheet .l9-nuclear-table .r3-person-name{font-size:.94rem!important;}
+#reading .l9-nuclear-table tbody td:nth-child(2),
+#reviewOverlay[data-review-kind="reading"] .l9-nuclear-table tbody td:nth-child(2),
+#wrongBank .l9-nuclear-table tbody td:nth-child(2),
+#printSheet .l9-nuclear-table tbody td:nth-child(2){font-size:.96rem!important;overflow-wrap:normal!important;word-break:normal!important;hyphens:none!important;}
+}
+</style>
+
+<style id="review3-reading-support-and-clean-sync">
+/* Review 3: reference Review 1 V8's native details/summary interaction. */
+.reading-support{margin-top:16px;display:grid;gap:10px;}
+.reading-support .support-details{border:1px solid #cbd9d2;border-radius:12px;background:#f8fbf9;padding:0 15px;overflow:hidden;}
+.reading-support .support-details summary{cursor:pointer;padding:13px 0;font-weight:800;color:#2f6854;line-height:1.35;}
+.reading-support .support-body{padding:0 0 14px;}
+.reading-support .translation-intro{margin:0 0 12px;line-height:1.75;}
+.reading-support .translation-table-wrap{width:100%;overflow-x:auto;}
+.reading-support .r3-translation-table{width:100%;border-collapse:collapse;table-layout:fixed;background:#fff;font-size:.94rem;line-height:1.55;}
+.reading-support .r3-translation-table th,.reading-support .r3-translation-table td{border:1px solid #b7c5be;padding:8px 9px;vertical-align:top;overflow-wrap:normal;word-break:normal;}
+.reading-support .r3-translation-table thead th{background:#eef3f0;text-align:center;font-weight:800;}
+.reading-support .r3-translation-table tbody th{width:20%;background:#f6f8f7;text-align:center;font-weight:800;vertical-align:middle;}
+.reading-support .r3-translation-table tbody th span{display:block;margin-top:4px;font-size:.88em;font-weight:500;line-height:1.35;}
+.reading-support .r3-translation-table th:nth-child(2),.reading-support .r3-translation-table td:nth-child(2){width:23%;}
+.reading-support .r3-translation-table th:nth-child(3),.reading-support .r3-translation-table td:nth-child(3){width:28%;}
+.reading-support .r3-translation-table th:nth-child(4),.reading-support .r3-translation-table td:nth-child(4){width:29%;}
+.reading-support .vocab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;}
+.reading-support .vocab-item{display:grid;grid-template-columns:minmax(145px,.9fr) 1.1fr;gap:10px;align-items:baseline;padding:8px 10px;border:1px solid #d9e3de;border-radius:9px;background:#fff;line-height:1.45;}
+.reading-support .vocab-item strong{font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif;color:#244f40;}
+@media(max-width:760px){
+ .reading-support .r3-translation-table{min-width:680px;font-size:.92rem;}
+ .reading-support .vocab-grid{grid-template-columns:1fr;}
+ .reading-support .vocab-item{grid-template-columns:minmax(130px,.9fr) 1.1fr;}
+}
+/* Keep the accepted short-date format in My Wrong Answers without touching outer/inner layout. */
+#wrongBank .l9-nuclear-table .r3-person-date{display:block!important;width:max-content!important;max-width:100%!important;margin:.08rem auto 0!important;font-size:0!important;line-height:1.20!important;text-align:center!important;}
+#wrongBank .l9-nuclear-table .r3-person-date::before{content:attr(data-tablet-line2)!important;display:block!important;font-size:.92rem!important;line-height:1.20!important;text-align:center!important;white-space:nowrap!important;}
+#wrongBank .l9-nuclear-table .r3-person-date::after{content:attr(data-tablet-line3)!important;display:block!important;margin-top:.08rem!important;font-size:.92rem!important;line-height:1.20!important;text-align:center!important;white-space:nowrap!important;}
+#wrongBank .l9-nuclear-table .r3-person-date[data-tablet-line3=""]::after{display:none!important;}
+</style>
+
+
+<style id="review3-print-reading-clean-C">
+@media print{
+  /* Print-only reset: preserve screen/tablet/overlay appearance. */
+  #printSheet .reading-support{display:none!important;}
+  #printSheet .l9-nuclear-table{width:100%!important;table-layout:fixed!important;border-collapse:collapse!important;font-size:11.3pt!important;line-height:1.31!important;}
+  #printSheet .l9-nuclear-table th,#printSheet .l9-nuclear-table td{border:1px solid #9aa8a1!important;padding:7px 8px!important;vertical-align:top!important;overflow-wrap:normal!important;word-break:normal!important;hyphens:none!important;}
+  #printSheet .l9-nuclear-table th:nth-child(1),#printSheet .l9-nuclear-table td:nth-child(1){width:22%!important;}
+  #printSheet .l9-nuclear-table th:nth-child(2),#printSheet .l9-nuclear-table td:nth-child(2){width:24%!important;}
+  #printSheet .l9-nuclear-table th:nth-child(3),#printSheet .l9-nuclear-table td:nth-child(3){width:27%!important;}
+  #printSheet .l9-nuclear-table th:nth-child(4),#printSheet .l9-nuclear-table td:nth-child(4){width:27%!important;}
+  #printSheet .l9-nuclear-table tbody td:nth-child(2){font-size:11.3pt!important;}
+  #printSheet .l9-nuclear-table tbody th{vertical-align:middle!important;text-align:center!important;}
+  #printSheet .l9-nuclear-table .r3-person-name{display:block!important;width:100%!important;font-size:11pt!important;font-weight:800!important;line-height:1.18!important;margin:0 0 5px!important;white-space:nowrap!important;text-align:center!important;}
+  #printSheet .l9-nuclear-table .r3-person-date{display:block!important;width:max-content!important;max-width:100%!important;margin:0 auto!important;font-size:0!important;line-height:1.20!important;text-align:center!important;}
+  #printSheet .l9-nuclear-table .r3-person-date::before{content:attr(data-tablet-line2)!important;display:block!important;font-size:10.4pt!important;line-height:1.20!important;text-align:center!important;white-space:nowrap!important;}
+  #printSheet .l9-nuclear-table .r3-person-date::after{content:attr(data-tablet-line3)!important;display:block!important;margin-top:2px!important;font-size:10.4pt!important;line-height:1.20!important;text-align:center!important;white-space:nowrap!important;}
+  #printSheet .l9-nuclear-table .r3-person-date[data-tablet-line3=""]::after{display:none!important;}
+}
+</style>
+
 </head>
 <body>
 <header><div class="top"><div class="titleblock"><h1>Review Three — An Island’s Beauty, an Islander’s Duty</h1><a class="home-link" href="../">回課內試題首頁</a></div><div class="font-side"><div class="fonttools"><span class="sub">字級</span><button onclick="changeFont(-1)">A−</button><button onclick="resetFont()">A</button><button onclick="changeFont(1)">A+</button></div></div><div class="sub">學生先作答 → 老師手動顯示答案</div></div>
@@ -1006,7 +1070,40 @@ body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .a
 <tr><th><span class="r3-person-name">Chi Po-lin</span><br/><span class="r3-person-date" data-tablet="27 Dec 1964 – 10 Jun 2017" data-tablet-line2="27 Dec – 10 Jun" data-tablet-line3="1964 – 2017">(27 December 1964 – 10 June 2017)</span></th><td>Documentary filmmaker, photographer and environmentalist</td><td>Won the award for “Best Documentary” at the 2013 Golden Horse Awards.</td><td><i>Beyond Beauty</i> is a great film as it will help people to learn more about Taiwan’s environment.</td></tr>
 <tr><th><span class="r3-person-name">Morris Chang</span><br/><span class="r3-person-date" data-tablet="Born 10 Jul 1931" data-tablet-line2="10 Jul 1931" data-tablet-line3="">(born 10 July 1931)</span></th><td>Former chairman and CEO of TSMC</td><td>Known as the founder of Taiwan’s semiconductor industry.</td><td>Made a major contribution to Taiwan’s economy and retired in 2018.</td></tr>
 <tr><th><span class="r3-person-name">Tai Tzu-ying</span><br/><span class="r3-person-date" data-tablet="Born 20 Jun 1994" data-tablet-line2="20 Jun 1994" data-tablet-line3="">(born 20 June 1994)</span></th><td>Badminton player</td><td>World’s No. 1.<br/>Still holds the record for the most points in the women’s singles category.</td><td>Was described as a true “tournament artist” by foreign media.</td></tr>
-<tr><th><span class="r3-person-name">Chen Shu-chu</span><br/><span class="r3-person-date" data-tablet="Born c. 1951" data-tablet-line2="Born circa 1951" data-tablet-line3="">(born circa 1951)</span></th><td>Vegetable vendor and philanthropist</td><td>Selected as one of Time Magazine’s 100 Heroes for the year 2010.<br/>Won the Ramon Magsaysay Award.</td><td>Has donated over 10 million Taiwanese dollars to local charities.</td></tr></tbody></table></div></article><div class="cards reading-questions"><article class="qcard" data-category="reading" data-qid="review3-reading-1" data-sec="reading"><div class="qnum">素養閱讀 1</div><div class="reading-review-stem stem">Jack found this quote by one of the following four people in a news report: “Money serves its purpose only when it is used for those who need it.” According to the information given in the table, who might have said this?</div><div class="opts"><span class="opt">(A) Chi Po-lin.</span><span class="opt">(B) Morris Chang.</span><span class="opt">(C) Tai Tzu-ying.</span><span class="opt">(D) Chen Shu-chu.</span></div><div class="card-actions"><button class="reveal" onclick="openLongReview(this)">顯示答案與解析</button></div><div class="answer"><b>答案：D — Chen Shu-chu.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">教材解析重點</div><div class="detail-body">引言談把錢用在有需要的人；表格中陳樹菊長期捐款給慈善機構。</div></div></div></div></article><article class="qcard" data-category="reading" data-qid="review3-reading-2" data-sec="reading"><div class="qnum">素養閱讀 2</div><div class="reading-review-stem stem">After Jack’s presentation, his classmates were impressed by the character he had introduced. They all admired this person’s achievements at such a young age, and thought he or she will be seen at the 2020 Summer Olympics. Who might this person be?</div><div class="opts"><span class="opt">(A) Chi Po-lin.</span><span class="opt">(B) Morris Chang.</span><span class="opt">(C) Tai Tzu-ying.</span><span class="opt">(D) Chen Shu-chu.</span></div><div class="card-actions"><button class="reveal" onclick="openLongReview(this)">顯示答案與解析</button></div><div class="answer"><b>答案：C — Tai Tzu-ying.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">教材解析重點</div><div class="detail-body">題幹提到年輕成就與 2020 Summer Olympics；表格中對應羽球選手戴資穎。</div></div></div></div></article><article class="qcard" data-category="reading" data-qid="review3-reading-3" data-sec="reading"><div class="qnum">素養閱讀 3</div><div class="reading-review-stem stem">Which of the following statements is true?</div><div class="opts"><span class="opt">(A) Chi Po-lin won the Golden Horse Award after he passed away.</span><span class="opt">(B) Morris Chang is not working for TSMC now.</span><span class="opt">(C) Tai Tzu-ying is not only a great badminton player but also the world’s greatest artist.</span><span class="opt">(D) Chen Shu-chu is the oldest of the four people.</span></div><div class="card-actions"><button class="reveal" onclick="openLongReview(this)">顯示答案與解析</button></div><div class="answer"><b>答案：B — Morris Chang is not working for TSMC now.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">教材解析重點</div><div class="detail-body">表格指出張忠謀於 2018 年退休，因此目前已不在台積電工作。</div></div></div></div></article></div><div class="card-actions reading-group-actions"><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div></div></section><section id="translation"><h2>翻譯</h2><div class="cards"><article class="qcard" data-category="translation" data-qid="review3-translation-1" data-sec="translation"><div class="qnum">翻譯 1</div><div class="stem"><span class="zh">James和我們一起露營時不覺得無聊。相反地，他非常喜歡這次旅行。</span><div class="translation-skeleton">James wasn’t bored when he went camping with us. ______ ______ ______, he enjoyed the trip very much.</div></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>James wasn’t bored when he went camping with us. On the contrary, he enjoyed the trip very much.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">on the contrary = 恰恰相反。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-2" data-sec="translation"><div class="qnum">翻譯 2</div><div class="stem"><span class="zh">LGBTQ+ 遊行的目的在提升我們對於性別平等的意識。</span><div class="translation-skeleton">The LGBTQ+ parade is aimed at r__________ our a__________ ______ gender equality.</div></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>The LGBTQ+ parade is aimed at raising our awareness of gender equality.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">be aimed at + V-ing；raise awareness of。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-3" data-sec="translation"><div class="qnum">翻譯 3</div><div class="stem"><span class="zh">這電玩遊戲對小朋友的心理健康可能有負面的影響。</span><div class="translation-skeleton">The video game might have a negative i__________ ______ children’s mental health.</div></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>The video game might have a negative impact on children’s mental health.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">have an impact on。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-4" data-sec="translation"><div class="qnum">翻譯 4</div><div class="stem"><span class="zh">May 的幸運小熊已經不見很久。她不知道該在哪裡找。</span><div class="translation-skeleton">May’s lucky bear has been gone for a long time. She doesn’t know ______ ______ ______ ______.</div></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>May’s lucky bear has been gone for a long time. She doesn’t know where to find it.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">疑問詞 where + to VR 作 know 的受詞。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-5" data-sec="translation"><div class="qnum">翻譯 5</div><div class="stem"><span class="zh">Susan的小狗不見了。這使她傷心欲絕。</span><div class="translation-skeleton">Susan’s puppy had gotten lost, which really ______ ______ her ______.</div></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>Susan’s puppy had gotten lost, which really tore at her heart.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">tear at one’s heart = 使某人傷心欲絕。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-6" data-sec="translation"><div class="qnum">翻譯 6</div><div class="stem"><span class="zh">經過多年的辛勞，當Kevin完成了他的第一本小說，他的努力終於得到了回報。</span></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>After years of hard work, Kevin’s efforts finally paid off when he completed his first novel.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">pay off = 得到好結果；獲得回報。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-7" data-sec="translation"><div class="qnum">翻譯 7</div><div class="stem"><span class="zh">多虧了這部紀錄片，民眾才了解高山農業對水土保持的破壞性影響。</span></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>It was thanks to the documentary that the public realized the damaging impact high-mountain farming was having on soil and water conservation.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">教材使用強調句 It was thanks to ... that ...。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-8" data-sec="translation"><div class="qnum">翻譯 8</div><div class="stem"><span class="zh">我的爸爸、媽媽不再年輕了。</span></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>My parents are no longer young.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">no longer = 不再。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-9" data-sec="translation"><div class="qnum">翻譯 9</div><div class="stem"><span class="zh">在看過了災區發生了什麼事之後，市長開始思考未來要如何避免此類悲劇。</span></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>After seeing what had happened in the disaster area, the mayor started to think about how to prevent such tragedies in the future.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">After + V-ing；how to prevent ...。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-10" data-sec="translation"><div class="qnum">翻譯 10</div><div class="stem"><span class="zh">這座村的村民們都很感激這位英雄幫忙阻止一場悲劇。</span></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>The people in the village were very grateful/thankful to the hero for helping prevent a tragedy.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">be grateful/thankful to sb. for V-ing。</div></div></div></div></article></div></section><section id="wrongBank"><h2>我的錯題</h2>
+<tr><th><span class="r3-person-name">Chen Shu-chu</span><br/><span class="r3-person-date" data-tablet="Born c. 1951" data-tablet-line2="Born circa 1951" data-tablet-line3="">(born circa 1951)</span></th><td>Vegetable vendor and philanthropist</td><td>Selected as one of Time Magazine’s 100 Heroes for the year 2010.<br/>Won the Ramon Magsaysay Award.</td><td>Has donated over 10 million Taiwanese dollars to local charities.</td></tr></tbody></table>
+<div class="reading-support" aria-label="素養閱讀補充學習">
+  <details class="full-translation support-details">
+    <summary>全文中文翻譯</summary>
+    <div class="support-body">
+      <p class="translation-intro">Jack 是一位在美國學習英文的學生。他準備向來自世界各地的同學介紹一位台灣知名人物。他已經選了四位對他影響很大的人，並對他們做了一些簡單的資料蒐集。</p>
+      <div class="translation-table-wrap">
+        <table class="r3-translation-table">
+          <thead><tr><th>人物</th><th>職業</th><th>成就</th><th>補充</th></tr></thead>
+          <tbody>
+            <tr><th>齊柏林<br><span>1964年12月27日－2017年6月10日</span></th><td>紀錄片導演、攝影師、環保人士</td><td>榮獲 2013 年金馬獎「最佳紀錄片」獎。</td><td>《看見台灣》是一部很棒的電影，因為它能幫助人們更了解台灣的環境。</td></tr>
+            <tr><th>張忠謀<br><span>1931年7月10日出生</span></th><td>台積電前董事長暨執行長</td><td>被譽為台灣半導體產業的創始者。</td><td>對台灣經濟做出重大貢獻，並於 2018 年退休。</td></tr>
+            <tr><th>戴資穎<br><span>1994年6月20日出生</span></th><td>羽球選手</td><td>世界排名第一。至今仍保持女子單打項目最高積分紀錄。</td><td>曾被外國媒體形容為真正的「賽場藝術家」。</td></tr>
+            <tr><th>陳樹菊<br><span>約1951年出生</span></th><td>菜販、慈善家</td><td>入選《時代》雜誌 2010 年百大英雄之一，並獲得麥格塞塞獎。</td><td>已捐出超過新台幣一千萬元給當地慈善機構。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+  <details class="key-vocab support-details">
+    <summary>重點單字</summary>
+    <div class="support-body vocab-grid">
+      <div class="vocab-item"><strong>well-known</strong><span>著名的；廣為人知的</span></div>
+      <div class="vocab-item"><strong>have a great influence on</strong><span>對……有很大的影響</span></div>
+      <div class="vocab-item"><strong>documentary filmmaker</strong><span>紀錄片導演／製片人</span></div>
+      <div class="vocab-item"><strong>environmentalist</strong><span>環保人士；環境保護倡議者</span></div>
+      <div class="vocab-item"><strong>semiconductor industry</strong><span>半導體產業</span></div>
+      <div class="vocab-item"><strong>contribution</strong><span>貢獻</span></div>
+      <div class="vocab-item"><strong>philanthropist</strong><span>慈善家</span></div>
+      <div class="vocab-item"><strong>charity</strong><span>慈善機構；慈善事業</span></div>
+    </div>
+  </details>
+</div>
+</div></article><div class="cards reading-questions"><article class="qcard" data-category="reading" data-qid="review3-reading-1" data-sec="reading"><div class="qnum">素養閱讀 1</div><div class="reading-review-stem stem">Jack found this quote by one of the following four people in a news report: “Money serves its purpose only when it is used for those who need it.” According to the information given in the table, who might have said this?</div><div class="opts"><span class="opt">(A) Chi Po-lin.</span><span class="opt">(B) Morris Chang.</span><span class="opt">(C) Tai Tzu-ying.</span><span class="opt">(D) Chen Shu-chu.</span></div><div class="card-actions"><button class="reveal" onclick="openLongReview(this)">顯示答案與解析</button></div><div class="answer"><b>答案：D — Chen Shu-chu.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">教材解析重點</div><div class="detail-body">引言談把錢用在有需要的人；表格中陳樹菊長期捐款給慈善機構。</div></div></div></div></article><article class="qcard" data-category="reading" data-qid="review3-reading-2" data-sec="reading"><div class="qnum">素養閱讀 2</div><div class="reading-review-stem stem">After Jack’s presentation, his classmates were impressed by the character he had introduced. They all admired this person’s achievements at such a young age, and thought he or she will be seen at the 2020 Summer Olympics. Who might this person be?</div><div class="opts"><span class="opt">(A) Chi Po-lin.</span><span class="opt">(B) Morris Chang.</span><span class="opt">(C) Tai Tzu-ying.</span><span class="opt">(D) Chen Shu-chu.</span></div><div class="card-actions"><button class="reveal" onclick="openLongReview(this)">顯示答案與解析</button></div><div class="answer"><b>答案：C — Tai Tzu-ying.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">教材解析重點</div><div class="detail-body">題幹提到年輕成就與 2020 Summer Olympics；表格中對應羽球選手戴資穎。</div></div></div></div></article><article class="qcard" data-category="reading" data-qid="review3-reading-3" data-sec="reading"><div class="qnum">素養閱讀 3</div><div class="reading-review-stem stem">Which of the following statements is true?</div><div class="opts"><span class="opt">(A) Chi Po-lin won the Golden Horse Award after he passed away.</span><span class="opt">(B) Morris Chang is not working for TSMC now.</span><span class="opt">(C) Tai Tzu-ying is not only a great badminton player but also the world’s greatest artist.</span><span class="opt">(D) Chen Shu-chu is the oldest of the four people.</span></div><div class="card-actions"><button class="reveal" onclick="openLongReview(this)">顯示答案與解析</button></div><div class="answer"><b>答案：B — Morris Chang is not working for TSMC now.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">教材解析重點</div><div class="detail-body">表格指出張忠謀於 2018 年退休，因此目前已不在台積電工作。</div></div></div></div></article></div><div class="card-actions reading-group-actions"><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div></div></section><section id="translation"><h2>翻譯</h2><div class="cards"><article class="qcard" data-category="translation" data-qid="review3-translation-1" data-sec="translation"><div class="qnum">翻譯 1</div><div class="stem"><span class="zh">James和我們一起露營時不覺得無聊。相反地，他非常喜歡這次旅行。</span><div class="translation-skeleton">James wasn’t bored when he went camping with us. ______ ______ ______, he enjoyed the trip very much.</div></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>James wasn’t bored when he went camping with us. On the contrary, he enjoyed the trip very much.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">on the contrary = 恰恰相反。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-2" data-sec="translation"><div class="qnum">翻譯 2</div><div class="stem"><span class="zh">LGBTQ+ 遊行的目的在提升我們對於性別平等的意識。</span><div class="translation-skeleton">The LGBTQ+ parade is aimed at r__________ our a__________ ______ gender equality.</div></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>The LGBTQ+ parade is aimed at raising our awareness of gender equality.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">be aimed at + V-ing；raise awareness of。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-3" data-sec="translation"><div class="qnum">翻譯 3</div><div class="stem"><span class="zh">這電玩遊戲對小朋友的心理健康可能有負面的影響。</span><div class="translation-skeleton">The video game might have a negative i__________ ______ children’s mental health.</div></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>The video game might have a negative impact on children’s mental health.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">have an impact on。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-4" data-sec="translation"><div class="qnum">翻譯 4</div><div class="stem"><span class="zh">May 的幸運小熊已經不見很久。她不知道該在哪裡找。</span><div class="translation-skeleton">May’s lucky bear has been gone for a long time. She doesn’t know ______ ______ ______ ______.</div></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>May’s lucky bear has been gone for a long time. She doesn’t know where to find it.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">疑問詞 where + to VR 作 know 的受詞。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-5" data-sec="translation"><div class="qnum">翻譯 5</div><div class="stem"><span class="zh">Susan的小狗不見了。這使她傷心欲絕。</span><div class="translation-skeleton">Susan’s puppy had gotten lost, which really ______ ______ her ______.</div></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>Susan’s puppy had gotten lost, which really tore at her heart.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">tear at one’s heart = 使某人傷心欲絕。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-6" data-sec="translation"><div class="qnum">翻譯 6</div><div class="stem"><span class="zh">經過多年的辛勞，當Kevin完成了他的第一本小說，他的努力終於得到了回報。</span></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>After years of hard work, Kevin’s efforts finally paid off when he completed his first novel.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">pay off = 得到好結果；獲得回報。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-7" data-sec="translation"><div class="qnum">翻譯 7</div><div class="stem"><span class="zh">多虧了這部紀錄片，民眾才了解高山農業對水土保持的破壞性影響。</span></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>It was thanks to the documentary that the public realized the damaging impact high-mountain farming was having on soil and water conservation.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">教材使用強調句 It was thanks to ... that ...。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-8" data-sec="translation"><div class="qnum">翻譯 8</div><div class="stem"><span class="zh">我的爸爸、媽媽不再年輕了。</span></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>My parents are no longer young.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">no longer = 不再。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-9" data-sec="translation"><div class="qnum">翻譯 9</div><div class="stem"><span class="zh">在看過了災區發生了什麼事之後，市長開始思考未來要如何避免此類悲劇。</span></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>After seeing what had happened in the disaster area, the mayor started to think about how to prevent such tragedies in the future.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">After + V-ing；how to prevent ...。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="review3-translation-10" data-sec="translation"><div class="qnum">翻譯 10</div><div class="stem"><span class="zh">這座村的村民們都很感激這位英雄幫忙阻止一場悲劇。</span></div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>The people in the village were very grateful/thankful to the hero for helping prevent a tragedy.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">be grateful/thankful to sb. for V-ing。</div></div></div></div></article></div></section><section id="wrongBank"><h2>我的錯題</h2>
 <div class="wrong-summary"><div><b>錯題複習區</b><span id="wrongCount">目前 0 題</span></div><div class="wrong-tools"><button class="secondary" onclick="selectAllWrong(true)">全選</button><button class="secondary" onclick="selectAllWrong(false)">取消全選</button><button class="primary" onclick="printWrong('student')">產生學生影印版</button><button class="secondary teacherPrint" onclick="printWrong('teacher')">產生教師答案版</button></div></div>
 <div class="wrong-empty" id="wrongEmpty">目前還沒有錯題。回到題目頁，按「☆ 加入我的錯題」即可收藏。</div>
 <div class="cards" id="wrongList"></div></section>
@@ -1171,3 +1268,675 @@ function renderWrongBank(){
       if(isLongWrong){
         const clone=sanitizeWrongPreview(src.cloneNode(true));
         clone.classList.add('wrong-fullwidth-content');
+        clone.querySelectorAll('.card-actions,.wrongBtn,.focusBtn,button').forEach(x=>x.remove());
+        clone.querySelectorAll('.answer').forEach(a=>{a.classList.remove('show');a.style.display='';});
+        wrap.appendChild(clone);
+      }else{
+        const stem=sanitizeWrongPreview(src.querySelector('.stem,.passagetext')?.cloneNode(true));
+        const opts=sanitizeWrongPreview(src.querySelector('.opts,.miniwrap,.bank')?.cloneNode(true));
+        if(src.querySelector('.bank') && opts)wrap.appendChild(opts);
+        if(stem)wrap.appendChild(stem);
+        if(!src.querySelector('.bank') && opts)wrap.appendChild(opts);
+      }
+      const acts=document.createElement('div');acts.className='wrong-review-actions';
+      acts.innerHTML=`<button class="focusBtn" onclick="reviewWrong('${id}')">再次複習</button><button class="secondary" onclick="removeWrong('${id}')">移出錯題</button>`;
+      wrap.appendChild(acts);grid.appendChild(wrap);
+    });
+    group.appendChild(grid);list.appendChild(group);
+  });
+}
+function removeWrong(id){saveWrong(wrongIds().filter(x=>x!==id))}
+function selectAllWrong(on){document.querySelectorAll('.wrongPick').forEach(x=>x.checked=on)}
+function reviewWrong(id){
+  const src=getSourceCard(id);if(!src)return;
+  resetSourceForRetry(src);
+  const cat=src.dataset.category||'';
+  if(['cloze','reading'].includes(cat)){
+    const section=src.closest('section');
+    const sectionId=section?.id||cat;
+    showSection(sectionId);
+    setTimeout(()=>src.scrollIntoView({behavior:'smooth',block:'start'}),60);
+    return;
+  }
+  const b=src.querySelector('.focusBtn');if(b)openFocus(b,'wrong');
+}
+function pickedWrong(){return [...document.querySelectorAll('.wrongPick:checked')].map(x=>x.value)}
+function cleanPrintClone(src,teacher){const c=src.cloneNode(true);c.querySelectorAll('.card-actions,.focusReturnInline,.wrongBtn,.focusBtn,button').forEach(x=>x.remove());c.querySelectorAll('.answer').forEach(a=>{a.classList.remove('show');if(teacher)a.style.display='block'});return c}
+function printWrong(mode){const ids=pickedWrong();if(!ids.length){alert('請先勾選至少一題錯題。');return}const sheet=document.getElementById('printSheet');const teacher=mode==='teacher';sheet.className='print-sheet '+(teacher?'print-teacher':'print-student');sheet.innerHTML=`<div class="print-head"><h1>Review Three ${teacher?'錯題教師答案版':'我的錯題練習'}</h1></div><div class="print-meta"><span>姓名：________________</span><span>日期：________________</span><span>共 ${ids.length} 題</span></div>`;ids.forEach((id,i)=>{const src=getSourceCard(id);if(!src)return;const cat=src.dataset.category||'';const box=document.createElement('div');box.className='print-question'+(['cloze','wordbank','structure','reading'].includes(cat)?' print-long-question':'');const label=document.createElement('div');label.className='print-qnum';label.textContent=`${i+1}. ${src.querySelector('.qnum')?.textContent||src.querySelector('h3')?.textContent||categoryName(cat)}`;box.appendChild(label);const clone=cleanPrintClone(src,teacher);clone.removeAttribute('hidden');clone.querySelectorAll('[hidden]').forEach(x=>x.removeAttribute('hidden'));const qn=clone.querySelector('.qnum');if(qn)qn.remove();box.appendChild(clone);sheet.appendChild(box)});sheet.setAttribute('aria-hidden','false');setTimeout(()=>window.print(),80)}
+function migrateReadingWrong(){
+  const ids=wrongIds();
+  const readingIds=[...document.querySelectorAll('#reading .reading-questions [data-qid]')].map(x=>x.dataset.qid);
+  if(!ids.some(id=>readingIds.includes(id)))return;
+  const next=ids.filter(id=>!readingIds.includes(id));
+  if(!next.includes('review3-reading-group'))next.push('review3-reading-group');
+  localStorage.setItem(WRONG_KEY,JSON.stringify([...new Set(next)]));
+}
+function initWrongSystem(){migrateReadingWrong();syncWrongButtons();renderWrongBank()}
+initWrongSystem();
+initSectionView();
+
+
+/* V21：文意選填／篇章結構顯示答案時同步回填原文。 */
+function setInlineAnswers(card,show){
+  if(!card || !['wordbank','structure'].includes(card.dataset.category||'')) return;
+  const text=card.querySelector('.passagetext'); if(!text) return;
+  text.querySelectorAll('.inline-blank').forEach(blank=>{
+    let filled=blank.querySelector('.filled-answer');
+    if(!filled){
+      filled=document.createElement('span'); filled.className='filled-answer';
+      filled.textContent=blank.dataset.answer||''; blank.appendChild(filled);
+    }
+  });
+  text.classList.toggle('answers-inline',!!show);
+}
+const _v21ToggleAns=toggleAns;
+toggleAns=function(btn){
+  const mini=btn.closest('.mini');
+  const card=mini || btn.closest('.qcard,.passage');
+  _v21ToggleAns(btn);
+  if(card && !mini && ['wordbank','structure'].includes(card.dataset.category||'')){
+    const a=card.querySelector('.answer'); setInlineAnswers(card,!!(a&&a.classList.contains('show')));
+  }
+};
+
+/* V21：綜合測驗／素養閱讀使用中央大型集中解析卡。 */
+function openLongReview(btn){
+  const overlay=document.getElementById('reviewOverlay');
+  const content=document.getElementById('reviewContent');
+  const title=document.getElementById('reviewTitle');
+  content.innerHTML='';
+  if(btn.closest('#cloze')){
+    const passage=btn.closest('article.passage'); if(!passage)return;
+    const h=passage.querySelector('h3'); title.textContent=(h?h.textContent.trim():'綜合測驗')+'｜完整解析';
+    const p=document.createElement('div'); p.className='review-passage';
+    const pt=passage.querySelector('.passagetext'); if(pt)p.innerHTML=pt.innerHTML;
+    content.appendChild(p);
+    passage.querySelectorAll('.mini').forEach((m,i)=>{
+      const q=document.createElement('div'); q.className='review-question';
+      const label=document.createElement('div'); label.className='mini-title'; label.textContent='第 '+(i+1)+' 題'; q.appendChild(label);
+      const opts=m.querySelector('.opts'); if(opts)q.appendChild(opts.cloneNode(true));
+      const ans=m.querySelector('.answer'); if(ans){const ac=ans.cloneNode(true);ac.classList.add('show');q.appendChild(ac);}
+      content.appendChild(q);
+    });
+  }else if(btn.closest('#reading')){
+    const section=document.getElementById('reading'); title.textContent='素養閱讀｜完整解析';
+    const p=document.createElement('div'); p.className='review-passage';
+    const pt=section.querySelector('.reading-article .passagetext'); if(pt)p.innerHTML=pt.innerHTML;
+    content.appendChild(p);
+    section.querySelectorAll('.reading-questions .qcard').forEach(card=>{
+      const q=document.createElement('div'); q.className='review-question';
+      const qn=card.querySelector('.qnum'); if(qn)q.appendChild(qn.cloneNode(true));
+      const stem=card.querySelector('.stem'); if(stem)q.appendChild(stem.cloneNode(true));
+      const opts=card.querySelector('.opts'); if(opts)q.appendChild(opts.cloneNode(true));
+      const ans=card.querySelector('.answer'); if(ans){const ac=ans.cloneNode(true);ac.classList.add('show');q.appendChild(ac);}
+      content.appendChild(q);
+    });
+  }else return;
+  overlay.classList.add('show'); document.body.style.overflow='hidden';
+  content.scrollTop=0;
+}
+function closeLongReview(){document.getElementById('reviewOverlay').classList.remove('show');document.body.style.overflow='';}
+function reviewOverlayClose(e){if(e.target.id==='reviewOverlay')closeLongReview();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('reviewOverlay').classList.contains('show'))closeLongReview();});
+</script>
+<style id="v23-split-review">
+/* V23：長篇題型完整解析改為左側固定文章、右側獨立捲動解析。 */
+.review-shell{width:min(1460px,96vw);height:min(86vh,920px)}
+.review-body{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:minmax(0,1.58fr) minmax(360px,.92fr);gap:22px;padding:22px 24px 24px;overflow:hidden;background:#fff}
+.review-article-pane{min-width:0;min-height:0;display:flex;align-items:flex-start;justify-content:center;overflow:hidden}
+.review-passage{width:100%;max-width:880px;max-height:100%;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;background:#f7faf8;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:0;font-size:1.04rem;line-height:1.82}
+.review-explain-pane{min-width:0;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:0 8px 18px 2px;border-left:1px solid var(--line);padding-left:20px}
+.review-explain-pane .review-question{margin-top:0;padding:18px 2px}
+.review-explain-pane .review-question:first-child{padding-top:2px}
+.review-passage .review-fill{display:inline;font-weight:900;color:var(--accent);background:#e9f3ee;border-radius:6px;padding:1px 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.review-passage.answers-inline .inline-blank .blank-slot{display:none}
+.review-passage.answers-inline .inline-blank .filled-answer{display:inline;font-weight:900;color:var(--accent);background:#e9f3ee;border-radius:6px;padding:1px 6px}
+@media(max-width:900px){.review-body{grid-template-columns:1fr 1fr;gap:14px;padding:16px}.review-explain-pane{padding-left:14px}.review-passage{padding:16px;font-size:1rem}}
+@media(max-width:680px){.review-shell{height:92vh}.review-body{display:flex;flex-direction:column;overflow:hidden}.review-article-pane{flex:0 0 auto;max-height:42%}.review-explain-pane{flex:1 1 auto;border-left:0;border-top:1px solid var(--line);padding:14px 4px 18px}.review-passage{max-height:100%}}
+</style>
+<script id="v23-split-review-script">
+(function(){
+  function answerLetter(node){const b=node&&node.querySelector('.answer>b');const m=b&&b.textContent.match(/答案[：:]\s*([A-J])/i);return m?m[1].toUpperCase():''}
+  function choiceText(mini,letter){
+    const spans=[...mini.querySelectorAll('.miniopts span,.opts span')];
+    const sp=spans.find(x=>new RegExp('\\('+letter+'\\)','i').test(x.textContent));
+    return sp?sp.textContent.replace(new RegExp('^\\s*\\('+letter+'\\)\\s*','i'),'').trim():'';
+  }
+  function completedCloze(passage){
+    const p=document.createElement('div');p.className='review-passage';
+    const pt=passage.querySelector('.passagetext');if(!pt)return p;
+    p.innerHTML=pt.innerHTML;
+    const blanks=[...p.querySelectorAll('b')];
+    passage.querySelectorAll('.mini').forEach((mini,i)=>{
+      const n=i+1, letter=answerLetter(mini), raw=choiceText(mini,letter);
+      let parts=raw.split(';').map(x=>x.trim());
+      if(raw==='（不填）'||raw==='(不填)'||raw==='不填')parts=[''];
+      const targets=blanks.filter(b=>new RegExp('^\\s*'+n+'\\.').test(b.textContent));
+      targets.forEach((b,j)=>{
+        const val=parts[Math.min(j,parts.length-1)]||'';
+        b.innerHTML=n+'. '+(val?'<span class="review-fill">'+val.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</span>':'<span class="review-fill">（不填）</span>');
+      });
+    });
+    return p;
+  }
+  function completedInline(card){
+    const p=document.createElement('div');p.className='review-passage answers-inline';
+    const pt=card.querySelector('.passagetext');if(!pt)return p;
+    p.innerHTML=pt.innerHTML;
+    p.querySelectorAll('.inline-blank').forEach(blank=>{
+      blank.querySelectorAll('.filled-answer').forEach(x=>x.remove());
+      const f=document.createElement('span');f.className='filled-answer';f.textContent=blank.dataset.answer||'';blank.appendChild(f);
+    });
+    return p;
+  }
+  function buildQuestionsFromMinis(passage){
+    const pane=document.createElement('div');pane.className='review-explain-pane';
+    passage.querySelectorAll('.mini').forEach((m,i)=>{
+      const q=document.createElement('div');q.className='review-question';
+      const label=document.createElement('div');label.className='mini-title';label.textContent='第 '+(i+1)+' 題';q.appendChild(label);
+      const opts=m.querySelector('.miniopts,.opts');if(opts)q.appendChild(opts.cloneNode(true));
+      const ans=m.querySelector('.answer');if(ans){const ac=ans.cloneNode(true);ac.classList.add('show');q.appendChild(ac)}
+      pane.appendChild(q);
+    });return pane;
+  }
+  function buildQuestionsFromAnswer(card){
+    const pane=document.createElement('div');pane.className='review-explain-pane';
+    const ans=card.querySelector('.answer');
+    if(ans){const detail=ans.querySelector('.detail-analysis');if(detail){[...detail.children].forEach((sec,i)=>{const q=document.createElement('div');q.className='review-question';q.appendChild(sec.cloneNode(true));pane.appendChild(q)})}else{const q=document.createElement('div');q.className='review-question';q.appendChild(ans.cloneNode(true));pane.appendChild(q)}}
+    return pane;
+  }
+  function showSplitReview(titleText,article,pane,returnText,kind){
+    const overlay=document.getElementById('reviewOverlay'),content=document.getElementById('reviewContent'),title=document.getElementById('reviewTitle'),close=overlay.querySelector('.review-close');
+    overlay.dataset.reviewKind=kind||'';
+    title.textContent=titleText;close.textContent=returnText||'返回作答';content.innerHTML='';content.className='review-body';
+    const left=document.createElement('div');left.className='review-article-pane';left.appendChild(article);content.appendChild(left);content.appendChild(pane);
+    overlay.classList.add('show');document.body.style.overflow='hidden';pane.scrollTop=0;article.scrollTop=0;
+  }
+  window.openLongReview=function(btn){
+    if(btn.closest('#cloze')){
+      const passage=btn.closest('article.passage');if(!passage)return;const h=passage.querySelector('h3');
+      showSplitReview((h?h.textContent.trim():'綜合測驗')+'｜完整解析',completedCloze(passage),buildQuestionsFromMinis(passage),window.focusOrigin==='wrong'?'返回錯題區':'返回作答','cloze');return;
+    }
+    if(btn.closest('#reading')){
+      const section=document.getElementById('reading'),p=document.createElement('div');p.className='review-passage';const pt=section.querySelector('.reading-article .passagetext');if(pt)p.innerHTML=pt.innerHTML;
+      const pane=document.createElement('div');pane.className='review-explain-pane';section.querySelectorAll('.reading-questions .qcard').forEach(card=>{const q=document.createElement('div');q.className='review-question';['.qnum','.stem','.opts','.answer'].forEach(sel=>{const x=card.querySelector(sel);if(x){const c=x.cloneNode(true);if(sel==='.answer')c.classList.add('show');q.appendChild(c)}});pane.appendChild(q)});
+      showSplitReview('素養閱讀｜完整解析',p,pane,window.focusOrigin==='wrong'?'返回錯題區':'返回作答','reading');return;
+    }
+  };
+  const prevToggle=window.toggleAns;
+  window.toggleAns=function(btn){
+    const card=btn.closest('.qcard,.passage');const cat=card&&card.dataset.category;
+    if(card && (cat==='wordbank'||cat==='structure') && document.getElementById('focusOverlay').classList.contains('show')){
+      setInlineAnswers(card,true);
+      const h=card.querySelector('h3');
+      showSplitReview((h?h.textContent.trim():categoryName(cat))+'｜完整解析',completedInline(card),buildQuestionsFromAnswer(card),window.focusOrigin==='wrong'?'返回錯題區':'返回作答',cat);
+      return;
+    }
+    return prevToggle(btn);
+  };
+  const oldClose=window.closeLongReview;
+  window.closeLongReview=function(){
+    const content=document.getElementById('reviewContent'),overlay=document.getElementById('reviewOverlay');content.className='review-scroll';
+    overlay.classList.remove('show');overlay.dataset.reviewKind='';document.body.style.overflow='';
+    if(document.getElementById('focusOverlay').classList.contains('show')) document.body.classList.add('focus-mode');
+  };
+})();
+</script>
+<style id="v24-long-focus-side-options">
+/* V24：文意選填／篇章結構「再次複習」放大畫面：左文章可捲動、右選項固定。
+   顯示答案後仍沿用 V23：左側完成文章、右側解析獨立捲動。 */
+@media (min-width: 900px){
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="structure"],
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="wordbank"]{
+    height:82vh;
+    max-height:82vh;
+    display:grid;
+    grid-template-columns:minmax(0,1.72fr) minmax(320px,.78fr);
+    grid-template-rows:auto minmax(0,1fr) auto;
+    grid-template-areas:
+      "title title"
+      "text bank"
+      "actions actions";
+    column-gap:24px;
+    row-gap:14px;
+    overflow:hidden;
+    align-items:stretch;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > h3,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > h3{
+    grid-area:title;
+    margin:0;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .passagetext,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .passagetext{
+    grid-area:text;
+    min-width:0;
+    min-height:0;
+    height:100%;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-gutter:stable;
+    padding:16px 18px 18px 2px;
+    margin:0;
+    line-height:1.82;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .bank,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .bank{
+    grid-area:bank;
+    position:static;
+    align-self:start;
+    width:auto;
+    min-width:0;
+    max-height:100%;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-gutter:stable;
+    margin:0;
+    padding:16px 18px;
+    line-height:1.72;
+    background:#f7faf8;
+    border:1px solid var(--line);
+    border-radius:14px;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .card-actions,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .card-actions{
+    grid-area:actions;
+    margin-top:0!important;
+    justify-self:end;
+    align-self:end;
+  }
+  /* 原卡片答案區不佔再次複習版面；按顯示答案後由 V23 集中解析卡呈現。 */
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .answer,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .answer{
+    display:none!important;
+  }
+}
+@media (max-width:899px){
+  /* 小螢幕維持上下配置，避免左右欄過窄。 */
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="structure"],
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="wordbank"]{
+    display:flex;
+    flex-direction:column;
+  }
+}
+</style>
+<style id="v26-desktop-tablet-concentrated">
+/* 長篇解析：一般題型維持集中卡片；素養閱讀因四欄資料表需要更寬閱讀面。 */
+@media (min-width: 901px){
+  .review-overlay{padding:22px 28px;}
+  .review-shell{
+    width:min(920px,86vw)!important;
+    height:min(82vh,820px)!important;
+    max-width:920px!important;
+  }
+  .review-body{
+    grid-template-columns:minmax(0,1.5fr) minmax(310px,.9fr)!important;
+    gap:12px!important;
+    padding:16px 18px 18px!important;
+  }
+  .review-passage{
+    width:100%!important;
+    max-width:650px!important;
+    padding:17px 18px!important;
+    font-size:1.01rem!important;
+    line-height:1.76!important;
+  }
+  .review-explain-pane{padding-left:12px!important;padding-right:2px!important;}
+  .review-toolbar{padding:14px 18px!important;}
+
+  /* 素養閱讀完整解析：加寬浮層，左側資料約 68%、右側題目約 32%。 */
+  #reviewOverlay[data-review-kind="reading"] .review-shell{
+    width:min(1480px,96vw)!important;
+    max-width:1480px!important;
+    height:min(88vh,900px)!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-body{
+    grid-template-columns:minmax(0,2.05fr) minmax(340px,.95fr)!important;
+    gap:18px!important;
+    padding:16px 20px 20px!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-article-pane{justify-content:stretch!important;}
+  #reviewOverlay[data-review-kind="reading"] .review-passage{
+    max-width:none!important;
+    padding:16px 18px!important;
+    font-size:1rem!important;
+    line-height:1.55!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-explain-pane{
+    padding-left:16px!important;
+    padding-right:4px!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-question .stem{
+    font-size:1.02rem!important;
+    font-weight:650!important;
+    line-height:1.5!important;
+    margin-bottom:8px!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-question .opts{
+    font-size:1rem!important;
+    line-height:1.45!important;
+    gap:6px 14px!important;
+    margin:10px 0!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-question .opt{padding:3px 0!important;}
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table{
+    width:100%!important;
+    min-width:0!important;
+    table-layout:fixed!important;
+    border-collapse:collapse!important;
+    background:#fff!important;
+    font-size:.98rem!important;
+    line-height:1.48!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table th,
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table td{
+    border:1px solid #9aa8a1!important;
+    padding:9px 10px!important;
+    vertical-align:top!important;
+    overflow-wrap:normal!important;
+    word-break:normal!important;
+    hyphens:none!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table thead th{
+    background:#f3f5f4!important;
+    text-align:center!important;
+    font-weight:900!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table tbody th{
+    background:#f7faf8!important;
+    text-align:center!important;
+    font-weight:900!important;
+    line-height:1.45!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table th:nth-child(1),#reviewOverlay[data-review-kind="reading"] .l9-nuclear-table td:nth-child(1){width:21%!important;}
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table th:nth-child(2),#reviewOverlay[data-review-kind="reading"] .l9-nuclear-table td:nth-child(2){width:24%!important;}
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table th:nth-child(3),#reviewOverlay[data-review-kind="reading"] .l9-nuclear-table td:nth-child(3){width:28%!important;}
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table th:nth-child(4),#reviewOverlay[data-review-kind="reading"] .l9-nuclear-table td:nth-child(4){width:27%!important;}
+}
+
+/* 平板橫向／較窄桌機：一般解析仍集中；素養閱讀保留較寬資料區。 */
+@media (min-width: 768px) and (max-width: 1100px){
+  .review-overlay{padding:16px;}
+  .review-shell{width:min(920px,90vw)!important;height:min(84vh,800px)!important;}
+  .review-body{grid-template-columns:minmax(0,1.42fr) minmax(290px,.92fr)!important;gap:10px!important;padding:14px!important;}
+  .review-passage{max-width:560px!important;padding:15px 16px!important;font-size:1rem!important;}
+  .review-explain-pane{padding-left:10px!important;}
+
+  #reviewOverlay[data-review-kind="reading"] .review-shell{width:96vw!important;max-width:96vw!important;height:88vh!important;}
+  #reviewOverlay[data-review-kind="reading"] .review-body{grid-template-columns:minmax(0,1.75fr) minmax(300px,.85fr)!important;gap:12px!important;}
+  #reviewOverlay[data-review-kind="reading"] .review-passage{max-width:none!important;}
+}
+
+@media (max-width:767px){
+  #reviewOverlay[data-review-kind="reading"] .review-body{display:flex!important;flex-direction:column!important;overflow:hidden!important;}
+  #reviewOverlay[data-review-kind="reading"] .review-article-pane{flex:0 0 auto;max-height:45%;}
+  #reviewOverlay[data-review-kind="reading"] .review-explain-pane{flex:1 1 auto;border-left:0;border-top:1px solid var(--line);padding:12px 2px 16px!important;}
+  #reviewOverlay[data-review-kind="reading"] .review-passage{max-width:none!important;max-height:100%;font-size:.96rem!important;overflow-x:auto!important;}
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table{min-width:720px!important;}
+}
+/* 篇章結構一般頁：答案顯示後，右欄由選項切換成可捲動解析。 */
+@media (min-width: 768px){
+  #structure article.passage.structure-answer-mode{
+    grid-template-columns:minmax(0,1.62fr) minmax(330px,.82fr);
+    grid-template-areas:"text explain" "actions explain";
+    gap:16px 22px;
+  }
+  #structure article.passage.structure-answer-mode > h3{display:none;}
+  #structure article.passage.structure-answer-mode > .passagetext{
+    grid-area:text;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;padding-right:10px;
+  }
+  #structure article.passage.structure-answer-mode > .bank{display:none!important;}
+  #structure article.passage.structure-answer-mode > .card-actions{grid-area:actions;}
+  #structure article.passage.structure-answer-mode > .answer{display:none!important;}
+  #structure .structure-inline-explain{
+    grid-area:explain;min-width:0;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;
+    border-left:1px solid var(--line);padding:0 4px 12px 16px;
+  }
+  #structure .structure-inline-explain .detail-section{
+    background:#f7faf8;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 12px;
+  }
+  #structure .structure-inline-explain .detail-title{font-weight:900;color:var(--accent);margin-bottom:8px;}
+  #structure .structure-inline-explain .detail-body{line-height:1.72;}
+
+  /* V27：文意選填一般頁顯示答案後，同一張題目卡內切成左文章、右解析。 */
+  #wordbank article.passage.wordbank-answer-mode{
+    display:grid;grid-template-columns:minmax(0,2.05fr) minmax(285px,.95fr);
+    grid-template-areas:"text explain" "actions explain";gap:16px 18px;align-items:start;
+  }
+  #wordbank article.passage.wordbank-answer-mode > h3{display:none;}
+  #wordbank article.passage.wordbank-answer-mode > .passagetext{
+    grid-area:text;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;padding-right:10px;
+  }
+  #wordbank article.passage.wordbank-answer-mode > .bank{display:none!important;}
+  #wordbank article.passage.wordbank-answer-mode > .card-actions{grid-area:actions;}
+  #wordbank article.passage.wordbank-answer-mode > .answer{display:none!important;}
+  #wordbank .wordbank-inline-explain{
+    grid-area:explain;min-width:0;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;
+    border-left:1px solid var(--line);padding:0 4px 12px 14px;
+  }
+  #wordbank .wordbank-inline-explain .detail-section{
+    background:#f7faf8;border:1px solid var(--line);border-radius:14px;padding:13px 14px;margin:0 0 11px;
+  }
+  #wordbank .wordbank-inline-explain .detail-title{font-weight:900;color:var(--accent);margin-bottom:7px;}
+  #wordbank .wordbank-inline-explain .detail-body{line-height:1.68;}
+  #wordbank .wordbank-explain-item{margin:0 0 16px;padding-bottom:4px;border-bottom:1px solid var(--line);}
+  #wordbank .wordbank-explain-item:last-child{border-bottom:0;margin-bottom:0;}
+  #wordbank .wordbank-explain-head{font-weight:900;color:var(--ink);font-size:1.02rem;margin:0 0 5px;}
+  #wordbank .wordbank-explain-answer{font-weight:800;color:var(--accent);margin:0 0 9px;line-height:1.55;}
+}
+@media (max-width: 767px){
+  #wordbank article.passage.wordbank-answer-mode > .bank{display:none!important;}
+  #wordbank article.passage.wordbank-answer-mode > .answer{display:none!important;}
+  #wordbank .wordbank-inline-explain{margin-top:14px;padding:0;max-height:none;overflow:visible;border-left:0;}
+  #wordbank .wordbank-explain-item{margin:0 0 16px;}
+  #wordbank .wordbank-explain-head{font-weight:900;color:var(--ink);font-size:1.02rem;margin:0 0 5px;}
+  #wordbank .wordbank-explain-answer{font-weight:800;color:var(--accent);margin:0 0 9px;}
+}
+</style>
+<style id="lesson6-wordbank-fixed-options-layout">
+/* Lesson 3 V2：依 Lesson 2 V4 正式母版修正文意選填。
+   桌機／平板：左側文章獨立捲動，右側選項固定；顯示答案後沿用同寬雙欄解析。 */
+@media (min-width: 768px){
+  #wordbank article.passage:not(.wordbank-answer-mode){
+    display:grid;
+    grid-template-columns:minmax(0,2.05fr) minmax(285px,.95fr);
+    grid-template-rows:auto minmax(0,1fr) auto;
+    grid-template-areas:
+      "title title"
+      "text bank"
+      "actions bank";
+    column-gap:18px;
+    row-gap:14px;
+    align-items:stretch;
+    overflow:hidden;
+  }
+  #wordbank article.passage:not(.wordbank-answer-mode) > h3{grid-area:title;margin-bottom:0;}
+  #wordbank article.passage:not(.wordbank-answer-mode) > .passagetext{
+    grid-area:text;min-width:0;min-height:0;max-height:66vh;overflow-y:auto;
+    overscroll-behavior:contain;scrollbar-gutter:stable;padding-right:10px;margin:0;
+  }
+  #wordbank article.passage:not(.wordbank-answer-mode) > .bank{
+    grid-area:bank;position:static;align-self:start;min-width:0;width:auto;max-height:66vh;
+    overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;margin:0;
+  }
+  #wordbank article.passage:not(.wordbank-answer-mode) > .card-actions{grid-area:actions;margin-top:0;}
+  #wordbank article.passage:not(.wordbank-answer-mode) > .answer{display:none;}
+}
+</style>
+<script id="v26-structure-answer-switch">
+(function(){
+  const previous=window.toggleAns;
+  window.toggleAns=function(btn){
+    const card=btn.closest('.passage');
+    const isStructure=card && card.dataset.category==='structure';
+    const inFocus=!!btn.closest('#focusOverlay');
+    const result=previous(btn);
+    if(isStructure && !inFocus){
+      const ans=card.querySelector(':scope > .answer');
+      const showing=!!(ans && ans.classList.contains('show'));
+      let pane=card.querySelector(':scope > .structure-inline-explain');
+      if(showing){
+        if(!pane){
+          pane=document.createElement('div');
+          pane.className='structure-inline-explain';
+          const detail=ans && ans.querySelector('.detail-analysis');
+          if(detail) [...detail.children].forEach(x=>pane.appendChild(x.cloneNode(true)));
+          card.appendChild(pane);
+        }
+        card.classList.add('structure-answer-mode');
+      }else{
+        card.classList.remove('structure-answer-mode');
+        if(pane) pane.remove();
+      }
+    }
+    return result;
+  };
+})();
+</script>
+<script id="v27-wordbank-answer-switch-and-retry-fix">
+(function(){
+  const previous=window.toggleAns;
+  window.toggleAns=function(btn){
+    const card=btn.closest('.passage');
+    const isWordbank=card && card.dataset.category==='wordbank';
+    const inFocus=!!btn.closest('#focusOverlay');
+    const result=previous(btn);
+    if(isWordbank && !inFocus){
+      const ans=card.querySelector(':scope > .answer');
+      const showing=!!(ans && ans.classList.contains('show'));
+      let pane=card.querySelector(':scope > .wordbank-inline-explain');
+      if(showing){
+        if(!pane){
+          pane=document.createElement('div');
+          pane.className='wordbank-inline-explain';
+          ans.querySelectorAll(':scope > .mini').forEach((mini,index)=>{
+            const item=document.createElement('div');
+            item.className='wordbank-explain-item';
+            const qnum=(mini.querySelector('.qnum')?.textContent||String(index+1)).trim();
+            const head=document.createElement('div');
+            head.className='wordbank-explain-head';
+            head.textContent='第 '+qnum+' 題';
+            item.appendChild(head);
+            const answerLine=mini.querySelector(':scope > .answer > b');
+            if(answerLine){
+              const line=document.createElement('div');
+              line.className='wordbank-explain-answer';
+              line.innerHTML=answerLine.innerHTML;
+              item.appendChild(line);
+            }
+            const detail=mini.querySelector(':scope > .answer > .detail-analysis');
+            if(detail) [...detail.children].forEach(x=>item.appendChild(x.cloneNode(true)));
+            pane.appendChild(item);
+          });
+          card.appendChild(pane);
+        }
+        card.classList.add('wordbank-answer-mode');
+      }else{
+        card.classList.remove('wordbank-answer-mode');
+        if(pane) pane.remove();
+      }
+    }
+    return result;
+  };
+})();
+</script>
+<script id="l3-structure-return-to-practice">
+(function(){
+  const open = window.openFocus;
+  window.openFocus = function(btn,origin){
+    const card=btn.closest('.passage[data-category="structure"]');
+    if(card){
+      const answer=card.querySelector(':scope > .answer');
+      if(answer) answer.classList.remove('show');
+      const pane=card.querySelector(':scope > .structure-inline-explain');
+      if(pane) pane.remove();
+      card.classList.remove('structure-answer-mode');
+      setInlineAnswers(card,false);
+      const reveal=card.querySelector(':scope > .card-actions > .reveal');
+      if(reveal) reveal.textContent=reveal.dataset.originalLabel||'顯示答案';
+    }
+    return open(btn,origin);
+  };
+  const close = window.closeLongReview;
+  window.closeLongReview = function(){
+    const isStructure = document.getElementById('reviewOverlay').classList.contains('show')
+      && document.getElementById('reviewTitle').textContent.includes('篇章結構')
+      && document.getElementById('focusOverlay').classList.contains('show');
+    close();
+    if(isStructure){
+      const card=document.querySelector('#focusContent > .passage[data-category="structure"]');
+      if(card) setInlineAnswers(card,false);
+    }
+  };
+})();
+</script>
+<script id="l3-cloze-focus-review-bridge">
+function openClozeReview(btn){
+  const focusOverlay=document.getElementById('focusOverlay');
+  const inFocus=!!(focusOverlay && focusOverlay.classList.contains('show'));
+  if(inFocus){
+    closeFocus();
+  }
+  openLongReview(btn);
+}
+</script>
+<script id="l3-wordbank-inline-fill-only-script">
+(()=>{
+  const originals=new WeakMap();
+
+  function answerMap(article){
+    const map=new Map();
+    article.querySelectorAll(':scope > .answer > .mini').forEach(mini=>{
+      const n=Number((mini.querySelector('.qnum')?.textContent||'').match(/\d+/)?.[0]);
+      const text=mini.querySelector('.answer b')?.textContent||'';
+      const m=text.match(/答案[：:]\s*[A-J]\s*[—-]\s*([^　]+)/);
+      if(n && m) map.set(n,m[1].trim());
+    });
+    return map;
+  }
+
+  function fill(article){
+    const passage=article.querySelector(':scope > .passagetext');
+    if(!passage) return;
+    if(!originals.has(passage)) originals.set(passage,passage.innerHTML);
+    passage.innerHTML=originals.get(passage);
+    const answers=answerMap(article);
+    const walker=document.createTreeWalker(passage,NodeFilter.SHOW_TEXT);
+    const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      const text=node.nodeValue||'';
+      if(!/__\d+__/.test(text)) return;
+      const frag=document.createDocumentFragment();
+      let last=0;
+      text.replace(/__(\d+)__/g,(token,num,offset)=>{
+        if(offset>last) frag.appendChild(document.createTextNode(text.slice(last,offset)));
+        const span=document.createElement('span');
+        span.className='wordbank-fill-answer';
+        span.dataset.blank=String(num);
+        span.textContent=answers.get(Number(num))||token;
+        frag.appendChild(span);
+        last=offset+token.length;
+        return token;
+      });
+      if(last<text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag,node);
+    });
+  }
+
+  function restore(article){
+    const passage=article.querySelector(':scope > .passagetext');
+    if(passage && originals.has(passage)) passage.innerHTML=originals.get(passage);
+  }
+
+  document.addEventListener('click',e=>{
+    const btn=e.target.closest('#wordbank article.passage > .card-actions > .reveal');
+    if(!btn) return;
+    const article=btn.closest('article.passage');
+    requestAnimationFrame(()=>{
+      const ans=article.querySelector(':scope > .answer');
+      if(ans && ans.classList.contains('show')) fill(article); else restore(article);
+    });
+  });
+})();
+</script>
+</body></html>

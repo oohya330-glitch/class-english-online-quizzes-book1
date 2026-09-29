@@ -1060,6 +1060,45 @@ body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .a
 }
 </style>
 
+
+
+<style id="review3-tablet-vocab-card-stack-v2">
+/* Tablet only: two cards per row; within each card English is row 1 and Chinese is row 2. */
+@media (min-width:700px) and (max-width:1400px){
+  .reading-support .vocab-grid{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px 12px!important;
+  }
+  .reading-support .vocab-item{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    justify-content:flex-start!important;
+    gap:4px!important;
+    padding:10px 12px!important;
+  }
+  .reading-support .vocab-item > strong,
+  .reading-support .vocab-item > span{
+    display:block!important;
+    flex:none!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    margin:0!important;
+  }
+  .reading-support .vocab-item > strong{
+    white-space:normal!important;
+    overflow-wrap:normal!important;
+    word-break:normal!important;
+    line-height:1.35!important;
+  }
+  .reading-support .vocab-item > span{
+    line-height:1.45!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <header><div class="top"><div class="titleblock"><h1>Review Three — An Island’s Beauty, an Islander’s Duty</h1><a class="home-link" href="../">回課內試題首頁</a></div><div class="font-side"><div class="fonttools"><span class="sub">字級</span><button onclick="changeFont(-1)">A−</button><button onclick="resetFont()">A</button><button onclick="changeFont(1)">A+</button></div></div><div class="sub">學生先作答 → 老師手動顯示答案</div></div>

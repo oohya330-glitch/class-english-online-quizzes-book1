@@ -998,3 +998,675 @@ function renderWrongBank(){
       if(isLongWrong){
         const clone=sanitizeWrongPreview(src.cloneNode(true));
         clone.classList.add('wrong-fullwidth-content');
+        clone.querySelectorAll('.card-actions,.wrongBtn,.focusBtn,button').forEach(x=>x.remove());
+        clone.querySelectorAll('.answer').forEach(a=>{a.classList.remove('show');a.style.display='';});
+        wrap.appendChild(clone);
+      }else{
+        const stem=sanitizeWrongPreview(src.querySelector('.stem,.passagetext')?.cloneNode(true));
+        const opts=sanitizeWrongPreview(src.querySelector('.opts,.miniwrap,.bank')?.cloneNode(true));
+        if(src.querySelector('.bank') && opts)wrap.appendChild(opts);
+        if(stem)wrap.appendChild(stem);
+        if(!src.querySelector('.bank') && opts)wrap.appendChild(opts);
+      }
+      const acts=document.createElement('div');acts.className='wrong-review-actions';
+      acts.innerHTML=`<button class="focusBtn" onclick="reviewWrong('${id}')">再次複習</button><button class="secondary" onclick="removeWrong('${id}')">移出錯題</button>`;
+      wrap.appendChild(acts);grid.appendChild(wrap);
+    });
+    group.appendChild(grid);list.appendChild(group);
+  });
+}
+function removeWrong(id){saveWrong(wrongIds().filter(x=>x!==id))}
+function selectAllWrong(on){document.querySelectorAll('.wrongPick').forEach(x=>x.checked=on)}
+function reviewWrong(id){
+  const src=getSourceCard(id);if(!src)return;
+  resetSourceForRetry(src);
+  const cat=src.dataset.category||'';
+  if(['cloze','reading'].includes(cat)){
+    const section=src.closest('section');
+    const sectionId=section?.id||cat;
+    showSection(sectionId);
+    setTimeout(()=>src.scrollIntoView({behavior:'smooth',block:'start'}),60);
+    return;
+  }
+  const b=src.querySelector('.focusBtn');if(b)openFocus(b,'wrong');
+}
+function pickedWrong(){return [...document.querySelectorAll('.wrongPick:checked')].map(x=>x.value)}
+function cleanPrintClone(src,teacher){const c=src.cloneNode(true);c.querySelectorAll('.card-actions,.focusReturnInline,.wrongBtn,.focusBtn,button').forEach(x=>x.remove());c.querySelectorAll('.answer').forEach(a=>{a.classList.remove('show');if(teacher)a.style.display='block'});return c}
+function printWrong(mode){const ids=pickedWrong();if(!ids.length){alert('請先勾選至少一題錯題。');return}const sheet=document.getElementById('printSheet');const teacher=mode==='teacher';sheet.className='print-sheet '+(teacher?'print-teacher':'print-student');sheet.innerHTML=`<div class="print-head"><h1>Review Three ${teacher?'錯題教師答案版':'我的錯題練習'}</h1></div><div class="print-meta"><span>姓名：________________</span><span>日期：________________</span><span>共 ${ids.length} 題</span></div>`;ids.forEach((id,i)=>{const src=getSourceCard(id);if(!src)return;const cat=src.dataset.category||'';const box=document.createElement('div');box.className='print-question'+(['cloze','wordbank','structure','reading'].includes(cat)?' print-long-question':'');const label=document.createElement('div');label.className='print-qnum';label.textContent=`${i+1}. ${src.querySelector('.qnum')?.textContent||src.querySelector('h3')?.textContent||categoryName(cat)}`;box.appendChild(label);const clone=cleanPrintClone(src,teacher);clone.removeAttribute('hidden');clone.querySelectorAll('[hidden]').forEach(x=>x.removeAttribute('hidden'));const qn=clone.querySelector('.qnum');if(qn)qn.remove();box.appendChild(clone);sheet.appendChild(box)});sheet.setAttribute('aria-hidden','false');setTimeout(()=>window.print(),80)}
+function migrateReadingWrong(){
+  const ids=wrongIds();
+  const readingIds=[...document.querySelectorAll('#reading .reading-questions [data-qid]')].map(x=>x.dataset.qid);
+  if(!ids.some(id=>readingIds.includes(id)))return;
+  const next=ids.filter(id=>!readingIds.includes(id));
+  if(!next.includes('review3-reading-group'))next.push('review3-reading-group');
+  localStorage.setItem(WRONG_KEY,JSON.stringify([...new Set(next)]));
+}
+function initWrongSystem(){migrateReadingWrong();syncWrongButtons();renderWrongBank()}
+initWrongSystem();
+initSectionView();
+
+
+/* V21：文意選填／篇章結構顯示答案時同步回填原文。 */
+function setInlineAnswers(card,show){
+  if(!card || !['wordbank','structure'].includes(card.dataset.category||'')) return;
+  const text=card.querySelector('.passagetext'); if(!text) return;
+  text.querySelectorAll('.inline-blank').forEach(blank=>{
+    let filled=blank.querySelector('.filled-answer');
+    if(!filled){
+      filled=document.createElement('span'); filled.className='filled-answer';
+      filled.textContent=blank.dataset.answer||''; blank.appendChild(filled);
+    }
+  });
+  text.classList.toggle('answers-inline',!!show);
+}
+const _v21ToggleAns=toggleAns;
+toggleAns=function(btn){
+  const mini=btn.closest('.mini');
+  const card=mini || btn.closest('.qcard,.passage');
+  _v21ToggleAns(btn);
+  if(card && !mini && ['wordbank','structure'].includes(card.dataset.category||'')){
+    const a=card.querySelector('.answer'); setInlineAnswers(card,!!(a&&a.classList.contains('show')));
+  }
+};
+
+/* V21：綜合測驗／素養閱讀使用中央大型集中解析卡。 */
+function openLongReview(btn){
+  const overlay=document.getElementById('reviewOverlay');
+  const content=document.getElementById('reviewContent');
+  const title=document.getElementById('reviewTitle');
+  content.innerHTML='';
+  if(btn.closest('#cloze')){
+    const passage=btn.closest('article.passage'); if(!passage)return;
+    const h=passage.querySelector('h3'); title.textContent=(h?h.textContent.trim():'綜合測驗')+'｜完整解析';
+    const p=document.createElement('div'); p.className='review-passage';
+    const pt=passage.querySelector('.passagetext'); if(pt)p.innerHTML=pt.innerHTML;
+    content.appendChild(p);
+    passage.querySelectorAll('.mini').forEach((m,i)=>{
+      const q=document.createElement('div'); q.className='review-question';
+      const label=document.createElement('div'); label.className='mini-title'; label.textContent='第 '+(i+1)+' 題'; q.appendChild(label);
+      const opts=m.querySelector('.opts'); if(opts)q.appendChild(opts.cloneNode(true));
+      const ans=m.querySelector('.answer'); if(ans){const ac=ans.cloneNode(true);ac.classList.add('show');q.appendChild(ac);}
+      content.appendChild(q);
+    });
+  }else if(btn.closest('#reading')){
+    const section=document.getElementById('reading'); title.textContent='素養閱讀｜完整解析';
+    const p=document.createElement('div'); p.className='review-passage';
+    const pt=section.querySelector('.reading-article .passagetext'); if(pt)p.innerHTML=pt.innerHTML;
+    content.appendChild(p);
+    section.querySelectorAll('.reading-questions .qcard').forEach(card=>{
+      const q=document.createElement('div'); q.className='review-question';
+      const qn=card.querySelector('.qnum'); if(qn)q.appendChild(qn.cloneNode(true));
+      const stem=card.querySelector('.stem'); if(stem)q.appendChild(stem.cloneNode(true));
+      const opts=card.querySelector('.opts'); if(opts)q.appendChild(opts.cloneNode(true));
+      const ans=card.querySelector('.answer'); if(ans){const ac=ans.cloneNode(true);ac.classList.add('show');q.appendChild(ac);}
+      content.appendChild(q);
+    });
+  }else return;
+  overlay.classList.add('show'); document.body.style.overflow='hidden';
+  content.scrollTop=0;
+}
+function closeLongReview(){document.getElementById('reviewOverlay').classList.remove('show');document.body.style.overflow='';}
+function reviewOverlayClose(e){if(e.target.id==='reviewOverlay')closeLongReview();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('reviewOverlay').classList.contains('show'))closeLongReview();});
+</script>
+<style id="v23-split-review">
+/* V23：長篇題型完整解析改為左側固定文章、右側獨立捲動解析。 */
+.review-shell{width:min(1460px,96vw);height:min(86vh,920px)}
+.review-body{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:minmax(0,1.58fr) minmax(360px,.92fr);gap:22px;padding:22px 24px 24px;overflow:hidden;background:#fff}
+.review-article-pane{min-width:0;min-height:0;display:flex;align-items:flex-start;justify-content:center;overflow:hidden}
+.review-passage{width:100%;max-width:880px;max-height:100%;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;background:#f7faf8;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:0;font-size:1.04rem;line-height:1.82}
+.review-explain-pane{min-width:0;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:0 8px 18px 2px;border-left:1px solid var(--line);padding-left:20px}
+.review-explain-pane .review-question{margin-top:0;padding:18px 2px}
+.review-explain-pane .review-question:first-child{padding-top:2px}
+.review-passage .review-fill{display:inline;font-weight:900;color:var(--accent);background:#e9f3ee;border-radius:6px;padding:1px 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.review-passage.answers-inline .inline-blank .blank-slot{display:none}
+.review-passage.answers-inline .inline-blank .filled-answer{display:inline;font-weight:900;color:var(--accent);background:#e9f3ee;border-radius:6px;padding:1px 6px}
+@media(max-width:900px){.review-body{grid-template-columns:1fr 1fr;gap:14px;padding:16px}.review-explain-pane{padding-left:14px}.review-passage{padding:16px;font-size:1rem}}
+@media(max-width:680px){.review-shell{height:92vh}.review-body{display:flex;flex-direction:column;overflow:hidden}.review-article-pane{flex:0 0 auto;max-height:42%}.review-explain-pane{flex:1 1 auto;border-left:0;border-top:1px solid var(--line);padding:14px 4px 18px}.review-passage{max-height:100%}}
+</style>
+<script id="v23-split-review-script">
+(function(){
+  function answerLetter(node){const b=node&&node.querySelector('.answer>b');const m=b&&b.textContent.match(/答案[：:]\s*([A-J])/i);return m?m[1].toUpperCase():''}
+  function choiceText(mini,letter){
+    const spans=[...mini.querySelectorAll('.miniopts span,.opts span')];
+    const sp=spans.find(x=>new RegExp('\\('+letter+'\\)','i').test(x.textContent));
+    return sp?sp.textContent.replace(new RegExp('^\\s*\\('+letter+'\\)\\s*','i'),'').trim():'';
+  }
+  function completedCloze(passage){
+    const p=document.createElement('div');p.className='review-passage';
+    const pt=passage.querySelector('.passagetext');if(!pt)return p;
+    p.innerHTML=pt.innerHTML;
+    const blanks=[...p.querySelectorAll('b')];
+    passage.querySelectorAll('.mini').forEach((mini,i)=>{
+      const n=i+1, letter=answerLetter(mini), raw=choiceText(mini,letter);
+      let parts=raw.split(';').map(x=>x.trim());
+      if(raw==='（不填）'||raw==='(不填)'||raw==='不填')parts=[''];
+      const targets=blanks.filter(b=>new RegExp('^\\s*'+n+'\\.').test(b.textContent));
+      targets.forEach((b,j)=>{
+        const val=parts[Math.min(j,parts.length-1)]||'';
+        b.innerHTML=n+'. '+(val?'<span class="review-fill">'+val.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</span>':'<span class="review-fill">（不填）</span>');
+      });
+    });
+    return p;
+  }
+  function completedInline(card){
+    const p=document.createElement('div');p.className='review-passage answers-inline';
+    const pt=card.querySelector('.passagetext');if(!pt)return p;
+    p.innerHTML=pt.innerHTML;
+    p.querySelectorAll('.inline-blank').forEach(blank=>{
+      blank.querySelectorAll('.filled-answer').forEach(x=>x.remove());
+      const f=document.createElement('span');f.className='filled-answer';f.textContent=blank.dataset.answer||'';blank.appendChild(f);
+    });
+    return p;
+  }
+  function buildQuestionsFromMinis(passage){
+    const pane=document.createElement('div');pane.className='review-explain-pane';
+    passage.querySelectorAll('.mini').forEach((m,i)=>{
+      const q=document.createElement('div');q.className='review-question';
+      const label=document.createElement('div');label.className='mini-title';label.textContent='第 '+(i+1)+' 題';q.appendChild(label);
+      const opts=m.querySelector('.miniopts,.opts');if(opts)q.appendChild(opts.cloneNode(true));
+      const ans=m.querySelector('.answer');if(ans){const ac=ans.cloneNode(true);ac.classList.add('show');q.appendChild(ac)}
+      pane.appendChild(q);
+    });return pane;
+  }
+  function buildQuestionsFromAnswer(card){
+    const pane=document.createElement('div');pane.className='review-explain-pane';
+    const ans=card.querySelector('.answer');
+    if(ans){const detail=ans.querySelector('.detail-analysis');if(detail){[...detail.children].forEach((sec,i)=>{const q=document.createElement('div');q.className='review-question';q.appendChild(sec.cloneNode(true));pane.appendChild(q)})}else{const q=document.createElement('div');q.className='review-question';q.appendChild(ans.cloneNode(true));pane.appendChild(q)}}
+    return pane;
+  }
+  function showSplitReview(titleText,article,pane,returnText,kind){
+    const overlay=document.getElementById('reviewOverlay'),content=document.getElementById('reviewContent'),title=document.getElementById('reviewTitle'),close=overlay.querySelector('.review-close');
+    overlay.dataset.reviewKind=kind||'';
+    title.textContent=titleText;close.textContent=returnText||'返回作答';content.innerHTML='';content.className='review-body';
+    const left=document.createElement('div');left.className='review-article-pane';left.appendChild(article);content.appendChild(left);content.appendChild(pane);
+    overlay.classList.add('show');document.body.style.overflow='hidden';pane.scrollTop=0;article.scrollTop=0;
+  }
+  window.openLongReview=function(btn){
+    if(btn.closest('#cloze')){
+      const passage=btn.closest('article.passage');if(!passage)return;const h=passage.querySelector('h3');
+      showSplitReview((h?h.textContent.trim():'綜合測驗')+'｜完整解析',completedCloze(passage),buildQuestionsFromMinis(passage),window.focusOrigin==='wrong'?'返回錯題區':'返回作答','cloze');return;
+    }
+    if(btn.closest('#reading')){
+      const section=document.getElementById('reading'),p=document.createElement('div');p.className='review-passage';const pt=section.querySelector('.reading-article .passagetext');if(pt)p.innerHTML=pt.innerHTML;
+      const pane=document.createElement('div');pane.className='review-explain-pane';section.querySelectorAll('.reading-questions .qcard').forEach(card=>{const q=document.createElement('div');q.className='review-question';['.qnum','.stem','.opts','.answer'].forEach(sel=>{const x=card.querySelector(sel);if(x){const c=x.cloneNode(true);if(sel==='.answer')c.classList.add('show');q.appendChild(c)}});pane.appendChild(q)});
+      showSplitReview('素養閱讀｜完整解析',p,pane,window.focusOrigin==='wrong'?'返回錯題區':'返回作答','reading');return;
+    }
+  };
+  const prevToggle=window.toggleAns;
+  window.toggleAns=function(btn){
+    const card=btn.closest('.qcard,.passage');const cat=card&&card.dataset.category;
+    if(card && (cat==='wordbank'||cat==='structure') && document.getElementById('focusOverlay').classList.contains('show')){
+      setInlineAnswers(card,true);
+      const h=card.querySelector('h3');
+      showSplitReview((h?h.textContent.trim():categoryName(cat))+'｜完整解析',completedInline(card),buildQuestionsFromAnswer(card),window.focusOrigin==='wrong'?'返回錯題區':'返回作答',cat);
+      return;
+    }
+    return prevToggle(btn);
+  };
+  const oldClose=window.closeLongReview;
+  window.closeLongReview=function(){
+    const content=document.getElementById('reviewContent'),overlay=document.getElementById('reviewOverlay');content.className='review-scroll';
+    overlay.classList.remove('show');overlay.dataset.reviewKind='';document.body.style.overflow='';
+    if(document.getElementById('focusOverlay').classList.contains('show')) document.body.classList.add('focus-mode');
+  };
+})();
+</script>
+<style id="v24-long-focus-side-options">
+/* V24：文意選填／篇章結構「再次複習」放大畫面：左文章可捲動、右選項固定。
+   顯示答案後仍沿用 V23：左側完成文章、右側解析獨立捲動。 */
+@media (min-width: 900px){
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="structure"],
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="wordbank"]{
+    height:82vh;
+    max-height:82vh;
+    display:grid;
+    grid-template-columns:minmax(0,1.72fr) minmax(320px,.78fr);
+    grid-template-rows:auto minmax(0,1fr) auto;
+    grid-template-areas:
+      "title title"
+      "text bank"
+      "actions actions";
+    column-gap:24px;
+    row-gap:14px;
+    overflow:hidden;
+    align-items:stretch;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > h3,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > h3{
+    grid-area:title;
+    margin:0;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .passagetext,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .passagetext{
+    grid-area:text;
+    min-width:0;
+    min-height:0;
+    height:100%;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-gutter:stable;
+    padding:16px 18px 18px 2px;
+    margin:0;
+    line-height:1.82;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .bank,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .bank{
+    grid-area:bank;
+    position:static;
+    align-self:start;
+    width:auto;
+    min-width:0;
+    max-height:100%;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-gutter:stable;
+    margin:0;
+    padding:16px 18px;
+    line-height:1.72;
+    background:#f7faf8;
+    border:1px solid var(--line);
+    border-radius:14px;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .card-actions,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .card-actions{
+    grid-area:actions;
+    margin-top:0!important;
+    justify-self:end;
+    align-self:end;
+  }
+  /* 原卡片答案區不佔再次複習版面；按顯示答案後由 V23 集中解析卡呈現。 */
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .answer,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .answer{
+    display:none!important;
+  }
+}
+@media (max-width:899px){
+  /* 小螢幕維持上下配置，避免左右欄過窄。 */
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="structure"],
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="wordbank"]{
+    display:flex;
+    flex-direction:column;
+  }
+}
+</style>
+<style id="v26-desktop-tablet-concentrated">
+/* 長篇解析：一般題型維持集中卡片；素養閱讀因四欄資料表需要更寬閱讀面。 */
+@media (min-width: 901px){
+  .review-overlay{padding:22px 28px;}
+  .review-shell{
+    width:min(920px,86vw)!important;
+    height:min(82vh,820px)!important;
+    max-width:920px!important;
+  }
+  .review-body{
+    grid-template-columns:minmax(0,1.5fr) minmax(310px,.9fr)!important;
+    gap:12px!important;
+    padding:16px 18px 18px!important;
+  }
+  .review-passage{
+    width:100%!important;
+    max-width:650px!important;
+    padding:17px 18px!important;
+    font-size:1.01rem!important;
+    line-height:1.76!important;
+  }
+  .review-explain-pane{padding-left:12px!important;padding-right:2px!important;}
+  .review-toolbar{padding:14px 18px!important;}
+
+  /* 素養閱讀完整解析：加寬浮層，左側資料約 68%、右側題目約 32%。 */
+  #reviewOverlay[data-review-kind="reading"] .review-shell{
+    width:min(1480px,96vw)!important;
+    max-width:1480px!important;
+    height:min(88vh,900px)!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-body{
+    grid-template-columns:minmax(0,2.05fr) minmax(340px,.95fr)!important;
+    gap:18px!important;
+    padding:16px 20px 20px!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-article-pane{justify-content:stretch!important;}
+  #reviewOverlay[data-review-kind="reading"] .review-passage{
+    max-width:none!important;
+    padding:16px 18px!important;
+    font-size:1rem!important;
+    line-height:1.55!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-explain-pane{
+    padding-left:16px!important;
+    padding-right:4px!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-question .stem{
+    font-size:1.02rem!important;
+    font-weight:650!important;
+    line-height:1.5!important;
+    margin-bottom:8px!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-question .opts{
+    font-size:1rem!important;
+    line-height:1.45!important;
+    gap:6px 14px!important;
+    margin:10px 0!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .review-question .opt{padding:3px 0!important;}
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table{
+    width:100%!important;
+    min-width:0!important;
+    table-layout:fixed!important;
+    border-collapse:collapse!important;
+    background:#fff!important;
+    font-size:.98rem!important;
+    line-height:1.48!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table th,
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table td{
+    border:1px solid #9aa8a1!important;
+    padding:9px 10px!important;
+    vertical-align:top!important;
+    overflow-wrap:normal!important;
+    word-break:normal!important;
+    hyphens:none!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table thead th{
+    background:#f3f5f4!important;
+    text-align:center!important;
+    font-weight:900!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table tbody th{
+    background:#f7faf8!important;
+    text-align:center!important;
+    font-weight:900!important;
+    line-height:1.45!important;
+  }
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table th:nth-child(1),#reviewOverlay[data-review-kind="reading"] .l9-nuclear-table td:nth-child(1){width:21%!important;}
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table th:nth-child(2),#reviewOverlay[data-review-kind="reading"] .l9-nuclear-table td:nth-child(2){width:24%!important;}
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table th:nth-child(3),#reviewOverlay[data-review-kind="reading"] .l9-nuclear-table td:nth-child(3){width:28%!important;}
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table th:nth-child(4),#reviewOverlay[data-review-kind="reading"] .l9-nuclear-table td:nth-child(4){width:27%!important;}
+}
+
+/* 平板橫向／較窄桌機：一般解析仍集中；素養閱讀保留較寬資料區。 */
+@media (min-width: 768px) and (max-width: 1100px){
+  .review-overlay{padding:16px;}
+  .review-shell{width:min(920px,90vw)!important;height:min(84vh,800px)!important;}
+  .review-body{grid-template-columns:minmax(0,1.42fr) minmax(290px,.92fr)!important;gap:10px!important;padding:14px!important;}
+  .review-passage{max-width:560px!important;padding:15px 16px!important;font-size:1rem!important;}
+  .review-explain-pane{padding-left:10px!important;}
+
+  #reviewOverlay[data-review-kind="reading"] .review-shell{width:96vw!important;max-width:96vw!important;height:88vh!important;}
+  #reviewOverlay[data-review-kind="reading"] .review-body{grid-template-columns:minmax(0,1.75fr) minmax(300px,.85fr)!important;gap:12px!important;}
+  #reviewOverlay[data-review-kind="reading"] .review-passage{max-width:none!important;}
+}
+
+@media (max-width:767px){
+  #reviewOverlay[data-review-kind="reading"] .review-body{display:flex!important;flex-direction:column!important;overflow:hidden!important;}
+  #reviewOverlay[data-review-kind="reading"] .review-article-pane{flex:0 0 auto;max-height:45%;}
+  #reviewOverlay[data-review-kind="reading"] .review-explain-pane{flex:1 1 auto;border-left:0;border-top:1px solid var(--line);padding:12px 2px 16px!important;}
+  #reviewOverlay[data-review-kind="reading"] .review-passage{max-width:none!important;max-height:100%;font-size:.96rem!important;overflow-x:auto!important;}
+  #reviewOverlay[data-review-kind="reading"] .l9-nuclear-table{min-width:720px!important;}
+}
+/* 篇章結構一般頁：答案顯示後，右欄由選項切換成可捲動解析。 */
+@media (min-width: 768px){
+  #structure article.passage.structure-answer-mode{
+    grid-template-columns:minmax(0,1.62fr) minmax(330px,.82fr);
+    grid-template-areas:"text explain" "actions explain";
+    gap:16px 22px;
+  }
+  #structure article.passage.structure-answer-mode > h3{display:none;}
+  #structure article.passage.structure-answer-mode > .passagetext{
+    grid-area:text;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;padding-right:10px;
+  }
+  #structure article.passage.structure-answer-mode > .bank{display:none!important;}
+  #structure article.passage.structure-answer-mode > .card-actions{grid-area:actions;}
+  #structure article.passage.structure-answer-mode > .answer{display:none!important;}
+  #structure .structure-inline-explain{
+    grid-area:explain;min-width:0;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;
+    border-left:1px solid var(--line);padding:0 4px 12px 16px;
+  }
+  #structure .structure-inline-explain .detail-section{
+    background:#f7faf8;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 12px;
+  }
+  #structure .structure-inline-explain .detail-title{font-weight:900;color:var(--accent);margin-bottom:8px;}
+  #structure .structure-inline-explain .detail-body{line-height:1.72;}
+
+  /* V27：文意選填一般頁顯示答案後，同一張題目卡內切成左文章、右解析。 */
+  #wordbank article.passage.wordbank-answer-mode{
+    display:grid;grid-template-columns:minmax(0,2.05fr) minmax(285px,.95fr);
+    grid-template-areas:"text explain" "actions explain";gap:16px 18px;align-items:start;
+  }
+  #wordbank article.passage.wordbank-answer-mode > h3{display:none;}
+  #wordbank article.passage.wordbank-answer-mode > .passagetext{
+    grid-area:text;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;padding-right:10px;
+  }
+  #wordbank article.passage.wordbank-answer-mode > .bank{display:none!important;}
+  #wordbank article.passage.wordbank-answer-mode > .card-actions{grid-area:actions;}
+  #wordbank article.passage.wordbank-answer-mode > .answer{display:none!important;}
+  #wordbank .wordbank-inline-explain{
+    grid-area:explain;min-width:0;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;
+    border-left:1px solid var(--line);padding:0 4px 12px 14px;
+  }
+  #wordbank .wordbank-inline-explain .detail-section{
+    background:#f7faf8;border:1px solid var(--line);border-radius:14px;padding:13px 14px;margin:0 0 11px;
+  }
+  #wordbank .wordbank-inline-explain .detail-title{font-weight:900;color:var(--accent);margin-bottom:7px;}
+  #wordbank .wordbank-inline-explain .detail-body{line-height:1.68;}
+  #wordbank .wordbank-explain-item{margin:0 0 16px;padding-bottom:4px;border-bottom:1px solid var(--line);}
+  #wordbank .wordbank-explain-item:last-child{border-bottom:0;margin-bottom:0;}
+  #wordbank .wordbank-explain-head{font-weight:900;color:var(--ink);font-size:1.02rem;margin:0 0 5px;}
+  #wordbank .wordbank-explain-answer{font-weight:800;color:var(--accent);margin:0 0 9px;line-height:1.55;}
+}
+@media (max-width: 767px){
+  #wordbank article.passage.wordbank-answer-mode > .bank{display:none!important;}
+  #wordbank article.passage.wordbank-answer-mode > .answer{display:none!important;}
+  #wordbank .wordbank-inline-explain{margin-top:14px;padding:0;max-height:none;overflow:visible;border-left:0;}
+  #wordbank .wordbank-explain-item{margin:0 0 16px;}
+  #wordbank .wordbank-explain-head{font-weight:900;color:var(--ink);font-size:1.02rem;margin:0 0 5px;}
+  #wordbank .wordbank-explain-answer{font-weight:800;color:var(--accent);margin:0 0 9px;}
+}
+</style>
+<style id="lesson6-wordbank-fixed-options-layout">
+/* Lesson 3 V2：依 Lesson 2 V4 正式母版修正文意選填。
+   桌機／平板：左側文章獨立捲動，右側選項固定；顯示答案後沿用同寬雙欄解析。 */
+@media (min-width: 768px){
+  #wordbank article.passage:not(.wordbank-answer-mode){
+    display:grid;
+    grid-template-columns:minmax(0,2.05fr) minmax(285px,.95fr);
+    grid-template-rows:auto minmax(0,1fr) auto;
+    grid-template-areas:
+      "title title"
+      "text bank"
+      "actions bank";
+    column-gap:18px;
+    row-gap:14px;
+    align-items:stretch;
+    overflow:hidden;
+  }
+  #wordbank article.passage:not(.wordbank-answer-mode) > h3{grid-area:title;margin-bottom:0;}
+  #wordbank article.passage:not(.wordbank-answer-mode) > .passagetext{
+    grid-area:text;min-width:0;min-height:0;max-height:66vh;overflow-y:auto;
+    overscroll-behavior:contain;scrollbar-gutter:stable;padding-right:10px;margin:0;
+  }
+  #wordbank article.passage:not(.wordbank-answer-mode) > .bank{
+    grid-area:bank;position:static;align-self:start;min-width:0;width:auto;max-height:66vh;
+    overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;margin:0;
+  }
+  #wordbank article.passage:not(.wordbank-answer-mode) > .card-actions{grid-area:actions;margin-top:0;}
+  #wordbank article.passage:not(.wordbank-answer-mode) > .answer{display:none;}
+}
+</style>
+<script id="v26-structure-answer-switch">
+(function(){
+  const previous=window.toggleAns;
+  window.toggleAns=function(btn){
+    const card=btn.closest('.passage');
+    const isStructure=card && card.dataset.category==='structure';
+    const inFocus=!!btn.closest('#focusOverlay');
+    const result=previous(btn);
+    if(isStructure && !inFocus){
+      const ans=card.querySelector(':scope > .answer');
+      const showing=!!(ans && ans.classList.contains('show'));
+      let pane=card.querySelector(':scope > .structure-inline-explain');
+      if(showing){
+        if(!pane){
+          pane=document.createElement('div');
+          pane.className='structure-inline-explain';
+          const detail=ans && ans.querySelector('.detail-analysis');
+          if(detail) [...detail.children].forEach(x=>pane.appendChild(x.cloneNode(true)));
+          card.appendChild(pane);
+        }
+        card.classList.add('structure-answer-mode');
+      }else{
+        card.classList.remove('structure-answer-mode');
+        if(pane) pane.remove();
+      }
+    }
+    return result;
+  };
+})();
+</script>
+<script id="v27-wordbank-answer-switch-and-retry-fix">
+(function(){
+  const previous=window.toggleAns;
+  window.toggleAns=function(btn){
+    const card=btn.closest('.passage');
+    const isWordbank=card && card.dataset.category==='wordbank';
+    const inFocus=!!btn.closest('#focusOverlay');
+    const result=previous(btn);
+    if(isWordbank && !inFocus){
+      const ans=card.querySelector(':scope > .answer');
+      const showing=!!(ans && ans.classList.contains('show'));
+      let pane=card.querySelector(':scope > .wordbank-inline-explain');
+      if(showing){
+        if(!pane){
+          pane=document.createElement('div');
+          pane.className='wordbank-inline-explain';
+          ans.querySelectorAll(':scope > .mini').forEach((mini,index)=>{
+            const item=document.createElement('div');
+            item.className='wordbank-explain-item';
+            const qnum=(mini.querySelector('.qnum')?.textContent||String(index+1)).trim();
+            const head=document.createElement('div');
+            head.className='wordbank-explain-head';
+            head.textContent='第 '+qnum+' 題';
+            item.appendChild(head);
+            const answerLine=mini.querySelector(':scope > .answer > b');
+            if(answerLine){
+              const line=document.createElement('div');
+              line.className='wordbank-explain-answer';
+              line.innerHTML=answerLine.innerHTML;
+              item.appendChild(line);
+            }
+            const detail=mini.querySelector(':scope > .answer > .detail-analysis');
+            if(detail) [...detail.children].forEach(x=>item.appendChild(x.cloneNode(true)));
+            pane.appendChild(item);
+          });
+          card.appendChild(pane);
+        }
+        card.classList.add('wordbank-answer-mode');
+      }else{
+        card.classList.remove('wordbank-answer-mode');
+        if(pane) pane.remove();
+      }
+    }
+    return result;
+  };
+})();
+</script>
+<script id="l3-structure-return-to-practice">
+(function(){
+  const open = window.openFocus;
+  window.openFocus = function(btn,origin){
+    const card=btn.closest('.passage[data-category="structure"]');
+    if(card){
+      const answer=card.querySelector(':scope > .answer');
+      if(answer) answer.classList.remove('show');
+      const pane=card.querySelector(':scope > .structure-inline-explain');
+      if(pane) pane.remove();
+      card.classList.remove('structure-answer-mode');
+      setInlineAnswers(card,false);
+      const reveal=card.querySelector(':scope > .card-actions > .reveal');
+      if(reveal) reveal.textContent=reveal.dataset.originalLabel||'顯示答案';
+    }
+    return open(btn,origin);
+  };
+  const close = window.closeLongReview;
+  window.closeLongReview = function(){
+    const isStructure = document.getElementById('reviewOverlay').classList.contains('show')
+      && document.getElementById('reviewTitle').textContent.includes('篇章結構')
+      && document.getElementById('focusOverlay').classList.contains('show');
+    close();
+    if(isStructure){
+      const card=document.querySelector('#focusContent > .passage[data-category="structure"]');
+      if(card) setInlineAnswers(card,false);
+    }
+  };
+})();
+</script>
+<script id="l3-cloze-focus-review-bridge">
+function openClozeReview(btn){
+  const focusOverlay=document.getElementById('focusOverlay');
+  const inFocus=!!(focusOverlay && focusOverlay.classList.contains('show'));
+  if(inFocus){
+    closeFocus();
+  }
+  openLongReview(btn);
+}
+</script>
+<script id="l3-wordbank-inline-fill-only-script">
+(()=>{
+  const originals=new WeakMap();
+
+  function answerMap(article){
+    const map=new Map();
+    article.querySelectorAll(':scope > .answer > .mini').forEach(mini=>{
+      const n=Number((mini.querySelector('.qnum')?.textContent||'').match(/\d+/)?.[0]);
+      const text=mini.querySelector('.answer b')?.textContent||'';
+      const m=text.match(/答案[：:]\s*[A-J]\s*[—-]\s*([^　]+)/);
+      if(n && m) map.set(n,m[1].trim());
+    });
+    return map;
+  }
+
+  function fill(article){
+    const passage=article.querySelector(':scope > .passagetext');
+    if(!passage) return;
+    if(!originals.has(passage)) originals.set(passage,passage.innerHTML);
+    passage.innerHTML=originals.get(passage);
+    const answers=answerMap(article);
+    const walker=document.createTreeWalker(passage,NodeFilter.SHOW_TEXT);
+    const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      const text=node.nodeValue||'';
+      if(!/__\d+__/.test(text)) return;
+      const frag=document.createDocumentFragment();
+      let last=0;
+      text.replace(/__(\d+)__/g,(token,num,offset)=>{
+        if(offset>last) frag.appendChild(document.createTextNode(text.slice(last,offset)));
+        const span=document.createElement('span');
+        span.className='wordbank-fill-answer';
+        span.dataset.blank=String(num);
+        span.textContent=answers.get(Number(num))||token;
+        frag.appendChild(span);
+        last=offset+token.length;
+        return token;
+      });
+      if(last<text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag,node);
+    });
+  }
+
+  function restore(article){
+    const passage=article.querySelector(':scope > .passagetext');
+    if(passage && originals.has(passage)) passage.innerHTML=originals.get(passage);
+  }
+
+  document.addEventListener('click',e=>{
+    const btn=e.target.closest('#wordbank article.passage > .card-actions > .reveal');
+    if(!btn) return;
+    const article=btn.closest('article.passage');
+    requestAnimationFrame(()=>{
+      const ans=article.querySelector(':scope > .answer');
+      if(ans && ans.classList.contains('show')) fill(article); else restore(article);
+    });
+  });
+})();
+</script>
+</body></html>

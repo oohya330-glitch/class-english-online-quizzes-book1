@@ -653,7 +653,19 @@ function openFocus(btn,origin='normal'){
   const cat=card.dataset.category||'';
   overlay.classList.toggle('long-focus',cat==='structure'||cat==='wordbank');
   const reveal=card.querySelector('.reveal');
-  if(reveal&&!card.querySelector('.focusReturnInline')){
+  if(card.dataset.category==='cloze' && card.querySelectorAll('.mini').length){
+    // 綜合測驗整篇放大：每一張小題卡都固定顯示兩顆按鈕：左「查看答案與解析」、右「返回全部題目」。
+    card.querySelectorAll('.mini').forEach(mini=>{
+      const miniReveal=mini.querySelector('.reveal');
+      if(!miniReveal || mini.querySelector('.focusReturnInline')) return;
+      const back=document.createElement('button');
+      back.className='focus-close focusReturnInline';
+      back.textContent=(focusOrigin==='wrong'?'返回錯題區':'返回全部題目');
+      back.onclick=closeFocus;
+      const actions=mini.querySelector('.card-actions');
+      if(actions) actions.appendChild(back); else miniReveal.insertAdjacentElement('afterend',back);
+    });
+  }else if(reveal&&!card.querySelector('.focusReturnInline')){
     const back=document.createElement('button');
     back.className='focus-close focusReturnInline';back.textContent=(focusOrigin==='wrong'?'返回錯題區':'返回全部題目');back.onclick=closeFocus;
     const actions=card.querySelector('.card-actions');
@@ -662,7 +674,7 @@ function openFocus(btn,origin='normal'){
   document.getElementById('focusOverlay').classList.add('show');document.body.classList.add('focus-mode');
 }
 function closeFocus(){
-  if(focusOriginal){const back=focusOriginal.querySelector('.focusReturnInline');if(back)back.remove();}
+  if(focusOriginal){focusOriginal.querySelectorAll('.focusReturnInline').forEach(back=>back.remove());}
   if(focusOriginal&&focusPlaceholder&&focusPlaceholder.parentNode){focusPlaceholder.parentNode.insertBefore(focusOriginal,focusPlaceholder);focusPlaceholder.remove();}
   const overlay=document.getElementById('focusOverlay');overlay.classList.remove('show','long-focus');document.body.classList.remove('focus-mode');focusOriginal=null;focusPlaceholder=null;focusOrigin='normal';
 }

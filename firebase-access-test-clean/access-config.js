@@ -13,5 +13,5 @@ window.B1_ACCESS_SETUP={
   stage2:{label:"L4–R2",mode:"password",passwordHash:"",version:1},
   stage3:{label:"L7–R3",mode:"password",passwordHash:"",version:1}
  }},
- previewTeacherPassword:"lulu330teacher"
+ previewTeacherPassword:""
 };

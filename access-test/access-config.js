@@ -1,5 +1,5 @@
 window.B1_ACCESS_CONFIG = {
-  version: "2026-10-07-test1",
+  version: "2026-10-07-test2",
   teacherCode: "Lulu330Test",
   stages: {
     stage1: { label: "L1–R1", status: "public",   studentCode: "Mint27" },

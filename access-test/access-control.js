@@ -37,20 +37,20 @@
       @media(max-width:640px){.b1-access-toolbar{right:10px;bottom:10px}.b1-access-panel{right:10px;bottom:54px}}
     `;document.head.appendChild(st);
   }
-  function modal({title,text,input=true,confirm='確認',cancel='取消',onConfirm}){
+  function modal({title,text,input=true,confirm='確認',cancel='取消',onConfirm,onCancel}){
     styleOnce();const w=document.createElement('div');w.className='b1-access-modal';
     w.innerHTML=`<div class="b1-access-box" role="dialog" aria-modal="true"><h2>${esc(title)}</h2><p>${esc(text)}</p>${input?'<input type="password" autocomplete="off" aria-label="密碼">':''}<p class="b1-access-msg"></p><div class="b1-access-actions"><button class="b1-access-btn secondary" data-cancel>${esc(cancel)}</button><button class="b1-access-btn" data-ok>${esc(confirm)}</button></div></div>`;
     document.body.appendChild(w);const inp=w.querySelector('input'),msg=w.querySelector('.b1-access-msg'),close=()=>w.remove();
-    w.querySelector('[data-cancel]').onclick=close;w.onclick=e=>{if(e.target===w)close()};
+    const cancelAction=()=>{if(onCancel)onCancel();close()};w.querySelector('[data-cancel]').onclick=cancelAction;w.onclick=e=>{if(e.target===w)cancelAction()};
     const go=()=>onConfirm(inp?inp.value:'',msg,close);w.querySelector('[data-ok]').onclick=go;
     if(inp){inp.addEventListener('keydown',e=>{if(e.key==='Enter')go()});setTimeout(()=>inp.focus(),30)}
   }
-  function requestStage(stage,onSuccess){
+  function requestStage(stage,onSuccess,onCancel){
     const s=cfg.stages[stage];
     if(isTeacher()||s.status==='public')return onSuccess();
-    if(s.status==='locked')return modal({title:'目前尚未開放',text:`${s.label} 目前尚未開放。`,input:false,confirm:'知道了',cancel:'返回',onConfirm:(v,m,c)=>c()});
+    if(s.status==='locked')return modal({title:'目前尚未開放',text:`${s.label} 目前尚未開放。`,input:false,confirm:'返回',cancel:'取消',onCancel:onCancel,onConfirm:(v,m,c)=>{c();if(onCancel)onCancel();}});
     if(stageUnlocked(stage))return onSuccess();
-    modal({title:`解鎖 ${s.label}`,text:'請輸入本階段課程密碼。',onConfirm:(v,msg,close)=>{
+    modal({title:`解鎖 ${s.label}`,text:'請輸入本階段課程密碼。',onCancel:onCancel,onConfirm:(v,msg,close)=>{
       if(v===s.studentCode){const u=getUnlocked();u[stage]=true;saveUnlocked(u);close();onSuccess()}else msg.textContent='密碼錯誤，請再試一次。';
     }});
   }

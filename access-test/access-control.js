@@ -75,7 +75,9 @@
     }else if(previewStudent){
       bar.innerHTML='<button class="b1-access-chip" data-back>返回教師模式</button>';bar.querySelector('[data-back]').onclick=()=>location.href=location.pathname;
     }else{
-      bar.innerHTML='<button class="b1-access-chip" data-login>教師登入</button>';bar.querySelector('[data-login]').onclick=teacherLogin;
+      bar.innerHTML='<button class="b1-access-chip" data-login>教師登入</button><button class="b1-access-chip" data-reset>清除測試狀態</button>';
+      bar.querySelector('[data-login]').onclick=teacherLogin;
+      bar.querySelector('[data-reset]').onclick=()=>{Object.keys(localStorage).filter(k=>k.startsWith('b1_access_')||k.startsWith('b1_teacher_')).forEach(k=>localStorage.removeItem(k));location.replace(location.pathname);};
     }
     document.body.appendChild(bar);
   }

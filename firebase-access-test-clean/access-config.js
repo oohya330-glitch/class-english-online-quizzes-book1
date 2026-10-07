@@ -1,11 +1,17 @@
 window.B1_ACCESS_SETUP={
- firebase:{enabled:false,apiKey:"",authDomain:"",projectId:"",appId:""},
- teacherEmail:"teacher.book1@example.com",
+ firebase:{
+  enabled:true,
+  apiKey:"AIzaSyDB0HpnDXnfVda6syyoLvbbBcxjjSlP7Lc",
+  authDomain:"book1-class-access.firebaseapp.com",
+  projectId:"book1-class-access",
+  appId:"1:214483233279:web:20c7352c4007fc01bddfca"
+ },
+ teacherEmail:"oohya330@gmail.com",
  firestoreDocument:"courseAccess/book1",
  defaults:{stages:{
   stage1:{label:"L1–R1",mode:"public",passwordHash:"",version:1},
-  stage2:{label:"L4–R2",mode:"password",passwordHash:"7bd232581b9862d4f99a7b7bfa2da9ede6c407b95d215fda866f9d2e00d7d89d",version:1},
-  stage3:{label:"L7–R3",mode:"password",passwordHash:"443bce527d0b2da8b69f7b190d30f41be393169e8b77a86d79c6f33cbf5bb42e",version:1}
+  stage2:{label:"L4–R2",mode:"password",passwordHash:"",version:1},
+  stage3:{label:"L7–R3",mode:"password",passwordHash:"",version:1}
  }},
- previewTeacherPassword:"Lulu330Test"
+ previewTeacherPassword:"lulu330teacher"
 };

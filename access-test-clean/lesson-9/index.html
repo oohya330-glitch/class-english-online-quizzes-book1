@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Lesson Nine — Fighting for or against Graffiti｜線上試題講解卷</title>
+<style>
+:root{--bg:#f5f7f5;--card:#fff;--ink:#18352b;--muted:#66736e;--line:#d7e0dc;--accent:#315e4d;--soft:#eaf1ed;}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:#1e2723;font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.65}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);padding:12px 18px}
+.top{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+h1{font-size:1.35rem;margin:0;color:var(--ink)} .sub{font-size:.9rem;color:var(--muted)}
+.nav{max-width:1180px;margin:10px auto 0;display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.nav button{white-space:nowrap;border:1px solid #9bb0a7;background:white;color:var(--ink);border-radius:999px;padding:8px 14px;font-weight:700;cursor:pointer}
+.nav button:hover{background:var(--soft)}
+main{max-width:1050px;margin:24px auto;padding:0 16px 80px}
+section{scroll-margin-top:120px;margin-bottom:48px} h2{font-size:1.55rem;color:var(--ink);border-left:6px solid var(--accent);padding-left:12px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.qcard,.passage,.editor{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 4px 14px rgba(0,0,0,.04)}
+.qnum{font-weight:800;color:var(--accent);margin-bottom:8px} .stem{font-size:1.12rem;font-weight:650} .zh{font-size:1.18rem}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin:14px 0} .opt{padding:6px 0}
+.reveal,.primary,.secondary{border:0;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer;margin-top:14px}
+.reveal,.primary{background:var(--accent);color:white} .secondary{background:#e7ece9;color:var(--ink);margin-left:8px}
+.answer{clear:both;display:none;margin-top:14px;padding:14px 16px;background:#f0f5f2;border-left:5px solid var(--accent);border-radius:8px}
+.answer.show{display:block} .passagetext{font-family:Georgia,"Times New Roman",serif;font-size:1.08rem;line-height:1.85}
+.bank,.schedule{margin:12px 0;padding:12px 14px;background:#f3f5f4;border:1px solid var(--line);border-radius:10px;font-weight:650}
+.miniwrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px} .mini{border-top:1px solid var(--line);padding-top:12px}
+.miniopts{display:grid;gap:4px;margin-top:6px} .small{padding:7px 10px;font-size:.88rem}
+.write-line{height:34px;border-bottom:2px solid #aab8b2;margin:8px 0 4px}
+.editor label{display:block;font-weight:800;margin:10px 0 5px} textarea{width:100%;min-height:86px;border:1px solid #b9c6c0;border-radius:10px;padding:10px;font:inherit}
+.floatTop{position:fixed;right:18px;bottom:18px;border:0;border-radius:50%;width:48px;height:48px;background:var(--accent);color:white;font-size:20px;cursor:pointer}
+.note{max-width:1180px;margin:0 auto 8px;color:var(--muted);font-size:.9rem}
+@media(max-width:760px){.cards{grid-template-columns:1fr} .opts{grid-template-columns:1fr} .miniwrap{grid-template-columns:1fr} main{padding-left:12px;padding-right:12px} .qcard,.passage{padding:16px} .stem{font-size:1.06rem}}
+@media(min-width:761px) and (max-width:1100px){.cards{grid-template-columns:1fr 1fr}}
+
+/* V3 字級與單題專注模式 */
+.fonttools{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.fonttools button{border:1px solid #9bb0a7;background:#fff;color:var(--ink);border-radius:9px;padding:7px 11px;font-weight:800;cursor:pointer}.fonttools button:hover{background:var(--soft)}
+
+.card-actions{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:14px}
+.card-actions .reveal,.card-actions .focusBtn{margin:0}
+.focusBtn{border:1px solid #9bb0a7;background:white;color:var(--ink);border-radius:10px;padding:9px 12px;font-weight:800;cursor:pointer;margin-top:14px;margin-left:7px}.focusBtn:hover{background:var(--soft)}
+body.focus-mode{overflow:hidden} .focus-overlay{display:none;position:fixed;inset:0;z-index:100;background:rgba(24,53,43,.24);backdrop-filter:blur(2px);padding:28px;overflow:hidden}.focus-overlay.show{display:flex;align-items:center;justify-content:center}.focus-shell{width:min(920px,86vw);max-height:86vh;overflow:auto;border-radius:20px}.focus-toolbar{display:none}.focus-close{border:0;background:var(--accent);color:white;border-radius:10px;padding:10px 16px;font-weight:800;cursor:pointer}.focus-shell .qcard,.focus-shell .passage{margin:0;box-shadow:0 18px 52px rgba(0,0,0,.20);padding:clamp(26px,3.2vw,42px);border:1px solid rgba(49,94,77,.12)}.focus-shell .stem{font-size:clamp(1.35rem,2.1vw,1.9rem);line-height:1.7}.focus-shell .qnum{font-size:clamp(1.1rem,1.7vw,1.4rem)}.focus-shell .opts{font-size:clamp(1.12rem,1.7vw,1.45rem);gap:12px 28px}.focus-shell .answer{font-size:clamp(1.08rem,1.55vw,1.35rem)}.focus-shell .reveal{font-size:1.05rem;padding:12px 18px}.focus-shell .focusBtn{display:none}.focus-shell .write-line{height:60px}
+@media(max-width:760px){.focus-overlay{padding:16px 12px}.focus-shell{width:94vw;max-height:88vh}.focus-shell .qcard,.focus-shell .passage{padding:22px 18px}.focus-shell .opts{grid-template-columns:1fr}}
+.focusReturnInline{display:none}.focus-mode .focusReturnInline{display:inline-flex;margin-left:8px}
+
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+
+/* V3: 文法題一般卡片展開時直接顯示完整解析 */
+#grammar .answer.show .detail-analysis{display:block!important;}
+
+/* Clean rebuild: long-form wrong-bank / reading behavior */
+#reading .answer.show .detail-analysis{display:block!important;}
+#reading .reading-group-actions{justify-content:flex-start;margin-top:14px;}
+@media (min-width:980px){#reading .reading-group-actions{grid-column:2;margin-top:0;}}
+#wrongBank .wrong-long-group .wrong-category-cards{display:block!important;}
+#wrongBank .wrong-long-card{width:100%!important;max-width:none!important;grid-column:1/-1!important;}
+#wrongBank .wrong-fullwidth-content{width:100%!important;max-width:none!important;}
+#wrongBank .wrong-fullwidth-content.reading-split{display:block!important;}
+#wrongBank .wrong-fullwidth-content .reading-article,
+#wrongBank .wrong-fullwidth-content .reading-questions{width:100%!important;max-width:none!important;}
+#wrongBank .wrong-fullwidth-content .reading-questions{margin-top:18px;}
+#wrongBank .wrong-fullwidth-content .passagetext{width:100%!important;max-width:none!important;}
+#wrongBank .wrong-fullwidth-content .miniwrap{width:100%!important;max-width:none!important;margin-top:18px;}
+#wrongBank .wrong-fullwidth-content .card-actions,
+#wrongBank .wrong-fullwidth-content .wrongBtn,
+#wrongBank .wrong-fullwidth-content .focusBtn,
+#wrongBank .wrong-fullwidth-content button{display:none!important;}
+#wrongBank .wrong-fullwidth-content .answer{display:none!important;}
+@media print{
+  .print-question.print-long-question{page-break-inside:auto!important;break-inside:auto!important;}
+  .print-question.print-long-question .passagetext{page-break-inside:auto!important;break-inside:auto!important;}
+  .print-question.print-long-question .qcard,
+  .print-question.print-long-question .mini{page-break-inside:avoid!important;break-inside:avoid!important;}
+}
+
+</style><style>
+/* V6: centered teaching focus + right-side controls + detailed analysis */
+body.focus-mode #focusContent .qcard, body.focus-mode #focusContent .passage{position:relative;padding-right:11.5rem;}
+body.focus-mode #focusContent .reveal, body.focus-mode #focusContent .focusReturnInline{position:absolute;right:1.25rem;width:9.2rem;margin:0;}
+body.focus-mode #focusContent .reveal{top:4.2rem;}
+body.focus-mode #focusContent .focusReturnInline{top:7.5rem;}
+body.focus-mode #focusContent .focusBtn{display:none!important;}
+body.focus-mode #focusContent .card-actions{display:block;margin:0;height:0;}
+.detail-analysis{display:none;margin-top:1rem;border-top:1px solid var(--line);padding-top:1rem;}
+body.focus-mode #focusContent .answer.show .detail-analysis{display:block;}
+.detail-section{background:#f7faf8;border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;margin:.65rem 0;}
+.detail-title{font-weight:800;color:var(--accent);margin-bottom:.35rem;}
+.detail-body{line-height:1.75;}
+.vocab-note{font-size:.86em;color:var(--muted);margin-top:.55rem;}
+@media(max-width:760px){
+ body.focus-mode #focusContent .qcard,body.focus-mode #focusContent .passage{padding-right:1rem;padding-bottom:5.2rem;}
+ body.focus-mode #focusContent .reveal,body.focus-mode #focusContent .focusReturnInline{top:auto;bottom:1rem;width:auto;}
+ body.focus-mode #focusContent .reveal{right:8.9rem;}
+ body.focus-mode #focusContent .focusReturnInline{right:1rem;}
+}
+
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+</style><style>.focus-toolbar{display:none!important;}
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+</style><style id="v9-focus-button-fix">
+/* V9：一般題目頁兩顆操作鍵靠右；單題模式維持同樣乾淨的雙按鈕 */
+.qcard>.card-actions{display:flex;justify-content:flex-end;align-items:center;gap:.55rem;flex-wrap:wrap;margin-top:1rem;}
+body.focus-mode #focusContent .card-actions{display:flex!important;justify-content:flex-end;align-items:center;gap:.55rem;flex-wrap:wrap;margin-top:1.15rem!important;height:auto!important;}
+body.focus-mode #focusContent .reveal,
+body.focus-mode #focusContent .focusReturnInline{
+ position:static!important;inset:auto!important;width:auto!important;height:auto!important;
+ white-space:nowrap!important;line-height:1.2!important;padding:.72rem 1rem!important;border-radius:10px!important;
+ font-size:.96rem!important;font-weight:800!important;margin:0!important;
+}
+body.focus-mode #focusContent .reveal{background:var(--accent)!important;color:#fff!important;border:1px solid var(--accent)!important;}
+body.focus-mode #focusContent .focusReturnInline{background:#fff!important;color:var(--accent)!important;border:1px solid var(--accent)!important;}
+body.focus-mode #focusContent .qcard,body.focus-mode #focusContent .passage{padding-right:1.35rem!important;padding-bottom:1.35rem!important;}
+@media(max-width:560px){
+ .qcard>.card-actions,body.focus-mode #focusContent .card-actions{gap:.45rem;}
+ body.focus-mode #focusContent .reveal,body.focus-mode #focusContent .focusReturnInline{font-size:.9rem!important;padding:.68rem .8rem!important;}
+}
+
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+</style><style id="v10-dual-analysis">
+/* V10：全部題目頁＝簡答；單題模式＝完整教學解析 */
+.detail-analysis{display:none!important;}
+body.focus-mode #focusContent .answer.show .detail-analysis{display:block!important;}
+body:not(.focus-mode) .answer .simple-note{display:block;}
+body.focus-mode #focusContent .answer .simple-note{display:none;}
+.detail-analysis{margin-top:1rem;border-top:1px solid var(--line);padding-top:1rem;}
+.detail-section{background:#f7faf8;border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;margin:.7rem 0;}
+.detail-title{font-weight:800;color:var(--accent);margin-bottom:.38rem;}
+.detail-body{line-height:1.8;}
+.detail-body .word{display:inline-block;margin-right:.8rem;margin-bottom:.25rem;}
+.level6{background:#fffaf1;border-color:#ead9b5;}
+
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+</style><style id="v12-wrong-print">
+.wrongBtn{border:1px solid #c4a96a;background:#fffdf6;color:#6d5725;border-radius:10px;padding:9px 12px;font-weight:800;cursor:pointer;white-space:nowrap}.wrongBtn.active{background:#fff3cf;border-color:#b89035;color:#5b4517}.wrong-summary{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:16px}.wrong-summary b{margin-right:12px}.wrong-summary #wrongCount{color:var(--muted)}.wrong-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.wrong-tools .primary,.wrong-tools .secondary{margin:0}.wrong-empty{padding:24px;text-align:center;background:#fff;border:1px dashed #b9c6c0;border-radius:14px;color:var(--muted)}.wrong-card-select{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-weight:800;color:var(--accent)}.wrong-card-select input{width:18px;height:18px}.wrong-review-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:12px}.wrong-review-actions button{margin:0}.print-sheet{display:none}.print-question{break-inside:avoid;margin:0 0 18px;padding:0 0 14px;border-bottom:1px solid #bbb}.print-question .print-qnum{font-weight:800;margin-bottom:6px}.print-question .stem{font-size:12pt}.print-question .opts{font-size:11.5pt;margin:7px 0}.print-question .answer{display:block!important;background:none;border:0;padding:8px 0 0;margin:6px 0 0}.print-question .detail-analysis{display:block!important}.print-student .answer{display:none!important}.print-student .write-line{height:44px}.print-head{text-align:center;margin-bottom:18px}.print-head h1{font-size:18pt}.print-meta{display:flex;justify-content:space-between;border-bottom:1px solid #444;padding-bottom:8px;margin-bottom:18px;font-size:11pt}
+@media(max-width:760px){.wrong-tools{width:100%}.wrong-tools button{flex:1 1 auto}.wrongBtn{padding:8px 10px}}
+@media print{@page{size:A4;margin:14mm 13mm}body>*{display:none!important}body main{display:block!important;margin:0!important;padding:0!important;max-width:none!important}body main>*{display:none!important}#printSheet{display:block!important;color:#000!important;font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif!important}#printSheet *{box-shadow:none!important}.print-question{page-break-inside:avoid}.print-question .card-actions,.print-question .focusBtn,.print-question .wrongBtn,.print-question button{display:none!important}.print-question .qcard,.print-question .passage{border:0!important;padding:0!important}.print-question .detail-section{border:1px solid #ccc!important;background:#fff!important}.floatTop,.focus-overlay{display:none!important}}
+
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+</style>
+<style id="v13-tabbed-sections">
+/* V13：分類按鈕改為單頁切換，不再使用快速滾動定位 */
+.nav button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+main>section.view-hidden{display:none!important;}
+main>section.view-active{display:block;}
+body.single-section main{padding-top:0;}
+body.single-section main>section.view-active{margin-top:0;}
+@media(max-width:760px){.nav{scrollbar-width:thin}.nav button{padding:8px 12px}}
+
+/* V14 錯題庫：所有題型分組顯示 */
+#wrongList{display:block;}
+.wrong-category-group{margin:0 0 24px;}
+.wrong-category-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px;padding:0 2px 8px;border-bottom:2px solid var(--line);}
+.wrong-category-head h3{margin:0;color:var(--ink);font-size:1.12rem;}
+.wrong-category-head span{color:var(--muted);font-weight:700;font-size:.92rem;}
+.wrong-category-cards{display:grid;}
+@media(max-width:760px){.wrong-category-group{margin-bottom:20px}.wrong-category-head{margin-top:4px}}
+</style>
+<style id="v15-wide-long-wrong">
+/* V15：篇章結構／文意選填錯題改為寬版閱讀，文章與選項左右並列 */
+.wrong-category-group.wrong-long-group .wrong-category-cards{grid-template-columns:1fr!important;}
+.wrong-review-card.wrong-long-card{width:100%;max-width:none;box-sizing:border-box;}
+.wrong-long-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,.85fr);gap:24px;align-items:start;margin-top:8px;}
+.wrong-long-main{min-width:0;}
+.wrong-long-side{min-width:0;position:sticky;top:132px;}
+.wrong-long-side .bank{margin:0;line-height:1.75;font-size:.98rem;}
+.wrong-long-main .passagetext{margin:0;line-height:1.72;}
+.wrong-long-card .wrong-review-actions{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;}
+@media(min-width:1180px){
+ body:has(#wrongBank.section-active) main{max-width:1280px;}
+ .wrong-long-layout{grid-template-columns:minmax(0,1.75fr) minmax(320px,.85fr);gap:30px;}
+}
+@media(max-width:900px){
+ .wrong-long-layout{grid-template-columns:1fr;}
+ .wrong-long-side{position:static;order:-1;}
+}
+</style>
+<style id="v18-long-reading-layout">
+/* V18 — 以 V15 為基礎：長文章左右分欄，減少上下來回捲動 */
+@media (min-width: 980px){
+  #cloze article.passage{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(330px,.85fr);grid-template-areas:"title title" "text questions";gap:14px 28px;align-items:start;}
+  #cloze article.passage>h3{grid-area:title;margin-bottom:0;}
+  #cloze article.passage>.passagetext{grid-area:text;max-height:66vh;overflow:auto;padding-right:10px;scrollbar-gutter:stable;}
+  #cloze article.passage>.miniwrap{grid-area:questions;display:block;max-height:66vh;overflow:auto;padding-right:7px;scrollbar-gutter:stable;}
+  #cloze .mini{margin-bottom:12px;}
+  #reading .reading-split{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);gap:28px;align-items:start;}
+  #reading .reading-article{max-height:68vh;overflow:auto;scrollbar-gutter:stable;}
+  #reading .reading-questions{display:block;max-height:68vh;overflow:auto;scrollbar-gutter:stable;padding-right:7px;}
+  #reading .reading-questions .qcard{margin-bottom:14px;}
+  #reading .reading-questions .qcard:last-child{margin-bottom:0;}
+}
+/* 綜合測驗的小題詳解在顯示答案後即可閱讀 */
+#cloze .mini .answer.show .detail-analysis{display:block!important;}
+#cloze .mini .detail-section{font-size:.94rem;}
+/* 長題型詳解可讀性 */
+#wordbank .answer.show .detail-analysis,#structure .answer.show .detail-analysis{display:block!important;}
+/* V19：篇章結構桌機版改為文章左、選項右；選項在題組內保持可見且不覆蓋文章 */
+@media (min-width: 980px){
+  #structure article.passage{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(330px,.8fr);grid-template-areas:"text bank" "actions bank" "answer answer";gap:16px 28px;align-items:start;}
+  #structure article.passage>.passagetext{grid-area:text;}
+  #structure article.passage>.bank{grid-area:bank;position:sticky;top:150px;max-height:calc(100vh - 175px);overflow:auto;scrollbar-gutter:stable;z-index:1;margin:0;}
+  #structure article.passage>.card-actions{grid-area:actions;}
+  #structure article.passage>.answer{grid-area:answer;}
+}
+</style><style id="v20-wrong-focus-fix">
+/* V20：只修正長篇單題放大與錯題來源返回邏輯。 */
+body.focus-mode #focusOverlay.long-focus .focus-shell{
+  overflow:hidden;
+}
+body.focus-mode #focusOverlay.long-focus #focusContent{
+  height:100%;
+}
+body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="structure"],
+body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="wordbank"]{
+  height:86vh;
+  max-height:86vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+/* 標題與共用選項固定在放大視窗上方，不與文章重疊。 */
+body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > h3,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > h3,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .bank,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .bank{
+  flex:0 0 auto;
+}
+body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .bank,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .bank{
+  max-height:28vh;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scrollbar-gutter:stable;
+  margin-bottom:12px;
+}
+/* 只有文章區向下捲動；選項留在原位。 */
+body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .passagetext,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .passagetext{
+  flex:1 1 auto;
+  min-height:0;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  padding-right:10px;
+  scrollbar-gutter:stable;
+}
+body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .card-actions,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .card-actions{
+  flex:0 0 auto;
+  margin-top:12px!important;
+}
+body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .answer,
+body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .answer{
+  flex:0 0 auto;
+  max-height:34vh;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+}
+@media(max-width:760px){
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="structure"],
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="wordbank"]{
+    height:88vh;max-height:88vh;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .bank,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .bank{max-height:30vh;}
+}
+</style>
+<style id="v21-review-mode">
+/* V21：作答維持左右雙欄；檢討改為中央大型解析卡。 */
+.review-overlay{position:fixed;inset:0;background:rgba(24,53,43,.28);backdrop-filter:blur(2px);z-index:2600;display:none;align-items:center;justify-content:center;padding:24px;}
+.review-overlay.show{display:flex;}
+.review-shell{width:min(1180px,94vw);height:min(88vh,900px);background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 22px 70px rgba(20,45,36,.22);display:flex;flex-direction:column;overflow:hidden;}
+.review-toolbar{flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line);background:#fff;}
+.review-toolbar h3{margin:0;font-size:1.15rem;color:var(--ink);}
+.review-close{border:1px solid var(--accent);background:#fff;color:var(--accent);border-radius:10px;padding:9px 14px;font-weight:800;cursor:pointer;}
+.review-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;padding:24px 30px 34px;scrollbar-gutter:stable;}
+.review-passage{background:#f7faf8;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:22px;font-size:1.08rem;line-height:1.9;}
+.review-question{border-top:1px solid var(--line);padding:20px 2px 6px;margin-top:8px;}
+.review-question:first-of-type{border-top:0;}
+.review-question .qnum,.review-question .mini-title{font-weight:900;color:var(--accent);margin-bottom:8px;font-size:1.05rem;}
+.review-question .stem{font-size:1.08rem;font-weight:800;margin-bottom:10px;}
+.review-question .opts{margin-bottom:12px;}
+.review-question .answer{display:block!important;background:#f7faf8;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:12px;}
+.review-question .detail-analysis{display:block!important;margin-top:12px;}
+.review-question .card-actions,.review-question button,.review-question .wrongBtn,.review-question .focusBtn{display:none!important;}
+/* 顯示全部答案時，答案同步回填原文空格。 */
+.inline-blank .filled-answer{display:none;}
+.passagetext.answers-inline .inline-blank .blank-slot{display:none;}
+.passagetext.answers-inline .inline-blank .filled-answer{display:inline;font-weight:900;color:var(--accent);background:#edf5f1;border-radius:6px;padding:1px 6px;}
+.passagetext.answers-inline .structure-blank .filled-answer{font-weight:800;line-height:1.7;}
+@media(max-width:760px){.review-overlay{padding:10px}.review-shell{width:98vw;height:92vh;border-radius:16px}.review-scroll{padding:18px 16px 26px}.review-toolbar{padding:12px 14px}.review-passage{padding:15px 14px;font-size:1rem}}
+</style>
+<style id="v25-concentrated-review">
+/* V25：長篇完整解析視覺集中。保留左右雙欄與各自捲動，只縮小整體閱讀工作區。 */
+@media (min-width:901px){
+  .review-shell{width:min(1240px,90vw);height:min(84vh,860px)}
+  .review-body{grid-template-columns:minmax(0,1.52fr) minmax(330px,.88fr);gap:14px;padding:18px 20px 20px}
+  .review-passage{max-width:720px;padding:18px 20px;font-size:1.02rem;line-height:1.78}
+  .review-explain-pane{padding-left:14px;padding-right:4px}
+  .review-toolbar{padding-left:20px;padding-right:20px}
+}
+@media (min-width:901px) and (max-width:1250px){
+  .review-shell{width:min(1120px,92vw)}
+  .review-body{grid-template-columns:minmax(0,1.48fr) minmax(320px,.92fr)}
+}
+</style>
+<style>
+.answer-grammar-note{margin-top:8px;line-height:1.65;color:#33443d;font-size:.96em}.answer-grammar-note strong{color:var(--accent)}
+</style><style id="v4-literacy-table-compact">
+/* V4：素養閱讀完整圖表保留，桌機／平板以固定閱讀區呈現，避免表格撐滿整頁 */
+#reading .reading-article{min-width:0;}
+#reading .reading-article .passagetext{font-size:.98rem;line-height:1.55;padding-right:8px;}
+#reading .reading-article .passagetext>h3{text-align:center;font-size:1.08rem;margin:.1rem 0 .65rem;}
+#reading .literacy-data-table{width:100%;min-width:820px;border-collapse:collapse;table-layout:fixed;font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif;font-size:.9rem;line-height:1.38;background:#fff;}
+#reading .literacy-data-table th,#reading .literacy-data-table td{border:1px solid #9aa8a1;padding:.48rem .55rem;vertical-align:middle;text-align:left;overflow-wrap:normal;word-break:normal;}
+#reading .literacy-data-table th{background:#f2f5f3;text-align:center;font-weight:800;}
+#reading .literacy-data-table th:nth-child(1),#reading .literacy-data-table td:nth-child(1){width:14%;min-width:110px;white-space:nowrap;}
+#reading .literacy-data-table th:nth-child(2),#reading .literacy-data-table td:nth-child(2){width:17%;min-width:135px;}
+#reading .literacy-data-table th:nth-child(3),#reading .literacy-data-table td:nth-child(3){width:20%;min-width:160px;white-space:nowrap;}
+#reading .literacy-data-table th:nth-child(4),#reading .literacy-data-table td:nth-child(4){width:49%;min-width:390px;}
+@media (min-width:980px){#reading .reading-article{max-height:68vh;overflow:auto;padding-right:8px;scrollbar-gutter:stable;}#reading .reading-questions{max-height:68vh;overflow-y:auto;padding-right:7px;scrollbar-gutter:stable;}}
+@media (max-width:979px){#reading .reading-split{display:block;}#reading .reading-article{overflow:auto;}#reading .literacy-data-table{min-width:820px;}#reading .reading-questions{margin-top:16px;}}
+</style><style id="v6-literacy-info-cards">
+/* V6：素養閱讀資料卡片化。完整保留教材資訊，只重新排列以提升螢幕閱讀性。 */
+#reading .reading-split{
+  display:grid;
+  grid-template-columns:minmax(0, 1.38fr) minmax(330px, .92fr);
+  gap:24px;
+  align-items:start;
+}
+#reading .reading-article{
+  max-height:68vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:18px 20px;
+}
+#reading .reading-article .passagetext h3{
+  margin:0 0 14px;
+  text-align:left;
+}
+#reading .literacy-info-list{
+  display:grid;
+  gap:10px;
+}
+#reading .literacy-info-card{
+  border:1px solid #c9d5cf;
+  border-radius:12px;
+  background:#fff;
+  padding:12px 14px;
+  min-width:0;
+}
+#reading .literacy-info-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:7px;
+}
+#reading .literacy-animal{
+  font-size:1.02rem;
+  font-weight:800;
+  color:#214f3e;
+  flex:0 0 auto;
+}
+#reading .literacy-meta{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:6px;
+  min-width:0;
+}
+#reading .literacy-meta span{
+  border-radius:999px;
+  background:#eef4f1;
+  padding:4px 9px;
+  font-size:.86rem;
+  line-height:1.25;
+  white-space:normal;
+}
+#reading .literacy-facts{
+  line-height:1.48;
+  overflow-wrap:anywhere;
+}
+#reading .reading-questions{
+  max-height:68vh;
+  overflow-y:auto;
+  padding-right:5px;
+}
+@media (max-width: 979px){
+  #reading .reading-split{display:block;}
+  #reading .reading-article,
+  #reading .reading-questions{
+    max-height:none;
+    overflow:visible;
+  }
+  #reading .reading-questions{margin-top:16px;padding-right:0;}
+}
+@media (max-width: 620px){
+  #reading .reading-article{padding:14px;}
+  #reading .literacy-info-head{display:block;}
+  #reading .literacy-meta{justify-content:flex-start;margin-top:7px;}
+}
+</style><style>
+/* 正式版：回課內試題首頁按鈕 */
+.home-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;border:1px solid var(--accent)!important;background:#fff!important;color:var(--accent)!important;border-radius:9px!important;padding:6px 11px!important;font-size:.88rem!important;font-weight:800!important;text-decoration:none!important;line-height:1.35!important;white-space:nowrap!important}
+.home-link:hover{background:var(--soft)!important}
+.titleblock{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.font-side{display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.nav-return-home{margin-left:auto!important;flex:0 0 auto!important}
+@media(max-width:760px){.home-link{min-height:40px!important;padding:8px 12px!important}.font-side{align-items:flex-start}.nav-return-home{margin-left:0!important}}
+</style>
+<style id="l3-focus-wrongbtn-size-fix">
+/* 參照 L2：單題放大時，「加入我的錯題」與其他操作按鈕維持一致可讀尺寸。 */
+.focus-shell .wrongBtn{
+  font-size:1.05rem;
+  padding:12px 18px;
+}
+@media(max-width:760px){
+  .focus-shell .wrongBtn{
+    font-size:1rem;
+    padding:11px 14px;
+  }
+}
+</style>
+<style id="l3-wordbank-inline-fill-only">
+/* L3 文意選填：僅在解析顯示時，把答案動態填入既有 __n__ 空格；原文章、標題與既有版面不重建。 */
+#wordbank .wordbank-fill-answer{display:inline;font-weight:900;color:var(--accent);background:#edf5f1;border-radius:6px;padding:1px 6px;}
+</style>
+<style id="lesson6-content-styles">
+/* Lesson 6 content-specific presentation */
+.translation-prompt{display:none!important;margin-top:10px;padding:10px 12px;background:#f7faf8;border:1px solid var(--line);border-radius:10px;font-family:Georgia,"Times New Roman",serif;line-height:1.75}
+.l6-chat{display:grid;gap:12px;margin-bottom:22px}.chat-line{max-width:82%}.chat-line.tom{margin-left:auto}.chat-line>b{display:block;margin-bottom:4px;color:var(--accent);font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif}.chat-line>div{border:1px solid #aebbb5;border-radius:14px;padding:10px 12px;background:#fff;line-height:1.6}.chat-line.tom>div{background:#f5f8f6}
+.l6-table-wrap{overflow-x:auto}.l6-timetable{width:100%;min-width:720px;border-collapse:collapse;font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif;font-size:.92rem}.l6-timetable th,.l6-timetable td{border:1px solid #9aa8a1;padding:8px 10px;text-align:center}.l6-timetable th{background:#eef2f0;font-weight:800}
+#reading .reading-article .passagetext{font-family:Georgia,"Times New Roman",serif;font-size:1rem;line-height:1.58}
+#reading .reading-article .passagetext>h3{text-align:center;margin:12px 0 10px}
+@media(max-width:620px){.chat-line{max-width:96%}.chat-line.tom{margin-left:4%}.translation-prompt{font-size:.95rem}}
+</style><style id="lesson9-literacy-chart">
+#reading .l9-literacy-chart{max-width:760px;margin:4px auto 18px;padding:8px 8px 2px;background:#fff;color:#202824;}
+#reading .l9-literacy-chart svg{display:block;width:100%;height:auto;}
+@media(max-width:700px){#reading .l9-literacy-chart{margin-bottom:12px;padding:2px 0;}#reading .l9-literacy-chart svg{min-width:620px;}#reading .reading-article{overflow-x:auto!important;}}
+</style><style id="lesson9-reading-table">
+#reading .l9-reading-block{font-family:Georgia,"Times New Roman",serif;line-height:1.58}
+#reading .l9-nuclear-table{width:100%;border-collapse:collapse;table-layout:fixed;margin:0 0 14px;background:#fff}
+#reading .l9-nuclear-table caption{font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif;font-weight:900;font-size:1.08rem;padding:10px;border:1px solid #9aa8a1;border-bottom:0;background:#eef2f0}
+#reading .l9-nuclear-table th,#reading .l9-nuclear-table td{border:1px solid #9aa8a1;padding:10px 12px;vertical-align:top}
+#reading .l9-nuclear-table th{font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif;background:#f3f5f4;text-align:center;font-weight:900}
+#reading .l9-nuclear-table ol,#reading .l9-council ol{margin:.15rem 0 .15rem 1.3rem;padding:0}
+#reading .l9-nuclear-table li,#reading .l9-council li{margin:.28rem 0}
+#reading .l9-council{border:1px solid #9aa8a1;background:#fff}
+#reading .l9-council h3{font-family:Arial,"Microsoft JhengHei","Noto Sans TC",sans-serif;text-align:center;font-size:1rem;margin:0;padding:9px 12px;background:#f3f5f4;border-bottom:1px solid #9aa8a1}
+#reading .l9-council ol,#reading .l9-council p{padding:10px 18px;margin:0}
+#reading .l9-council p{line-height:1.65}
+@media(max-width:700px){#reading .l9-nuclear-table{min-width:720px}#reading .l9-reading-block{overflow-x:auto}#reading .l9-council{min-width:720px}}
+</style></head>
+<body>
+<header><div class="top"><div class="titleblock"><h1>Lesson Nine — Fighting for or against Graffiti</h1><a class="home-link" href="../">回課內試題首頁</a></div><div class="font-side"><div class="fonttools"><span class="sub">字級</span><button onclick="changeFont(-1)">A−</button><button onclick="resetFont()">A</button><button onclick="changeFont(1)">A+</button></div></div><div class="sub">學生先作答 → 老師手動顯示答案</div></div>
+<div aria-label="題型切換" class="nav" role="tablist"><button class="active" data-view="all" onclick="showSection('all',this)">全部題目</button><button data-view="vocab" onclick="showSection('vocab',this)">文意字彙</button><button data-view="grammar" onclick="showSection('grammar',this)">文法</button><button data-view="cloze" onclick="showSection('cloze',this)">綜合測驗</button><button data-view="wordbank" onclick="showSection('wordbank',this)">文意選填</button><button data-view="structure" onclick="showSection('structure',this)">篇章結構</button><button data-view="reading" onclick="showSection('reading',this)">素養閱讀</button><button data-view="translation" onclick="showSection('translation',this)">翻譯</button><button data-view="wrongBank" onclick="showSection('wrongBank',this)">★ 我的錯題</button><button data-view="custom" onclick="showSection('custom',this)">自訂題目</button><a class="home-link nav-return-home" href="../">回課內試題首頁</a></div></header>
+<main>
+<div class="note"><b>使用方式：</b> 一般單題可進入「單題放大」查看完整解析；綜合測驗與文意選填直接在原題型中查看答案與完整解析，並可加入我的錯題。</div>
+<section id="vocab"><h2>文意字彙</h2><div class="cards"><article class="qcard" data-category="vocab" data-qid="l9-vocab-1" data-sec="vocab">
+<div class="qnum">文意字彙 1</div>
+<div class="stem">Angela’s teacher has a good o_____n of her; he wrote her a great reference letter for her college application.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：opinion</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">Angela 的老師對她評價很好；他為她的大學申請寫了一封很棒的推薦信。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">opinion（n.）意見；看法</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">have a good opinion of + 人 = 對某人有好評／對某人印象很好。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-2" data-sec="vocab">
+<div class="qnum">文意字彙 2</div>
+<div class="stem">Willow shared every d_____l of her sister’s wedding with her friends.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：detail</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">Willow 把她姊姊婚禮的每個細節都和朋友分享。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">detail（n.）細節</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">every detail of ... = ……的每個細節。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-3" data-sec="vocab">
+<div class="qnum">文意字彙 3</div>
+<div class="stem">Your room is in a terrible m_____s, so you must clean it up as soon as possible.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：mess</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">你的房間亂得一團糟，所以你必須盡快把它整理乾淨。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">mess（n.）凌亂；一團糟</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">in a mess = 處於凌亂狀態；terrible 修飾名詞 mess。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-4" data-sec="vocab">
+<div class="qnum">文意字彙 4</div>
+<div class="stem">As Mike was too happy, he could not say a single word to e_____s his feeling.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：express</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">Mike 因為太開心了，高興得一句話也說不出來表達自己的感受。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">express（v.）表達</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">to 後接原形動詞，因此填 express；express one’s feelings = 表達某人的感受。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-5" data-sec="vocab">
+<div class="qnum">文意字彙 5</div>
+<div class="stem">There is a huge c_____t between the two brothers in both appearance and personality. They are really quite different.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：contrast</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">這兩兄弟在外表和個性上都有很大的差異。他們真的非常不同。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">contrast（n.）對比；差異</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">There is a contrast between A and B = A 與 B 之間有對比／差異。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-6" data-sec="vocab">
+<div class="qnum">文意字彙 6</div>
+<div class="stem">There is a sharp c_____t of violence and peacefulness in the picture of a nun embracing a refugee who lost one of his arms in a war.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：contrast</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">在這張照片中，一名修女擁抱一位在戰爭中失去一隻手臂的難民，呈現出暴力與和平之間的強烈對比。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">contrast（n.）對比</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">a sharp contrast of/between ... 表示「……之間的強烈對比」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-7" data-sec="vocab">
+<div class="qnum">文意字彙 7</div>
+<div class="stem">The producer was famous for his h_____r movies. Many of them are very scary.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：horror</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">這位製片人以恐怖電影聞名，其中很多都非常嚇人。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">horror（n.）恐怖；驚恐</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">horror movie = 恐怖電影；名詞 horror 作名詞修飾語。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-8" data-sec="vocab">
+<div class="qnum">文意字彙 8</div>
+<div class="stem">The wastewater from the nearby factory has seriously p_____ed the river, killing all the fish and plants in it.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：polluted</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">附近工廠排出的廢水已嚴重污染這條河，導致河裡所有的魚和植物死亡。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">polluted（v.）污染了</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">has seriously polluted 為現在完成式；pollute + 受詞表示「污染……」。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-9" data-sec="vocab">
+<div class="qnum">文意字彙 9</div>
+<div class="stem">On the 10th of December last year, an earthquake struck Taipei and Yilan, causing many houses and shops to shake v_____y.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：violently</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">去年 12 月 10 日，一場地震侵襲台北和宜蘭，造成許多房屋與商店劇烈搖晃。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">violently（adv.）猛烈地；劇烈地</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">副詞 violently 修飾動詞 shake。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-10" data-sec="vocab">
+<div class="qnum">文意字彙 10</div>
+<div class="stem">On Mother’s Day, Leo and Lenny made a delicious meal for their mother as an e_____n of their love and gratitude.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：expression</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">母親節時，Leo 和 Lenny 為媽媽做了一頓美味的餐點，作為表達愛與感謝的方式。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">expression（n.）表達；表示</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">an expression of + 名詞 = ……的表達／表示。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-11" data-sec="vocab">
+<div class="qnum">文意字彙 11</div>
+<div class="stem">Having lived in this neighborhood for 20 years, Linda loves the sense of c_____y here and doesn’t want to move away from all the good friends she’s made.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：community</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">Linda 在這個社區住了二十年，很喜歡這裡的社區歸屬感，也不想離開她交到的所有好朋友。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">community（n.）社區；群體</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">a sense of community = 社區歸屬感／群體認同感。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-12" data-sec="vocab">
+<div class="qnum">文意字彙 12</div>
+<div class="stem">The art college students were asked to write a d_____d description of their favorite work of art.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：detailed</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">藝術學院的學生被要求為自己最喜歡的藝術作品寫一份詳細的描述。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">detailed（adj.）詳細的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">detailed 修飾名詞 description；a detailed description = 詳細的描述。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-13" data-sec="vocab">
+<div class="qnum">文意字彙 13</div>
+<div class="stem">V_____l aids such as maps and slides are very helpful in teaching geography.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：visual</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">地圖和投影片等視覺輔助工具對地理教學非常有幫助。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">visual（adj.）視覺的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">visual aids = 視覺輔助工具。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-14" data-sec="vocab">
+<div class="qnum">文意字彙 14</div>
+<div class="stem">Violent TV shows and video games have a d_____e effect on kids’ mental health, which should be taken seriously.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：destructive</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">暴力電視節目與電玩會對孩子的心理健康造成破壞性的影響，這應該被嚴肅看待。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">destructive（adj.）破壞性的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">destructive effect = 破壞性的影響；形容詞修飾 effect。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-15" data-sec="vocab">
+<div class="qnum">文意字彙 15</div>
+<div class="stem">Christine told the Phantom that she was h_____fied not by his face but by his evil heart.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：horrified</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">Christine 告訴 Phantom，她害怕的不是他的臉，而是他邪惡的心。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">horrified（adj.）感到驚恐的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">be horrified by/at ... = 對……感到驚恐。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-16" data-sec="vocab">
+<div class="qnum">文意字彙 16</div>
+<div class="stem">Though she is forty years old, she has a childlike i_____e that most friends of hers find very lovable.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：innocence</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">雖然她已經四十歲，仍保有一種孩子般的純真，而大多數朋友都覺得這點很可愛。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">innocence（n.）純真；天真</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">childlike 為形容詞，後面需要名詞 innocence。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-17" data-sec="vocab">
+<div class="qnum">文意字彙 17</div>
+<div class="stem">When the seat belt signs are on, passengers on the airplane are not p_____ted to get up.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：permitted</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">當安全帶指示燈亮起時，飛機上的乘客不得起身。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">permitted（v./adj.）被允許的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">be permitted to + V = 被允許做……；此處是否定式 are not permitted to。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-18" data-sec="vocab">
+<div class="qnum">文意字彙 18</div>
+<div class="stem">Let’s sit down and talk about it. It’s not sensible to resort to v_____e when we try to resolve a dispute.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：violence</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">我們坐下來談談吧。當我們試圖解決爭端時，訴諸暴力並不是明智的做法。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">violence（n.）暴力</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">resort to + 名詞 = 訴諸……；因此填名詞 violence。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-19" data-sec="vocab">
+<div class="qnum">文意字彙 19</div>
+<div class="stem">Besides eating mooncakes and pomelos, most Taiwanese nowadays a_____e the Moon Festival with having a barbecue.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：associate</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">除了吃月餅和柚子之外，現在多數台灣人也把中秋節和烤肉聯想在一起。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">associate（v.）聯想；使有關聯</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">associate A with B = 把 A 與 B 聯想／連結在一起。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-20" data-sec="vocab">
+<div class="qnum">文意字彙 20</div>
+<div class="stem">In spite of having failed, I insist on trying again, as I want to make every possible e_____t.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：effort</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">儘管失敗了，我仍堅持再試一次，因為我想盡一切可能努力。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">effort（n.）努力</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">make every possible effort = 盡一切可能努力。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-21" data-sec="vocab">
+<div class="qnum">文意字彙 21</div>
+<div class="stem">I need to make an appointment with my hairdresser because my hair is just too m_____y these days.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：messy</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">我需要和髮型師預約，因為我的頭髮最近實在太亂了。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">messy（adj.）凌亂的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">too 後接形容詞 messy 描述 hair 的狀態。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-22" data-sec="vocab">
+<div class="qnum">文意字彙 22</div>
+<div class="stem">In Connor’s o_____n, students should be allowed to wear casual clothes to school.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：opinion</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">依 Connor 的看法，學生應該被允許穿便服上學。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">opinion（n.）意見；看法</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">in one’s opinion = 依某人的看法。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-23" data-sec="vocab">
+<div class="qnum">文意字彙 23</div>
+<div class="stem">According to the news, three c_____ls who broke out of prison three weeks ago are still at large.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：criminals</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">根據新聞，三名三週前越獄的罪犯目前仍逍遙法外。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">criminals（n.）罪犯（複數）</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">three 後接複數名詞；criminal 的複數為 criminals。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-24" data-sec="vocab">
+<div class="qnum">文意字彙 24</div>
+<div class="stem">Because there are too many v_____t scenes in the movie, it is not appropriate for children under the age of thirteen.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：violent</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">因為這部電影有太多暴力場面，所以不適合十三歲以下的兒童觀看。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">violent（adj.）暴力的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">violent scenes = 暴力場面；形容詞 violent 修飾 scenes。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-25" data-sec="vocab">
+<div class="qnum">文意字彙 25</div>
+<div class="stem">This river has been seriously p_____ed, so it is not safe to eat the fish living in it.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：polluted</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">這條河已受到嚴重污染，因此食用生活在其中的魚並不安全。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">polluted（v.）被污染</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">has been seriously polluted 為現在完成式被動語態。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-26" data-sec="vocab">
+<div class="qnum">文意字彙 26</div>
+<div class="stem">Larry is having a hard time finding a good job because of his c_____l record.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：criminal</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">Larry 因為有犯罪紀錄，很難找到一份好工作。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">criminal（adj.）犯罪的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">criminal record = 犯罪紀錄；形容詞 criminal 修飾 record。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-27" data-sec="vocab">
+<div class="qnum">文意字彙 27</div>
+<div class="stem">After several days of heavy rainfall, a flood d_____yed the village and left hundreds of people homeless.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：destroyed</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">連續幾天的大雨過後，一場洪水摧毀了村莊，造成數百人無家可歸。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">destroyed（v.）摧毀了</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">句子敘述過去事件，需用過去式 destroyed。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-28" data-sec="vocab">
+<div class="qnum">文意字彙 28</div>
+<div class="stem">The destructive power of a nuclear disaster _____ (horror) people, who urged their governments to rethink their energy policies.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：horrified</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">核災的破壞力使人們感到恐懼，因此他們敦促政府重新思考能源政策。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">horrified（v.）使……感到恐懼</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">主詞 The destructive power 作原因，後面需要過去式動詞 horrified。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-29" data-sec="vocab">
+<div class="qnum">文意字彙 29</div>
+<div class="stem">This forest park is a nature reserve, so you need to obtain official _____ (permit) to enter it.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：permission</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">這座森林公園是自然保護區，因此你需要取得官方許可才能進入。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">permission（n.）許可</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">official 後接名詞；obtain permission = 取得許可。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-30" data-sec="vocab">
+<div class="qnum">文意字彙 30</div>
+<div class="stem">Rapid economic development will surely cause widespread _____ (destroy) to the environment.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：destruction</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">快速的經濟發展勢必會對環境造成廣泛的破壞。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">destruction（n.）破壞</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">widespread 後接名詞 destruction；cause destruction to ... = 對……造成破壞。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-31" data-sec="vocab">
+<div class="qnum">文意字彙 31</div>
+<div class="stem">The suspect was finally proven to be _____ (innocence) of the crime after sufficient proof was provided.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：innocent</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">在提出充分證據後，嫌疑人最後被證明並未犯下這項罪行。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">innocent（adj.）無罪的；清白的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">be innocent of + 名詞 = 未犯……／對……無罪。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-32" data-sec="vocab">
+<div class="qnum">文意字彙 32</div>
+<div class="stem">On his way to school this morning, Eric was nearly hit by a car. That must have been a _____ (horrify) experience.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：horrible</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">今天早上 Eric 上學途中差點被車撞到。那一定是一次可怕的經歷。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">horrible（adj.）可怕的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">experience 前需要形容詞；horrible experience = 可怕的經歷。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-33" data-sec="vocab">
+<div class="qnum">文意字彙 33</div>
+<div class="stem">There are many ways to reduce air _____ (pollute). For example, we can use public transportation instead of driving cars.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：pollution</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">有許多方法可以減少空氣污染。例如，我們可以搭乘大眾運輸工具，而不是開車。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">pollution（n.）污染</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">air pollution = 空氣污染；air 後接名詞 pollution。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-34" data-sec="vocab">
+<div class="qnum">文意字彙 34</div>
+<div class="stem">Only those without any _____ (crime) record are allowed to do this job.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：criminal</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">只有沒有任何犯罪紀錄的人才被允許從事這份工作。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">criminal（adj.）犯罪的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">criminal record = 犯罪紀錄；criminal 在此作形容詞。</div></div></div></div></article><article class="qcard" data-category="vocab" data-qid="l9-vocab-35" data-sec="vocab">
+<div class="qnum">文意字彙 35</div>
+<div class="stem">People who live in earthquake-prone areas should be aware of how to prepare for _____ (destroy) quakes.</div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：destructive</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">住在地震好發地區的人應該知道如何為具破壞性的地震做好準備。</div></div><div class="detail-section"><div class="detail-title">單字意思／詞性</div><div class="detail-body">destructive（adj.）破壞性的</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">quakes 前需要形容詞 destructive 修飾。</div></div></div></div></article></div></section><section id="grammar"><h2>文法</h2><div class="cards"><article class="qcard" data-category="grammar" data-qid="l9-grammar-1" data-sec="grammar">
+<div class="qnum">文法 1</div>
+<div class="stem">Some hate graffiti and call it a mess, _____ others love it as a form of art.</div><div class="opts"><span class="opt">(A) when</span><span class="opt">(B) while</span><span class="opt">(C) as</span><span class="opt">(D) though</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：B — while</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">有些人討厭塗鴉，稱它為一團亂，而另一些人則喜愛它，視它為一種藝術形式。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">while 連接兩個語意對比的子句，表示「然而；而」。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-2" data-sec="grammar">
+<div class="qnum">文法 2</div>
+<div class="stem">Some people live an easy life, _____ others live every day from hand to mouth.</div><div class="opts"><span class="opt">(A) when</span><span class="opt">(B) while</span><span class="opt">(C) because</span><span class="opt">(D) otherwise</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：B — while</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">有些人過著輕鬆的生活，而另一些人每天都過著勉強糊口的日子。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">兩個語意對比的子句以 while 連接。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-3" data-sec="grammar">
+<div class="qnum">文法 3</div>
+<div class="stem">_____ some people are always complaining about their lives, others are satisfied with what they have.</div><div class="opts"><span class="opt">(A) As</span><span class="opt">(B) When</span><span class="opt">(C) While</span><span class="opt">(D) The moment</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：C — While</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">有些人總是在抱怨自己的生活，而另一些人則滿足於自己所擁有的一切。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">句首 While 引導對比子句。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-4" data-sec="grammar">
+<div class="qnum">文法 4</div>
+<div class="stem">_____ some people believe that graffiti is art, others think that it makes a city look messy.</div><div class="opts"><span class="opt">(A) Because</span><span class="opt">(B) If</span><span class="opt">(C) When</span><span class="opt">(D) While</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：D — While</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">有些人認為塗鴉是藝術，而另一些人則認為塗鴉會讓城市看起來很凌亂。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">前後為相反看法，選 While。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-5" data-sec="grammar">
+<div class="qnum">文法 5</div>
+<div class="stem">Some consider graffiti pleasant to the eyes, _____ others see it as a mere eyesore.</div><div class="opts"><span class="opt">(A) if</span><span class="opt">(B) whereas</span><span class="opt">(C) unless</span><span class="opt">(D) since</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：B — whereas</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">有些人認為塗鴉賞心悅目，而另一些人則只把它視為礙眼之物。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">whereas 可用來連接兩個語意對比的子句。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-6" data-sec="grammar">
+<div class="qnum">文法 6</div>
+<div class="stem">Peter sat at the desk, _____ a letter to his friend in America.</div><div class="opts"><span class="opt">(A) wrote</span><span class="opt">(B) writing</span><span class="opt">(C) written</span><span class="opt">(D) to write</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：B — writing</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">彼得坐在書桌前，正在寫一封信給他在美國的朋友。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">原句可視為 Peter sat at the desk, and he wrote...；省略 and 與重複主詞，動詞改為現在分詞 writing。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-7" data-sec="grammar">
+<div class="qnum">文法 7</div>
+<div class="stem">A lot of visitors gathered at the park, _____ by the beautiful night sky.</div><div class="opts"><span class="opt">(A) surprise</span><span class="opt">(B) surprising</span><span class="opt">(C) surprised</span><span class="opt">(D) having surprised</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：C — surprised</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">許多遊客聚集在公園裡，對美麗的夜空感到驚艷。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">原句為 visitors ... and they were surprised...；省略連接詞、主詞與 be，保留過去分詞 surprised。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-8" data-sec="grammar">
+<div class="qnum">文法 8</div>
+<div class="stem">It is difficult for left-handers to use their right hand when dealing with everyday matters. _____, when they use ordinary scissors, they may have some difficulty.</div><div class="opts"><span class="opt">(A) Such as</span><span class="opt">(B) In addition</span><span class="opt">(C) As example</span><span class="opt">(D) For example</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：D — For example</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">左撇子在處理日常事務時使用右手並不容易。例如，當他們使用一般的剪刀時，可能會遇到一些困難。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">後句舉使用剪刀作例子，選 For example。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-9" data-sec="grammar">
+<div class="qnum">文法 9</div>
+<div class="stem">Graffiti is displayed as a form of artistic expression. Banksy, _____, uses his humorous but thought-provoking paintings to teach people lessons about love, hope, and the importance of living in the moment.</div><div class="opts"><span class="opt">(A) in reality</span><span class="opt">(B) over time</span><span class="opt">(C) as always</span><span class="opt">(D) for example</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：D — for example</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">塗鴉被呈現為一種藝術表達形式。例如，Banksy 透過幽默卻發人深省的畫作，教導人們關於愛、希望，以及活在當下的重要性。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">Banksy 是前述 graffiti artist 的例子，選 for example。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-10" data-sec="grammar">
+<div class="qnum">文法 10</div>
+<div class="stem">The only difference between graffiti artists and other painters is _____ graffiti artists paint on walls rather than on paper.</div><div class="opts"><span class="opt">(A) that</span><span class="opt">(B) when</span><span class="opt">(C) which</span><span class="opt">(D) where</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：A — that</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">塗鴉藝術家和其他畫家之間唯一的差別，就是塗鴉藝術家是在牆上作畫，而不是在紙上作畫。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">that 引導名詞子句作主詞補語，說明 the only difference 的內容。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-11" data-sec="grammar">
+<div class="qnum">文法 11</div>
+<div class="stem">Olive traveled around Europe by train _____ by plane last month.</div><div class="opts"><span class="opt">(A) instead of</span><span class="opt">(B) in spite of</span><span class="opt">(C) other than</span><span class="opt">(D) rather than</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：D — rather than</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">Olive 上個月搭火車而不是搭飛機遊歷歐洲。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">rather than 前後結構相同；by train rather than by plane。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-12" data-sec="grammar">
+<div class="qnum">文法 12</div>
+<div class="stem">The woman was beautiful, but the old man _____ on the park bench did not seem to notice her.</div><div class="opts"><span class="opt">(A) was sitting</span><span class="opt">(B) to sit</span><span class="opt">(C) who sitting</span><span class="opt">(D) who was sitting</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：D — who was sitting</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">那位女子很美，但坐在公園長椅上的老人似乎沒有注意到她。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">who was sitting 是形容詞子句修飾 the old man；亦可省略 who was 成為 sitting。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-13" data-sec="grammar">
+<div class="qnum">文法 13</div>
+<div class="stem">In the picture, a young boy places a flower into a soldier’s gun, _____ shows the sharp contrast between violence and peace.</div><div class="opts"><span class="opt">(A) that</span><span class="opt">(B) which</span><span class="opt">(C) and</span><span class="opt">(D) what</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：B — which</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">在這幅圖中，一名小男孩把一朵花放進士兵的槍口，這顯示出暴力與和平之間的強烈對比。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">which 為關係代名詞，承接前方整個情況，後接動詞 shows。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-14" data-sec="grammar">
+<div class="qnum">文法 14</div>
+<div class="stem">The year cake we eat during the Chinese New Year _____ a better achievement at work or at school we’ll have next year.</div><div class="opts"><span class="opt">(A) takes care of</span><span class="opt">(B) drives out</span><span class="opt">(C) is home to</span><span class="opt">(D) stands for</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：D — stands for</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">我們在農曆新年吃的年糕象徵著來年在工作或學業上會有更好的成就。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">stand for＝代表；象徵。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-15" data-sec="grammar">
+<div class="qnum">文法 15</div>
+<div class="stem">The demonstration called attention _____ the welfare programs the government will offer.</div><div class="opts"><span class="opt">(A) by</span><span class="opt">(B) of</span><span class="opt">(C) to</span><span class="opt">(D) with</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：C — to</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">這場示威活動喚起了人們對政府將提供的福利方案的關注。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">固定搭配 call attention to + sth.。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-16" data-sec="grammar">
+<div class="qnum">文法 16</div>
+<div class="stem">Despite the positive aspects of graffiti, opponents argue that it is _____ visual pollution.</div><div class="opts"><span class="opt">(A) far from</span><span class="opt">(B) nothing but</span><span class="opt">(C) rather than</span><span class="opt">(D) capable of</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：B — nothing but</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">儘管塗鴉有正面的一面，反對者仍主張它只不過是視覺污染。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">nothing but＝只不過是；僅僅。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-17" data-sec="grammar">
+<div class="qnum">文法 17</div>
+<div class="stem">As long as your food is fresh, you need _____ salt to make it taste more delicious.</div><div class="opts"><span class="opt">(A) nothing but</span><span class="opt">(B) so far</span><span class="opt">(C) all sorts of</span><span class="opt">(D) at hand</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：A — nothing but</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">只要食物夠新鮮，你只需要鹽就能讓它吃起來更美味。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">教材解析：只要食材夠新鮮，只需鹽巴；nothing but＝只不過；僅僅。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-18" data-sec="grammar">
+<div class="qnum">文法 18</div>
+<div class="stem">Those who dislike graffiti view it as _____ visual pollution.</div><div class="opts"><span class="opt">(A) at most</span><span class="opt">(B) at best</span><span class="opt">(C) no longer</span><span class="opt">(D) nothing but</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：D — nothing but</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">不喜歡塗鴉的人認為它只不過是視覺污染。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">語意為「只不過是視覺污染」。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-19" data-sec="grammar">
+<div class="qnum">文法 19</div>
+<div class="stem">_____ tourists visit the night market every year, making it one of the most famous attractions in Taichung.</div><div class="opts"><span class="opt">(A) Hundred of thousand of</span><span class="opt">(B) Thousand of hundred of</span><span class="opt">(C) Hundreds of thousands of</span><span class="opt">(D) Thousands of hundreds of</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：C — Hundreds of thousands of</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">每年有數十萬名遊客造訪這個夜市，使它成為台中最著名的景點之一。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">沒有確切數字時，用 hundreds/thousands 的複數形式＋of；hundreds of thousands of 表「數十萬計的」。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-20" data-sec="grammar">
+<div class="qnum">文法 20</div>
+<div class="stem">John lost his job because of the economic recession. _____, he got seriously ill.</div><div class="opts"><span class="opt">(A) However</span><span class="opt">(B) Instead</span><span class="opt">(C) Even worse</span><span class="opt">(D) Most importantly</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：C — Even worse</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">John 因為經濟衰退而失業。更糟的是，他還生了重病。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">第二件事比失業更糟，選 Even worse。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-21" data-sec="grammar">
+<div class="qnum">文法 21</div>
+<div class="stem">What’s worse, some of the graffiti artists are _____ with criminal activities.</div><div class="opts"><span class="opt">(A) plain</span><span class="opt">(B) replied</span><span class="opt">(C) associated</span><span class="opt">(D) communicated</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：C — associated</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">更糟的是，有些塗鴉藝術家還與犯罪活動有所關聯。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">固定搭配 associate A with B；被動為 be associated with。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-22" data-sec="grammar">
+<div class="qnum">文法 22</div>
+<div class="stem">It _____ a lot of money and effort for the government to remove the messy scribbling from the walls.</div><div class="opts"><span class="opt">(A) takes</span><span class="opt">(B) makes</span><span class="opt">(C) spends</span><span class="opt">(D) keeps</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：A — takes</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">政府要清除牆上凌亂的塗寫，需要花費大量金錢與心力。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">It takes + 金錢／時間／努力 + to V。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-23" data-sec="grammar">
+<div class="qnum">文法 23</div>
+<div class="stem">Judy _____ one third of her monthly salary on a designer bag, so now she has to live on a tight budget.</div><div class="opts"><span class="opt">(A) cost</span><span class="opt">(B) spent</span><span class="opt">(C) took</span><span class="opt">(D) made</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：B — spent</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">Judy 把每月薪水的三分之一花在一個名牌包上，所以她現在必須縮衣節食。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">人作主詞花費金錢，用 spend；spend money on + N。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-24" data-sec="grammar">
+<div class="qnum">文法 24</div>
+<div class="stem">When it comes _____ basketball, Peter is second to none.</div><div class="opts"><span class="opt">(A) playing</span><span class="opt">(B) into playing</span><span class="opt">(C) to play</span><span class="opt">(D) to playing</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：D — to playing</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">說到打籃球，Peter 可說是無人能及。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">when it comes to + N/V-ing＝談到……時；to 為介系詞。</div></div></div></div></article><article class="qcard" data-category="grammar" data-qid="l9-grammar-25" data-sec="grammar">
+<div class="qnum">文法 25</div>
+<div class="stem">My wife and I take turns looking after our baby, and it is her turn _____ care of him.</div><div class="opts"><span class="opt">(A) taking</span><span class="opt">(B) to take</span><span class="opt">(C) at taking</span><span class="opt">(D) in taking</span></div>
+<div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div>
+<div class="answer"><b>答案：B — to take</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整句子中文翻譯</div><div class="detail-body">我和妻子輪流照顧我們的寶寶，現在輪到她照顧他了。</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">It is one’s turn to VR＝輪到某人做……。</div></div></div></div></article></div></section><section id="cloze"><h2>綜合測驗</h2><article class="passage" data-category="cloze" data-qid="l9-cloze-1" data-sec="cloze"><h3>第1篇</h3><div class="passagetext"><p>There are various shapes and sizes of graffiti. Whether graffiti is a form of art or just a mess remains a question. Those who love it say it <b>1. _____</b> a lot of time and hard work to create graffiti. Graffiti artists sketch and draw an outline, and then they fill in the colors and add the details. Some graffiti artists express their <b>2. _____</b> through their works. One of them is Banksy. In one of his pieces, a young boy places a flower into the barrel of a soldier’s gun. The flower stands for peace, <b>3. _____</b> the gun is a metaphor for war. On the other hand, some people say graffiti makes nothing but a mess. Those who create graffiti just scribble someone’s name. They do so without permission. <b>4. _____</b> it costs a lot of money and takes a lot of time. Quite a few people believe graffiti is related to crimes, and they feel it is unsafe <b>5. _____</b> around areas with a lot of graffiti. There are always two sides to everything.</p></div><div class="miniwrap"><div class="mini"><div class="qnum">第 1 題</div><div class="miniopts"><span>(A) spends</span><span>(B) costs</span><span>(C) takes</span><span>(D) needs</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：C — takes</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">takes</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">It takes + 時間／努力 + to V；此處主詞 it，選 takes。</div></div></div></div></div><div class="mini"><div class="qnum">第 2 題</div><div class="miniopts"><span>(A) communities</span><span>(B) contrasts</span><span>(C) efforts</span><span>(D) opinions</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：D — opinions</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">opinions</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">express one’s opinions＝表達某人的意見。</div></div></div></div></div><div class="mini"><div class="qnum">第 3 題</div><div class="miniopts"><span>(A) although</span><span>(B) while</span><span>(C) for</span><span>(D) however</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：B — while</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">while</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">前後 flower/peace 與 gun/war 形成對比，用 while 連接兩個子句。</div></div></div></div></div><div class="mini"><div class="qnum">第 4 題</div><div class="miniopts"><span>(A) Standing for</span><span>(B) Coming in</span><span>(C) Setting up</span><span>(D) Getting rid of</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：D — Getting rid of</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Getting rid of</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">Getting rid of it 為動名詞片語作主詞，表示「去除塗鴉」。</div></div></div></div></div><div class="mini"><div class="qnum">第 5 題</div><div class="miniopts"><span>(A) to walk</span><span>(B) to walking</span><span>(C) walking</span><span>(D) in walking</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：A — to walk</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">to walk</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">feel it is unsafe to walk...；形容詞 unsafe 後接 to V。</div></div></div></div></div></div><div class="reading-group-actions card-actions"><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div></article><article class="passage" data-category="cloze" data-qid="l9-cloze-2" data-sec="cloze"><h3>第2篇</h3><div class="passagetext"><p>Graffiti, which means “scratched” in Italian, often shows up on walls or public property in cities. This form of art <b>1. _____</b> different sizes and shapes. Some spaces filled with graffiti are small, <b>2. _____</b> others can take up an entire wall of a three-story building. A giant graffiti piece obviously <b>3. _____</b> careful planning and hard work to complete. However, such “scribbling” has not always been viewed as true art.<br/><br/>In the past, nobody took graffiti seriously; it was <b>4. _____</b> a sign of disorder, indicating that the community was falling apart. To the police, graffiti meant increased <b>5. _____</b> activities in the neighborhood. As most graffiti was created without <b>6. _____</b>, its presence suggested a sense of general lawlessness. Therefore, people routinely <b>7. _____</b> graffiti with broken windows and messy sidewalks. Home owners were eager to <b>8. _____</b> graffiti because it lowered the value of their real estate.<br/><br/>However, the public’s attitude toward graffiti changed in the 1960s, when anti-war artists used this art form to <b>9. _____</b> attention <b>9. _____</b> the horrors of war. Since then, graffiti has been increasingly accepted as an art form that expresses genuine feelings and <b>10. _____</b> on important social issues, like peace and freedom of speech. Due to its artistic value, graffiti now draws tourists to a neighborhood and boosts its housing market.</p></div><div class="miniwrap"><div class="mini"><div class="qnum">第 1 題</div><div class="miniopts"><span>(A) stands for</span><span>(B) fills in</span><span>(C) carries out</span><span>(D) comes in</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：D — comes in</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">comes in</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">come in + 形狀／顏色／大小等＝具有各種……。</div></div></div></div></div><div class="mini"><div class="qnum">第 2 題</div><div class="miniopts"><span>(A) while</span><span>(B) because</span><span>(C) so that</span><span>(D) when</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：A — while</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">while</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">small 與 can take up an entire wall 形成對比，用 while。</div></div></div></div></div><div class="mini"><div class="qnum">第 3 題</div><div class="miniopts"><span>(A) spends</span><span>(B) costs</span><span>(C) takes</span><span>(D) causes</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：C — takes</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">takes</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">事物作主詞表「花時間／努力」，用 take。</div></div></div></div></div><div class="mini"><div class="qnum">第 4 題</div><div class="miniopts"><span>(A) familiar to</span><span>(B) nothing but</span><span>(C) instead of</span><span>(D) such as</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：B — nothing but</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">nothing but</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">nothing but＝只不過是；此處表示過去被視為「只是一種混亂象徵」。</div></div></div></div></div><div class="mini"><div class="qnum">第 5 題</div><div class="miniopts"><span>(A) positive</span><span>(B) commercial</span><span>(C) protective</span><span>(D) criminal</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：D — criminal</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">criminal</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">activities 前需形容詞，依語意為 criminal activities。</div></div></div></div></div><div class="mini"><div class="qnum">第 6 題</div><div class="miniopts"><span>(A) permission</span><span>(B) innocence</span><span>(C) pollution</span><span>(D) impression</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：A — permission</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">permission</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">without permission＝未經許可。</div></div></div></div></div><div class="mini"><div class="qnum">第 7 題</div><div class="miniopts"><span>(A) contrasted</span><span>(B) associated</span><span>(C) represented</span><span>(D) symbolized</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：B — associated</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">associated</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">associate A with B＝把 A 與 B 聯想在一起。</div></div></div></div></div><div class="mini"><div class="qnum">第 8 題</div><div class="miniopts"><span>(A) come across</span><span>(B) look forward to</span><span>(C) get rid of</span><span>(D) keep up</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：C — get rid of</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">get rid of</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">get rid of graffiti＝去除塗鴉。</div></div></div></div></div><div class="mini"><div class="qnum">第 9 題</div><div class="miniopts"><span>(A) call; to</span><span>(B) rid; of</span><span>(C) reply; to</span><span>(D) remind; of</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：A — call; to</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">call; to</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">call attention to + sth.＝引起對……的注意。</div></div></div></div></div><div class="mini"><div class="qnum">第 10 題</div><div class="miniopts"><span>(A) impulses</span><span>(B) profits</span><span>(C) attractions</span><span>(D) opinions</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：D — opinions</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">opinions</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">express feelings and opinions on issues，依語意選 opinions。</div></div></div></div></div></div><div class="reading-group-actions card-actions"><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div></article><article class="passage" data-category="cloze" data-qid="l9-cloze-3" data-sec="cloze"><h3>第3篇</h3><div class="passagetext"><p>Spray-painted subway cars, tagged bridges, mural-covered walls. Graffiti pops up boldly throughout our cities. And, it turns out, it’s nothing new. Graffiti, or the act of writing or <b>1. _____</b> on public property, has been around for thousands of years. Some love it; some hate it. The question is: Is it a form of art or just a(n) <b>2. _____</b>?<br/><br/>Some people consider graffiti to be art, because it is about <b>3. _____</b> one’s feelings and being creative. Banksy, for example, is a famous graffiti artist who paints to show his <b>4. _____</b>. In one of his works, a young boy places a flower into a soldier’s gun, which represents violence, <b>5. _____</b> the flower stands for peace.<br/><br/>For those who are against graffiti, it is <b>6. _____</b> visual pollution. They think that most graffiti is done without permission, and <b>7. _____</b> it takes money and effort. Moreover, some people are likely to associate graffiti with criminal activity and <b>8. _____</b> feel unsafe to walk around or to live in communities <b>9. _____</b> are full of graffiti. To sum up, people hold different opinions about whether graffiti is creative or <b>10. _____</b>.</p></div><div class="miniwrap"><div class="mini"><div class="qnum">第 1 題</div><div class="miniopts"><span>(A) competing</span><span>(B) scribbling</span><span>(C) offering</span><span>(D) sponsoring</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：B — scribbling</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">scribbling</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">writing or scribbling on public property，scribbling 與 writing 平行。</div></div></div></div></div><div class="mini"><div class="qnum">第 2 題</div><div class="miniopts"><span>(A) attention</span><span>(B) mess</span><span>(C) trap</span><span>(D) urge</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：B — mess</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">mess</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">a form of art or just a mess，與後文 messy 呼應。</div></div></div></div></div><div class="mini"><div class="qnum">第 3 題</div><div class="miniopts"><span>(A) displaying</span><span>(B) permitting</span><span>(C) decorating</span><span>(D) expressing</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：D — expressing</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">expressing</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">express one’s feelings＝表達感受。</div></div></div></div></div><div class="mini"><div class="qnum">第 4 題</div><div class="miniopts"><span>(A) beverages</span><span>(B) items</span><span>(C) opinions</span><span>(D) permission</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：C — opinions</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">opinions</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">show his opinions＝展現他的觀點。</div></div></div></div></div><div class="mini"><div class="qnum">第 5 題</div><div class="miniopts"><span>(A) though</span><span>(B) since</span><span>(C) while</span><span>(D) until</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：C — while</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">while</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">gun/violence 與 flower/peace 對比。</div></div></div></div></div><div class="mini"><div class="qnum">第 6 題</div><div class="miniopts"><span>(A) rather than</span><span>(B) almost not</span><span>(C) nothing but</span><span>(D) on the other hand</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：C — nothing but</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">nothing but</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">nothing but visual pollution＝只不過是視覺污染。</div></div></div></div></div><div class="mini"><div class="qnum">第 7 題</div><div class="miniopts"><span>(A) lighting up</span><span>(B) getting rid of</span><span>(C) setting up</span><span>(D) looking forward to</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：B — getting rid of</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">getting rid of</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">去除未經許可的塗鴉需要金錢與努力。</div></div></div></div></div><div class="mini"><div class="qnum">第 8 題</div><div class="miniopts"><span>(A) never</span><span>(B) similarly</span><span>(C) annually</span><span>(D) thus</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：D — thus</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">thus</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">前因為與犯罪活動連結，因此感到不安全，選 thus。</div></div></div></div></div><div class="mini"><div class="qnum">第 9 題</div><div class="miniopts"><span>(A) which</span><span>(B) where</span><span>(C) there</span><span>(D) what</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：A — which</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">which</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">which 為關係代名詞，修飾 communities，後接 are。</div></div></div></div></div><div class="mini"><div class="qnum">第 10 題</div><div class="miniopts"><span>(A) clever</span><span>(B) plain</span><span>(C) destructive</span><span>(D) familiar</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：C — destructive</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">destructive</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">與 creative 形成語意對比，選 destructive。</div></div></div></div></div></div><div class="reading-group-actions card-actions"><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div></article><article class="passage" data-category="cloze" data-qid="l9-cloze-4" data-sec="cloze"><h3>第4篇</h3><div class="passagetext"><p>Graffiti, which features various shapes and sizes from plain words to detailed paintings, can be seen in many public places. <b>1. _____</b> its variation and existence in our surroundings, people hold different opinions on whether it is art or just a(n) <b>2. _____</b>. Those who fight for graffiti regard it as a form of art that requires time and effort to create. They argue that graffiti artists, like other painters, <b>3. _____</b> a lot of time <b>3. _____</b> the outline before filling in colors and more details. <b>4. _____</b> other art forms, graffiti is a vehicle through which artists express their feelings and show their point of view.<br/><br/><b>5. _____</b>, those who fight against graffiti believe it to be <b>6. _____</b> visual pollution of people’s name scribbling, which makes cities messy. Besides, graffiti done without permission usually takes the government a lot of money and effort to <b>7. _____</b> it. What’s worse, graffiti is often believed to be associated <b>8. _____</b> crimes. Community residents often feel unsafe to live in an area full of graffiti.</p></div><div class="miniwrap"><div class="mini"><div class="qnum">第 1 題</div><div class="miniopts"><span>(A) Without</span><span>(B) Despite</span><span>(C) As</span><span>(D) Like</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：B — Despite</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Despite</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">Despite + N，表示「儘管」其變化與存在，人們仍有不同意見。</div></div></div></div></div><div class="mini"><div class="qnum">第 2 題</div><div class="miniopts"><span>(A) mess</span><span>(B) painting</span><span>(C) outline</span><span>(D) detail</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：A — mess</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">mess</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">art or just a mess，語意對比。</div></div></div></div></div><div class="mini"><div class="qnum">第 3 題</div><div class="miniopts"><span>(A) spend; sketching</span><span>(B) take; sketching</span><span>(C) cost; to sketch</span><span>(D) take; to sketch</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：A — spend; sketching</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">spend; sketching</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">人作主詞：spend + time + V-ing。</div></div></div></div></div><div class="mini"><div class="qnum">第 4 題</div><div class="miniopts"><span>(A) In terms of</span><span>(B) Similar to</span><span>(C) Rather than</span><span>(D) According to</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：B — Similar to</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Similar to</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">Similar to other art forms＝和其他藝術形式相似。</div></div></div></div></div><div class="mini"><div class="qnum">第 5 題</div><div class="miniopts"><span>(A) As a result</span><span>(B) For instance</span><span>(C) On the other hand</span><span>(D) To be honest</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：C — On the other hand</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">On the other hand</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">由支持塗鴉轉到反對塗鴉的觀點，使用轉折語。</div></div></div></div></div><div class="mini"><div class="qnum">第 6 題</div><div class="miniopts"><span>(A) no longer</span><span>(B) far from</span><span>(C) less than</span><span>(D) nothing but</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：D — nothing but</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">nothing but</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">nothing but visual pollution＝只不過是視覺污染。</div></div></div></div></div><div class="mini"><div class="qnum">第 7 題</div><div class="miniopts"><span>(A) put out</span><span>(B) get rid of</span><span>(C) tell of</span><span>(D) let go of</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：B — get rid of</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">get rid of</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">get rid of＝去除；擺脫。</div></div></div></div></div><div class="mini"><div class="qnum">第 8 題</div><div class="miniopts"><span>(A) for</span><span>(B) against</span><span>(C) from</span><span>(D) with</span></div><div class="card-actions"><button class="reveal small" onclick="openClozeReview(this)">查看答案與解析</button></div><div class="answer"><b>答案：D — with</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">with</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">be associated with＝與……有關聯。</div></div></div></div></div></div><div class="reading-group-actions card-actions"><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div></article></section><section id="wordbank"><h2>文意選填</h2><article class="passage" data-category="wordbank" data-qid="l9-wordbank-1" data-sec="wordbank"><h3>第1篇</h3><div class="passagetext"><p>The word “graffiti” means “scratched” in Italian. Today graffiti refers to drawings made on walls or other surfaces in public places, such as the <b>__1__</b> of trains or subway cars. It <b>__2__</b> different forms, from simple writing to vivid pictures.<br/><br/>Many graffiti artists “draw” with a certain purpose in mind. For example, some paint to contrast the horrors of war <b>__3__</b> people’s hunger for peace. <b>__4__</b> just draw their favorite comic heroes or create cartoons. Still others produce their works to <b>__5__</b> attention to the need to protect human rights and equality. Whatever their goals are, graffiti artists are always trying their best to <b>__6__</b> themselves and get their points across.<br/><br/>Having begun as “tagging” or <b>__7__</b> pollution in the beginning, graffiti nowadays takes on more roles. In many people’s eyes, it is no longer associated with <b>__8__</b> activities. Instead, they are educational. Take Sandra Fabara, the first lady of graffiti, as an example. She <b>__9__</b> a lot of time working in her community and teaching young children at local schools how to paint. <b>__10__</b>, graffiti has become a big business. Many well-known artists have made a considerable profit from their works. Bansky’s works, for example, have sold for more than 130,000 dollars. David Choe, who was once invited to paint the walls of the Facebook headquarters with graffiti, has made at least 200 million dollars.</p></div><div class="bank">(A) visual　(B) criminal　(C) comes in　(D) spends　(E) in addition　(F) others　(G) sides　(H) express　(I) with　(J) call</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><div class="mini"><div class="qnum">1</div><div class="answer show"><b>答案：G — sides</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">sides</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">the sides of...＝……的側面。</div></div></div></div></div><div class="mini"><div class="qnum">2</div><div class="answer show"><b>答案：C — comes in</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">comes in</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">come in + 形狀／形式＝具有各種……。</div></div></div></div></div><div class="mini"><div class="qnum">3</div><div class="answer show"><b>答案：I — with</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">with</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">contrast A with B＝將 A 與 B 對比。</div></div></div></div></div><div class="mini"><div class="qnum">4</div><div class="answer show"><b>答案：F — others</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">others</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">Some... Others... Still others...＝有些……有些……還有些……。</div></div></div></div></div><div class="mini"><div class="qnum">5</div><div class="answer show"><b>答案：J — call</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">call</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">call attention to + sth.＝引起對……的注意。</div></div></div></div></div><div class="mini"><div class="qnum">6</div><div class="answer show"><b>答案：H — express</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">express</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">express oneself＝表達自己的想法或觀點。</div></div></div></div></div><div class="mini"><div class="qnum">7</div><div class="answer show"><b>答案：A — visual</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">visual</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">pollution 前需形容詞修飾，選 visual。</div></div></div></div></div><div class="mini"><div class="qnum">8</div><div class="answer show"><b>答案：B — criminal</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">criminal</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">activities 前需形容詞，選 criminal。</div></div></div></div></div><div class="mini"><div class="qnum">9</div><div class="answer show"><b>答案：D — spends</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">spends</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">人作主詞＋spend + time + V-ing。</div></div></div></div></div><div class="mini"><div class="qnum">10</div><div class="answer show"><b>答案：E — in addition</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">in addition</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">In addition 作附加資訊的轉承語。</div></div></div></div></div></div></article><article class="passage" data-category="wordbank" data-qid="l9-wordbank-2" data-sec="wordbank"><h3>第2篇</h3><div class="passagetext"><p>Tattoos have always been a controversial topic. People have different <b>__1__</b> about them. Some people see a tattoo as a form of art, while others view it as a(n) <b>__2__</b>. The supporters of tattoos insist that they are a(n) <b>__3__</b> of creativity. They are a way to <b>__4__</b> one’s feelings, beliefs, and other individual characteristics. Tattooing people is not an easy job. Tattoo artists spend day and night perfecting their skills. They not only need to be handy with their tools but also need to have the right <b>__5__</b> talent. They start their work by drawing a(n) <b>__6__</b> of the tattoo. Then, they fill in colors and add <b>__7__</b>. This is just like the practice of a traditional artist, but the difference is that tattoo artists create their artworks on human skin rather than on paper.<br/><br/>People who hate tattoos believe that they are for bad people like gang members. For example, the <b>__8__</b> Japanese mafia members always have tattoos all over their bodies. The higher your rank in a mafia group, the more tattoos you can have. Mafia groups are linked with <b>__9__</b>. As a result, tattoos will also be <b>__10__</b> with violence. Moreover, a Japanese police officer may even pull you over if you show your tattoos openly out on the street. The police will likely want to know if you are involved in a mafia group.</p></div><div class="bank">(A) express　(B) details　(C) effort　(D) opinions　(E) outline　(F) mess　(G) horrible　(H) violence　(I) associated　(J) artistic</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><div class="mini"><div class="qnum">1</div><div class="answer show"><b>答案：D — opinions</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">opinions</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">different 後接名詞複數 opinions。</div></div></div></div></div><div class="mini"><div class="qnum">2</div><div class="answer show"><b>答案：F — mess</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">mess</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">a(n) 後接名詞；與 form of art 對比為 mess。</div></div></div></div></div><div class="mini"><div class="qnum">3</div><div class="answer show"><b>答案：C — effort</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">effort</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">教材搭配 an effort of...，表示……的努力成果。</div></div></div></div></div><div class="mini"><div class="qnum">4</div><div class="answer show"><b>答案：A — express</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">express</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">to 後接原形動詞 express。</div></div></div></div></div><div class="mini"><div class="qnum">5</div><div class="answer show"><b>答案：J — artistic</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">artistic</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">talent 前需形容詞修飾，選 artistic。</div></div></div></div></div><div class="mini"><div class="qnum">6</div><div class="answer show"><b>答案：E — outline</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">outline</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">冠詞 an 後接名詞 outline。</div></div></div></div></div><div class="mini"><div class="qnum">7</div><div class="answer show"><b>答案：B — details</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">details</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">add 後接名詞複數 details。</div></div></div></div></div><div class="mini"><div class="qnum">8</div><div class="answer show"><b>答案：G — horrible</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">horrible</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">members 前需形容詞，依語意選 horrible。</div></div></div></div></div><div class="mini"><div class="qnum">9</div><div class="answer show"><b>答案：H — violence</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">violence</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">be linked with + 名詞；依文意選 violence。</div></div></div></div></div><div class="mini"><div class="qnum">10</div><div class="answer show"><b>答案：I — associated</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">associated</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">be associated with＝與……連結／有關。</div></div></div></div></div></div></article></section><section id="structure"><h2>篇章結構</h2><article class="passage" data-category="structure" data-qid="l9-structure-1" data-sec="structure"><div class="passagetext"><p>Is money really the root of all evil? For the longest time, people have been exchanging money for goods and services. However, money has long been seen as the “root of all evil.” <span class="inline-blank structure-blank" data-answer="(A) A lot of people believe that money is what drives people to commit crimes."><span class="blank-slot">__1__</span></span> Furthermore, although humans work together to earn money, we also sometimes kill each other just to gain more of it.</p>
+<p>The truth is that many human beings are greedy. Thousands of years ago, there was no such thing as money or even any sort of trade. Still, ancient people fought and killed one another for women, land, and even food. They were trying to satisfy the endless emptiness of human greed. <span class="inline-blank structure-blank" data-answer="(E) In other words, it is not the pursuit of money that is human nature but rather the seeking of a way to satisfy our greedy hearts."><span class="blank-slot">__2__</span></span> However, people refuse to believe that humans are naturally greedy. As a result, some people blame money, but in reality, money is just round pieces of metal and rectangular pieces of paper.</p>
+<p>If you were the richest man in the world today, you would likely still try to become even wealthier. <span class="inline-blank structure-blank" data-answer="(D) If you really didn’t care about money at all, you probably wouldn’t be the richest man in the world in the first place."><span class="blank-slot">__3__</span></span> People care about money because it’s our primary means of survival in modern society. All the evil things we do for money are just disguises for our greed. We can’t justify our immoral behaviors by simply criticizing money for being evil. Bank notes and coins have never been the root of evil. <span class="inline-blank structure-blank" data-answer="(B) However, they are aspects of society that are easy to blame for human flaws."><span class="blank-slot">__4__</span></span> The true root of all evil lies in a fundamental aspect of human nature: the greed inside our hearts.</p></div><div class="bank">(A) A lot of people believe that money is what drives people to commit crimes.<br/>(B) However, they are aspects of society that are easy to blame for human flaws.<br/>(C) Money often causes conflicts, but it has also helped humans cooperate and build civilizations.<br/>(D) If you really didn’t care about money at all, you probably wouldn’t be the richest man in the world in the first place.<br/>(E) In other words, it is not the pursuit of money that is human nature but rather the seeking of a way to satisfy our greedy hearts.</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><div class="mini"><div class="qnum">1</div><div class="answer show"><b>答案：A</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">A lot of people believe that money is what drives people to commit crimes.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">前文提到金錢長久被視為「萬惡之源」，A 接著說明許多人相信金錢驅使人犯罪，語意承接。</div></div></div></div></div><div class="mini"><div class="qnum">2</div><div class="answer show"><b>答案：E</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">In other words, it is not the pursuit of money that is human nature but rather the seeking of a way to satisfy our greedy hearts.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">前句談人類貪婪與無止盡的空虛，E 重新說明：人性追求的其實是滿足貪婪之心的方法。</div></div></div></div></div><div class="mini"><div class="qnum">3</div><div class="answer show"><b>答案：D</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">If you really didn’t care about money at all, you probably wouldn’t be the richest man in the world in the first place.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">前句說即使已是世界首富仍可能追求更多財富，D 以反面假設進一步說明。</div></div></div></div></div><div class="mini"><div class="qnum">4</div><div class="answer show"><b>答案：B</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">However, they are aspects of society that are easy to blame for human flaws.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">前句說鈔票硬幣本身從來不是邪惡根源，B 接著指出它們只是容易被拿來歸咎人類弱點的社會面向。</div></div></div></div></div></div></article></section><section id="reading"><h2>素養閱讀</h2><div class="reading-split" data-category="reading" data-qid="l9-reading-group" data-reading-group="true"><article class="passage reading-article"><div class="passagetext"><div class="l9-reading-block"><table class="l9-nuclear-table"><caption>Pros and Cons of Nuclear Power</caption><thead><tr><th>Pros</th><th>Cons</th></tr></thead><tbody><tr><td><ol><li>Nuclear power plants cause far fewer greenhouse gas emissions, and thus less pollution, though nuclear waste is still a problem.</li><li>The cost is lower than that of other forms of energy-production, and reactors can last from forty to sixty years.</li><li>It’s more reliable. With the current rate of consumption, we have enough uranium to last for another seventy to eighty years.</li><li>It’s much more efficient than fossil fuels.</li></ol></td><td><ol><li>Nuclear waste is radioactive and dangerous.</li><li>The waste takes hundreds of years to be safe enough for people.</li><li>Nuclear power plant accidents often lead to serious and long-lasting environmental problems.</li><li>These plants are a major target for terrorists.</li></ol></td></tr></tbody></table>
+<div class="l9-council"><h3>Conclusions of the Wantai City Council Meeting 2018/11/24</h3><ol><li>We don’t want any nuclear power plants in our city, and we also don’t want other cities to build more nuclear power plants. They are too dangerous.</li><li>The waste from our current plants cannot be deposited in our city or anywhere nearby.</li><li>To ensure our living quality, the city will not cut its use of nuclear power.</li></ol><h3>Comment from Mayor</h3><p>We need to think twice about these conclusions. We must save more energy or we need more power plants. Let’s have more discussions before our next meeting.</p></div></div></div></article><div class="cards reading-questions"><article class="qcard" data-category="reading" data-qid="l9-reading-1" data-sec="reading"><div class="qnum">素養閱讀 1</div><div class="stem">According to the above table, what is the major concern with nuclear power?</div><div class="opts"><span class="opt">(A) Cost.</span><span class="opt">(B) Pollution.</span><span class="opt">(C) Safety.</span><span class="opt">(D) Efficiency.</span></div><div class="card-actions"><button class="reveal" onclick="openLongReview(this)">顯示答案與解析</button></div><div class="answer"><b>答案：C — Safety.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Safety.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">Cons 中核廢料有放射性且危險、核電事故造成長期環境問題，且核電廠可能成為恐怖分子目標；主要疑慮是安全性。</div></div></div></div></article><article class="qcard" data-category="reading" data-qid="l9-reading-2" data-sec="reading"><div class="qnum">素養閱讀 2</div><div class="stem">Which of the following is mentioned in both pros and cons?</div><div class="opts"><span class="opt">(A) Waste.</span><span class="opt">(B) Safety.</span><span class="opt">(C) Cost.</span><span class="opt">(D) Efficiency.</span></div><div class="card-actions"><button class="reveal" onclick="openLongReview(this)">顯示答案與解析</button></div><div class="answer"><b>答案：A — Waste.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Waste.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">Pros 第一點提到 nuclear waste 仍是問題；Cons 前兩點也都談 nuclear waste，因此選 Waste。</div></div></div></div></article><article class="qcard" data-category="reading" data-qid="l9-reading-3" data-sec="reading"><div class="qnum">素養閱讀 3</div><div class="stem">Which is correct?</div><div class="opts"><span class="opt">(A) The Wantai city council believes that nuclear power plants are very safe.</span><span class="opt">(B) The Wantai city council encourages residents to save more energy.</span><span class="opt">(C) The Wantai city council will open up a site to store nuclear waste.</span><span class="opt">(D) The city mayor of Wantai does not fully agree with the council meeting’s conclusions.</span></div><div class="card-actions"><button class="reveal" onclick="openLongReview(this)">顯示答案與解析</button></div><div class="answer"><b>答案：D — The city mayor of Wantai does not fully agree with the council meeting’s conclusions.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">The city mayor of Wantai does not fully agree with the council meeting’s conclusions.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">市長評論第一句為 “We need to think twice about these conclusions.”，表示市長並未完全同意市議會的結論。</div></div></div></div></article></div><div class="card-actions reading-group-actions"><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div></div></section><section id="translation"><h2>翻譯</h2><div class="cards"><article class="qcard" data-category="translation" data-qid="l9-translation-1" data-sec="translation"><div class="qnum">翻譯 1</div><div class="stem"><span class="zh">你現在試穿的T恤也有白色、黑色和海軍藍。</span></div><div class="translation-prompt">The T-shirt you are trying on right now also comes in white, black, and navy blue.</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>The T-shirt you are trying on right now also comes in white, black, and navy blue.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">The T-shirt you are trying on right now also comes in white, black, and navy blue.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">come in＝具有（形狀、顏色、大小等）。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="l9-translation-2" data-sec="translation"><div class="qnum">翻譯 2</div><div class="stem"><span class="zh">臭豆腐味道獨特。有些人喜歡而有些人討厭它。</span></div><div class="translation-prompt">Stinky tofu has a special smell. Some love it, while/whereas some/others hate it.</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>Stinky tofu has a special smell. Some love it, while/whereas some/others hate it.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Stinky tofu has a special smell. Some love it, while/whereas some/others hate it.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">Some..., while/whereas some/others... 用來呈現兩組對比。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="l9-translation-3" data-sec="translation"><div class="qnum">翻譯 3</div><div class="stem"><span class="zh">這個社區的鞋店賣的鞋子有各種顏色、尺寸。</span></div><div class="translation-prompt">The shoe store in our community sells shoes which come in various colors and sizes.</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>The shoe store in our community sells shoes which come in various colors and sizes.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">The shoe store in our community sells shoes which come in various colors and sizes.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">community＝社區；come in various colors and sizes＝有各種顏色與尺寸。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="l9-translation-4" data-sec="translation"><div class="qnum">翻譯 4</div><div class="stem"><span class="zh">一說到塗鴉，每個人的立場都不同。有些人將其視為一種表達創意與感受的方法，而有人認為它不過只是視覺的汙染。</span></div><div class="translation-prompt">When it comes to graffiti, one man’s meat is another man’s poison. Some people regard it as a way of expressing one’s creativity and feelings, while others think that it is nothing but visual pollution.</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>When it comes to graffiti, one man’s meat is another man’s poison. Some people regard it as a way of expressing one’s creativity and feelings, while others think that it is nothing but visual pollution.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">When it comes to graffiti, one man’s meat is another man’s poison. Some people regard it as a way of expressing one’s creativity and feelings, while others think that it is nothing but visual pollution.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">when it comes to + N/V-ing＝說到……；nothing but＝只不過；僅僅。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="l9-translation-5" data-sec="translation"><div class="qnum">翻譯 5</div><div class="stem"><span class="zh">如果你一直工作不休息，你就無法擺脫感冒。</span></div><div class="translation-prompt">If you keep working instead of taking a rest, you cannot get rid of the cold.</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>If you keep working instead of taking a rest, you cannot get rid of the cold.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">If you keep working instead of taking a rest, you cannot get rid of the cold.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">instead of + N/V-ing；get rid of＝去除、擺脫。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="l9-translation-6" data-sec="translation"><div class="qnum">翻譯 6</div><div class="stem"><span class="zh">說到肢體語言，OK 手勢（gesture）在日本代表錢，然而它在法國卻代表零。</span></div><div class="translation-prompt">When it comes to body language, the OK gesture stands for money in Japan, while it represents zero in France.</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>When it comes to body language, the OK gesture stands for money in Japan, while it represents zero in France.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">When it comes to body language, the OK gesture stands for money in Japan, while it represents zero in France.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">stand for / represent＝代表；while 表對比。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="l9-translation-7" data-sec="translation"><div class="qnum">翻譯 7</div><div class="stem"><span class="zh">有些學生很積極，而有些有點懶惰。</span></div><div class="translation-prompt">Some students are very active, while/whereas some (students)/others are a little lazy.</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>Some students are very active, while/whereas some (students)/others are a little lazy.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Some students are very active, while/whereas some (students)/others are a little lazy.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">Some..., while/whereas some/others...。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="l9-translation-8" data-sec="translation"><div class="qnum">翻譯 8</div><div class="stem"><span class="zh">每個人都被外面的噪音嚇到，不知道發生了什麼事。（用分詞構句）</span></div><div class="translation-prompt">Everyone was surprised by the noise outside, not knowing what had happened.</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>Everyone was surprised by the noise outside, not knowing what had happened.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Everyone was surprised by the noise outside, not knowing what had happened.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">not knowing 還原為 and they did not know...，為分詞構句。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="l9-translation-9" data-sec="translation"><div class="qnum">翻譯 9</div><div class="stem"><span class="zh">爺爺坐在沙發上讀一本有趣的書。（用分詞構句）</span></div><div class="translation-prompt">Grandpa was sitting on the sofa, reading an interesting book.</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>Grandpa was sitting on the sofa, reading an interesting book.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Grandpa was sitting on the sofa, reading an interesting book.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">reading 還原為 and he was reading...，省略連接詞與重複主詞形成分詞構句。</div></div></div></div></article><article class="qcard" data-category="translation" data-qid="l9-translation-10" data-sec="translation"><div class="qnum">翻譯 10</div><div class="stem"><span class="zh">有些人喜歡在網上購物，然而有些人偏愛到實體商店買東西。（Some..., while others...）</span></div><div class="translation-prompt">Some people like shopping online, while/whereas others prefer buying things at a real store.</div><div class="write-line"></div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示參考答案</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button><button class="wrongBtn" onclick="toggleWrong(this)">☆ 加入我的錯題</button></div><div class="answer"><b>Some people like shopping online, while/whereas others prefer buying things at a real store.</b><div class="detail-analysis"><div class="detail-section"><div class="detail-title">完整英文句子／答案</div><div class="detail-body">Some people like shopping online, while/whereas others prefer buying things at a real store.</div></div><div class="detail-section"><div class="detail-title">判斷重點</div><div class="detail-body">prefer + N/V-ing；while/whereas 連接兩個語意對比的子句。</div></div></div></div></article></div></section><section id="wrongBank"><h2>我的錯題</h2>
+<div class="wrong-summary"><div><b>錯題複習區</b><span id="wrongCount">目前 0 題</span></div><div class="wrong-tools"><button class="secondary" onclick="selectAllWrong(true)">全選</button><button class="secondary" onclick="selectAllWrong(false)">取消全選</button><button class="primary" onclick="printWrong('student')">產生學生影印版</button><button class="secondary teacherPrint" onclick="printWrong('teacher')">產生教師答案版</button></div></div>
+<div class="wrong-empty" id="wrongEmpty">目前還沒有錯題。回到題目頁，按「☆ 加入我的錯題」即可收藏。</div>
+<div class="cards" id="wrongList"></div></section>
+<section aria-hidden="true" class="print-sheet" id="printSheet"></section><section id="custom"><h2>自訂題目</h2>
+<article class="editor">
+<label>題目</label><textarea id="cq" placeholder="可直接貼上題目文字"></textarea>
+<label>答案</label><textarea id="ca" placeholder="輸入答案"></textarea>
+<label>解析</label><textarea id="ce" placeholder="可選填解析"></textarea>
+<button class="primary" onclick="addCustom()">加入自訂題目</button>
+<button class="secondary" onclick="clearCustom()">清除所有自訂題目</button>
+</article><div class="cards" id="customList"></div></section>
+</main>
+<button class="floatTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="focus-overlay" id="focusOverlay" onclick="overlayClose(event)"><div class="focus-shell"><div class="focus-toolbar"><button class="focus-close" onclick="closeFocus()">返回全部題目</button></div><div id="focusContent"></div></div></div><div class="review-overlay" id="reviewOverlay" onclick="reviewOverlayClose(event)"><div class="review-shell"><div class="review-toolbar"><h3 id="reviewTitle">集中解析</h3><button class="review-close" onclick="closeLongReview()">返回作答</button></div><div class="review-scroll" id="reviewContent"></div></div></div>
+<script>
+
+let fontStep=Number(localStorage.getItem('lesson1_fontStep')||0);
+function applyFont(){document.documentElement.style.fontSize=(16+fontStep*2)+'px';}
+function changeFont(d){fontStep=Math.max(-2,Math.min(3,fontStep+d));localStorage.setItem('lesson1_fontStep',fontStep);applyFont();}
+function resetFont(){fontStep=0;localStorage.setItem('lesson1_fontStep',0);applyFont();}
+applyFont();
+let focusOriginal=null, focusPlaceholder=null, focusOrigin='normal';
+function openFocus(btn,origin='normal'){
+  const card=btn.closest('.qcard,.passage');if(!card)return;
+  focusOrigin=origin;
+  focusOriginal=card;focusPlaceholder=document.createComment('focus-placeholder');
+  card.parentNode.insertBefore(focusPlaceholder,card);
+  document.getElementById('focusContent').appendChild(card);
+  const overlay=document.getElementById('focusOverlay');
+  const cat=card.dataset.category||'';
+  overlay.classList.toggle('long-focus',cat==='structure'||cat==='wordbank');
+  const reveal=card.querySelector('.reveal');
+  if(reveal&&!card.querySelector('.focusReturnInline')){
+    const back=document.createElement('button');
+    back.className='focus-close focusReturnInline';back.textContent=(focusOrigin==='wrong'?'返回錯題區':'返回全部題目');back.onclick=closeFocus;
+    const actions=card.querySelector('.card-actions');
+    if(actions) actions.appendChild(back); else reveal.insertAdjacentElement('afterend',back);
+  }
+  document.getElementById('focusOverlay').classList.add('show');document.body.classList.add('focus-mode');
+}
+function closeFocus(){
+  if(focusOriginal){const back=focusOriginal.querySelector('.focusReturnInline');if(back)back.remove();}
+  if(focusOriginal&&focusPlaceholder&&focusPlaceholder.parentNode){focusPlaceholder.parentNode.insertBefore(focusOriginal,focusPlaceholder);focusPlaceholder.remove();}
+  const overlay=document.getElementById('focusOverlay');overlay.classList.remove('show','long-focus');document.body.classList.remove('focus-mode');focusOriginal=null;focusPlaceholder=null;focusOrigin='normal';
+}
+function overlayClose(e){if(e.target.id==='focusOverlay')closeFocus();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('focusOverlay').classList.contains('show'))closeFocus();});
+function toggleAns(btn){
+  const mini=btn.closest('.mini');
+  const card=mini || btn.closest('.qcard,.passage');
+  if(!card)return;
+  const a=card.querySelector('.answer');
+  if(!a)return;
+  a.classList.toggle('show');
+  const isShow=a.classList.contains('show');
+  const original=btn.dataset.originalLabel || btn.textContent;
+  if(!btn.dataset.originalLabel) btn.dataset.originalLabel=original;
+  if(isShow){
+    btn.textContent=original.includes('全部')?'隱藏全部答案':(original.includes('參考')?'隱藏參考答案':(original.includes('解析')?'隱藏答案／解析':'隱藏答案'));
+  }else{
+    btn.textContent=btn.dataset.originalLabel;
+  }
+}
+function showSection(id,btn){
+  const sections=[...document.querySelectorAll('main>section')].filter(sec=>sec.id!=='printSheet');
+  const showAll=id==='all';
+  sections.forEach(sec=>{
+    const visible=showAll || sec.id===id;
+    sec.classList.toggle('view-hidden',!visible);
+    sec.classList.toggle('view-active',visible&&!showAll);
+  });
+  document.body.classList.toggle('single-section',!showAll);
+  document.querySelectorAll('.nav button[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===id));
+  if(id==='wrongBank') renderWrongBank();
+  // 切換分類時直接回到內容頂端，不使用平滑捲動動畫。
+  const main=document.querySelector('main');
+  if(main){const y=main.getBoundingClientRect().top+window.scrollY-document.querySelector('header').offsetHeight-8;window.scrollTo({top:Math.max(0,y),behavior:'auto'});}
+  try{sessionStorage.setItem('lesson9_active_view',id)}catch(e){}
+}
+function goTo(id){
+  const b=document.querySelector(`.nav button[data-view="${id}"]`);
+  showSection(id,b);
+}
+function initSectionView(){
+  let id='all';
+  try{id=sessionStorage.getItem('lesson9_active_view')||'all'}catch(e){}
+  if(!document.getElementById(id)&&id!=='all')id='all';
+  const b=document.querySelector(`.nav button[data-view="${id}"]`);
+  showSection(id,b);
+}
+
+function loadCustom(){const data=JSON.parse(localStorage.getItem('lesson9_custom')||'[]');const box=document.getElementById('customList');box.innerHTML='';data.forEach((x,i)=>{const el=document.createElement('article');el.className='qcard';el.innerHTML=`<div class="qnum">自訂題目 ${i+1}</div><div class="stem">${escapeHtml(x.q)}</div><div class="card-actions"><button class="reveal" onclick="toggleAns(this)">顯示答案與解析</button><button class="focusBtn" onclick="openFocus(this)">單題放大</button></div><div class="answer"><b>答案：${escapeHtml(x.a)}</b><p>${escapeHtml(x.e||'')}</p></div>`;box.appendChild(el)})}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function addCustom(){const q=document.getElementById('cq').value.trim(),a=document.getElementById('ca').value.trim(),e=document.getElementById('ce').value.trim();if(!q){alert('請先輸入題目');return}const data=JSON.parse(localStorage.getItem('lesson9_custom')||'[]');data.push({q,a,e});localStorage.setItem('lesson9_custom',JSON.stringify(data));document.getElementById('cq').value='';document.getElementById('ca').value='';document.getElementById('ce').value='';loadCustom()}
+function clearCustom(){if(confirm('確定清除所有自訂題目？')){localStorage.removeItem('lesson9_custom');loadCustom()}}
+loadCustom();
+
+
+// V12 我的錯題與 A4 輸出
+const WRONG_KEY='lesson9_wrong_v1';
+function wrongIds(){try{return JSON.parse(localStorage.getItem(WRONG_KEY)||'[]')}catch(e){return[]}}
+function saveWrong(ids){localStorage.setItem(WRONG_KEY,JSON.stringify([...new Set(ids)]));syncWrongButtons();renderWrongBank()}
+function toggleWrong(btn){const card=btn.closest('[data-qid]');if(!card)return;const id=card.dataset.qid;let ids=wrongIds();ids=ids.includes(id)?ids.filter(x=>x!==id):[...ids,id];saveWrong(ids)}
+function syncWrongButtons(){const ids=wrongIds();document.querySelectorAll('[data-qid] .wrongBtn').forEach(b=>{const c=b.closest('[data-qid]');const on=c&&ids.includes(c.dataset.qid);b.classList.toggle('active',!!on);b.textContent=on?'★ 已加入我的錯題':'☆ 加入我的錯題'})}
+function categoryName(id){return ({vocab:'文意字彙',grammar:'文法',cloze:'綜合測驗',wordbank:'文意選填',structure:'篇章結構',reading:'素養閱讀',translation:'翻譯',custom:'自訂題目'})[id]||id}
+function getSourceCard(id){
+  // 只從正式題庫區尋找來源，避免錯題清單或單題浮層中的複本干擾。
+  const esc=CSS.escape(id);
+  return document.querySelector(`main > section:not(#wrongBank) [data-qid="${esc}"]`) ||
+         document.querySelector(`#focusContent [data-qid="${esc}"]`);
+}
+// V22：錯題區一律維持「待重作」狀態，不提前洩漏答案。
+function sanitizeWrongPreview(node){
+  if(!node)return node;
+  node.classList?.remove('answers-inline');
+  node.querySelectorAll?.('.filled-answer').forEach(x=>x.remove());
+  node.querySelectorAll?.('.answer').forEach(a=>{a.classList.remove('show');a.style.display='';});
+  return node;
+}
+function resetSourceForRetry(src){
+  if(!src)return;
+  // V27：再次複習一定回到原始作答狀態，清除上一輪解析模式殘留。
+  src.classList.remove('structure-answer-mode','wordbank-answer-mode');
+  src.querySelectorAll(':scope > .structure-inline-explain,:scope > .wordbank-inline-explain').forEach(x=>x.remove());
+  src.querySelectorAll('.answer').forEach(a=>{a.classList.remove('show');a.style.display='';});
+  src.querySelectorAll('.passagetext.answers-inline').forEach(t=>t.classList.remove('answers-inline'));
+  src.querySelectorAll('.filled-answer').forEach(x=>x.remove());
+  src.querySelectorAll('button.reveal').forEach(b=>{
+    const t=b.textContent.trim();
+    if(t.includes('隱藏')){
+      if((src.dataset.category||'')==='translation') b.textContent='顯示參考答案';
+      else if((src.dataset.category||'')==='wordbank'||(src.dataset.category||'')==='structure') b.textContent='顯示答案與解析';
+      else b.textContent='顯示答案與解析';
+    }
+  });
+}
+function renderWrongBank(){
+  const ids=wrongIds(),list=document.getElementById('wrongList'),empty=document.getElementById('wrongEmpty'),count=document.getElementById('wrongCount');
+  if(!list)return;
+  list.innerHTML='';
+  const valid=ids.map(id=>({id,src:getSourceCard(id)})).filter(x=>x.src);
+  count.textContent=`目前 ${valid.length} 題`;
+  empty.style.display=valid.length?'none':'block';
+  const order=['vocab','grammar','cloze','wordbank','structure','reading','translation','custom'];
+  const groups=new Map();
+  valid.forEach(x=>{const cat=x.src.dataset.category||'other';if(!groups.has(cat))groups.set(cat,[]);groups.get(cat).push(x)});
+  [...groups.keys()].sort((a,b)=>{const ai=order.indexOf(a),bi=order.indexOf(b);return (ai<0?999:ai)-(bi<0?999:bi)}).forEach(cat=>{
+    const items=groups.get(cat);
+    const group=document.createElement('div');group.className='wrong-category-group';
+    const head=document.createElement('div');head.className='wrong-category-head';
+    head.innerHTML=`<h3>${escapeHtml(categoryName(cat))}</h3><span>${items.length} 題</span>`;
+    group.appendChild(head);
+    const grid=document.createElement('div');grid.className='cards wrong-category-cards';
+    const isLongWrong=['cloze','wordbank','structure','reading'].includes(cat);
+    if(isLongWrong)group.classList.add('wrong-long-group');
+    items.forEach(({id,src})=>{
+      const wrap=document.createElement('article');
+      wrap.className='qcard wrong-review-card'+(isLongWrong?' wrong-long-card':'');
+      wrap.dataset.sourceId=id;wrap.dataset.category=cat;
+      const title=src.querySelector('.qnum')?.textContent || src.querySelector('h3')?.textContent || categoryName(cat);
+      wrap.innerHTML=`<label class="wrong-card-select"><input type="checkbox" class="wrongPick" value="${id}" checked> ${escapeHtml(title)}</label>`;
+      if(isLongWrong){
+        const clone=sanitizeWrongPreview(src.cloneNode(true));
+        clone.classList.add('wrong-fullwidth-content');
+        clone.querySelectorAll('.card-actions,.wrongBtn,.focusBtn,button').forEach(x=>x.remove());
+        clone.querySelectorAll('.answer').forEach(a=>{a.classList.remove('show');a.style.display='';});
+        wrap.appendChild(clone);
+      }else{
+        const stem=sanitizeWrongPreview(src.querySelector('.stem,.passagetext')?.cloneNode(true));
+        const opts=sanitizeWrongPreview(src.querySelector('.opts,.miniwrap,.bank')?.cloneNode(true));
+        if(src.querySelector('.bank') && opts)wrap.appendChild(opts);
+        if(stem)wrap.appendChild(stem);
+        if(!src.querySelector('.bank') && opts)wrap.appendChild(opts);
+      }
+      const acts=document.createElement('div');acts.className='wrong-review-actions';
+      acts.innerHTML=`<button class="focusBtn" onclick="reviewWrong('${id}')">再次複習</button><button class="secondary" onclick="removeWrong('${id}')">移出錯題</button>`;
+      wrap.appendChild(acts);grid.appendChild(wrap);
+    });
+    group.appendChild(grid);list.appendChild(group);
+  });
+}
+function removeWrong(id){saveWrong(wrongIds().filter(x=>x!==id))}
+function selectAllWrong(on){document.querySelectorAll('.wrongPick').forEach(x=>x.checked=on)}
+function reviewWrong(id){
+  const src=getSourceCard(id);if(!src)return;
+  resetSourceForRetry(src);
+  const cat=src.dataset.category||'';
+  if(['cloze','reading'].includes(cat)){
+    const section=src.closest('section');
+    const sectionId=section?.id||cat;
+    showSection(sectionId);
+    setTimeout(()=>src.scrollIntoView({behavior:'smooth',block:'start'}),60);
+    return;
+  }
+  const b=src.querySelector('.focusBtn');if(b)openFocus(b,'wrong');
+}
+function pickedWrong(){return [...document.querySelectorAll('.wrongPick:checked')].map(x=>x.value)}
+function cleanPrintClone(src,teacher){const c=src.cloneNode(true);c.querySelectorAll('.card-actions,.focusReturnInline,.wrongBtn,.focusBtn,button').forEach(x=>x.remove());c.querySelectorAll('.answer').forEach(a=>{a.classList.remove('show');if(teacher)a.style.display='block'});return c}
+function printWrong(mode){const ids=pickedWrong();if(!ids.length){alert('請先勾選至少一題錯題。');return}const sheet=document.getElementById('printSheet');const teacher=mode==='teacher';sheet.className='print-sheet '+(teacher?'print-teacher':'print-student');sheet.innerHTML=`<div class="print-head"><h1>Lesson Nine ${teacher?'錯題教師答案版':'我的錯題練習'}</h1></div><div class="print-meta"><span>姓名：________________</span><span>日期：________________</span><span>共 ${ids.length} 題</span></div>`;ids.forEach((id,i)=>{const src=getSourceCard(id);if(!src)return;const cat=src.dataset.category||'';const box=document.createElement('div');box.className='print-question'+(['cloze','wordbank','structure','reading'].includes(cat)?' print-long-question':'');const label=document.createElement('div');label.className='print-qnum';label.textContent=`${i+1}. ${src.querySelector('.qnum')?.textContent||src.querySelector('h3')?.textContent||categoryName(cat)}`;box.appendChild(label);const clone=cleanPrintClone(src,teacher);clone.removeAttribute('hidden');clone.querySelectorAll('[hidden]').forEach(x=>x.removeAttribute('hidden'));const qn=clone.querySelector('.qnum');if(qn)qn.remove();box.appendChild(clone);sheet.appendChild(box)});sheet.setAttribute('aria-hidden','false');setTimeout(()=>window.print(),80)}
+function migrateReadingWrong(){
+  const ids=wrongIds();
+  const readingIds=[...document.querySelectorAll('#reading .reading-questions [data-qid]')].map(x=>x.dataset.qid);
+  if(!ids.some(id=>readingIds.includes(id)))return;
+  const next=ids.filter(id=>!readingIds.includes(id));
+  if(!next.includes('l9-reading-group'))next.push('l9-reading-group');
+  localStorage.setItem(WRONG_KEY,JSON.stringify([...new Set(next)]));
+}
+function initWrongSystem(){migrateReadingWrong();syncWrongButtons();renderWrongBank()}
+initWrongSystem();
+initSectionView();
+
+
+/* V21：文意選填／篇章結構顯示答案時同步回填原文。 */
+function setInlineAnswers(card,show){
+  if(!card || !['wordbank','structure'].includes(card.dataset.category||'')) return;
+  const text=card.querySelector('.passagetext'); if(!text) return;
+  text.querySelectorAll('.inline-blank').forEach(blank=>{
+    let filled=blank.querySelector('.filled-answer');
+    if(!filled){
+      filled=document.createElement('span'); filled.className='filled-answer';
+      filled.textContent=blank.dataset.answer||''; blank.appendChild(filled);
+    }
+  });
+  text.classList.toggle('answers-inline',!!show);
+}
+const _v21ToggleAns=toggleAns;
+toggleAns=function(btn){
+  const mini=btn.closest('.mini');
+  const card=mini || btn.closest('.qcard,.passage');
+  _v21ToggleAns(btn);
+  if(card && !mini && ['wordbank','structure'].includes(card.dataset.category||'')){
+    const a=card.querySelector('.answer'); setInlineAnswers(card,!!(a&&a.classList.contains('show')));
+  }
+};
+
+/* V21：綜合測驗／素養閱讀使用中央大型集中解析卡。 */
+function openLongReview(btn){
+  const overlay=document.getElementById('reviewOverlay');
+  const content=document.getElementById('reviewContent');
+  const title=document.getElementById('reviewTitle');
+  content.innerHTML='';
+  if(btn.closest('#cloze')){
+    const passage=btn.closest('article.passage'); if(!passage)return;
+    const h=passage.querySelector('h3'); title.textContent=(h?h.textContent.trim():'綜合測驗')+'｜完整解析';
+    const p=document.createElement('div'); p.className='review-passage';
+    const pt=passage.querySelector('.passagetext'); if(pt)p.innerHTML=pt.innerHTML;
+    content.appendChild(p);
+    passage.querySelectorAll('.mini').forEach((m,i)=>{
+      const q=document.createElement('div'); q.className='review-question';
+      const label=document.createElement('div'); label.className='mini-title'; label.textContent='第 '+(i+1)+' 題'; q.appendChild(label);
+      const opts=m.querySelector('.opts'); if(opts)q.appendChild(opts.cloneNode(true));
+      const ans=m.querySelector('.answer'); if(ans){const ac=ans.cloneNode(true);ac.classList.add('show');q.appendChild(ac);}
+      content.appendChild(q);
+    });
+  }else if(btn.closest('#reading')){
+    const section=document.getElementById('reading'); title.textContent='素養閱讀｜完整解析';
+    const p=document.createElement('div'); p.className='review-passage';    const pt=section.querySelector('.reading-article .passagetext'); if(pt)p.innerHTML=pt.innerHTML;
+    content.appendChild(p);
+    section.querySelectorAll('.reading-questions .qcard').forEach(card=>{
+      const q=document.createElement('div'); q.className='review-question';
+      const qn=card.querySelector('.qnum'); if(qn)q.appendChild(qn.cloneNode(true));
+      const stem=card.querySelector('.stem'); if(stem)q.appendChild(stem.cloneNode(true));
+      const opts=card.querySelector('.opts'); if(opts)q.appendChild(opts.cloneNode(true));
+      const ans=card.querySelector('.answer'); if(ans){const ac=ans.cloneNode(true);ac.classList.add('show');q.appendChild(ac);}
+      content.appendChild(q);
+    });
+  }else return;
+  overlay.classList.add('show'); document.body.style.overflow='hidden';
+  content.scrollTop=0;
+}
+function closeLongReview(){document.getElementById('reviewOverlay').classList.remove('show');document.body.style.overflow='';}
+function reviewOverlayClose(e){if(e.target.id==='reviewOverlay')closeLongReview();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('reviewOverlay').classList.contains('show'))closeLongReview();});
+</script>
+<style id="v23-split-review">
+/* V23：長篇題型完整解析改為左側固定文章、右側獨立捲動解析。 */
+.review-shell{width:min(1460px,96vw);height:min(86vh,920px)}
+.review-body{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:minmax(0,1.58fr) minmax(360px,.92fr);gap:22px;padding:22px 24px 24px;overflow:hidden;background:#fff}
+.review-article-pane{min-width:0;min-height:0;display:flex;align-items:flex-start;justify-content:center;overflow:hidden}
+.review-passage{width:100%;max-width:880px;max-height:100%;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;background:#f7faf8;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:0;font-size:1.04rem;line-height:1.82}
+.review-explain-pane{min-width:0;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:0 8px 18px 2px;border-left:1px solid var(--line);padding-left:20px}
+.review-explain-pane .review-question{margin-top:0;padding:18px 2px}
+.review-explain-pane .review-question:first-child{padding-top:2px}
+.review-passage .review-fill{display:inline;font-weight:900;color:var(--accent);background:#e9f3ee;border-radius:6px;padding:1px 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.review-passage.answers-inline .inline-blank .blank-slot{display:none}
+.review-passage.answers-inline .inline-blank .filled-answer{display:inline;font-weight:900;color:var(--accent);background:#e9f3ee;border-radius:6px;padding:1px 6px}
+@media(max-width:900px){.review-body{grid-template-columns:1fr 1fr;gap:14px;padding:16px}.review-explain-pane{padding-left:14px}.review-passage{padding:16px;font-size:1rem}}
+@media(max-width:680px){.review-shell{height:92vh}.review-body{display:flex;flex-direction:column;overflow:hidden}.review-article-pane{flex:0 0 auto;max-height:42%}.review-explain-pane{flex:1 1 auto;border-left:0;border-top:1px solid var(--line);padding:14px 4px 18px}.review-passage{max-height:100%}}
+</style>
+<script id="v23-split-review-script">
+(function(){
+  function answerLetter(node){const b=node&&node.querySelector('.answer>b');const m=b&&b.textContent.match(/答案[：:]\s*([A-J])/i);return m?m[1].toUpperCase():''}
+  function choiceText(mini,letter){
+    const spans=[...mini.querySelectorAll('.miniopts span,.opts span')];
+    const sp=spans.find(x=>new RegExp('\\('+letter+'\\)','i').test(x.textContent));
+    return sp?sp.textContent.replace(new RegExp('^\\s*\\('+letter+'\\)\\s*','i'),'').trim():'';
+  }
+  function completedCloze(passage){
+    const p=document.createElement('div');p.className='review-passage';
+    const pt=passage.querySelector('.passagetext');if(!pt)return p;
+    p.innerHTML=pt.innerHTML;
+    const blanks=[...p.querySelectorAll('b')];
+    passage.querySelectorAll('.mini').forEach((mini,i)=>{
+      const n=i+1, letter=answerLetter(mini), raw=choiceText(mini,letter);
+      let parts=raw.split(';').map(x=>x.trim());
+      if(raw==='（不填）'||raw==='(不填)'||raw==='不填')parts=[''];
+      const targets=blanks.filter(b=>new RegExp('^\\s*'+n+'\\.').test(b.textContent));
+      targets.forEach((b,j)=>{
+        const val=parts[Math.min(j,parts.length-1)]||'';
+        b.innerHTML=n+'. '+(val?'<span class="review-fill">'+val.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</span>':'<span class="review-fill">（不填）</span>');
+      });
+    });
+    return p;
+  }
+  function completedInline(card){
+    const p=document.createElement('div');p.className='review-passage answers-inline';
+    const pt=card.querySelector('.passagetext');if(!pt)return p;
+    p.innerHTML=pt.innerHTML;
+    p.querySelectorAll('.inline-blank').forEach(blank=>{
+      blank.querySelectorAll('.filled-answer').forEach(x=>x.remove());
+      const f=document.createElement('span');f.className='filled-answer';f.textContent=blank.dataset.answer||'';blank.appendChild(f);
+    });
+    return p;
+  }
+  function buildQuestionsFromMinis(passage){
+    const pane=document.createElement('div');pane.className='review-explain-pane';
+    passage.querySelectorAll('.mini').forEach((m,i)=>{
+      const q=document.createElement('div');q.className='review-question';
+      const label=document.createElement('div');label.className='mini-title';label.textContent='第 '+(i+1)+' 題';q.appendChild(label);
+      const opts=m.querySelector('.miniopts,.opts');if(opts)q.appendChild(opts.cloneNode(true));
+      const ans=m.querySelector('.answer');if(ans){const ac=ans.cloneNode(true);ac.classList.add('show');q.appendChild(ac)}
+      pane.appendChild(q);
+    });return pane;
+  }
+  function buildQuestionsFromAnswer(card){
+    const pane=document.createElement('div');pane.className='review-explain-pane';
+    const ans=card.querySelector('.answer');
+    if(ans){const detail=ans.querySelector('.detail-analysis');if(detail){[...detail.children].forEach((sec,i)=>{const q=document.createElement('div');q.className='review-question';q.appendChild(sec.cloneNode(true));pane.appendChild(q)})}else{const q=document.createElement('div');q.className='review-question';q.appendChild(ans.cloneNode(true));pane.appendChild(q)}}
+    return pane;
+  }
+  function showSplitReview(titleText,article,pane,returnText){
+    const overlay=document.getElementById('reviewOverlay'),content=document.getElementById('reviewContent'),title=document.getElementById('reviewTitle'),close=overlay.querySelector('.review-close');
+    title.textContent=titleText;close.textContent=returnText||'返回作答';content.innerHTML='';content.className='review-body';
+    const left=document.createElement('div');left.className='review-article-pane';left.appendChild(article);content.appendChild(left);content.appendChild(pane);
+    overlay.classList.add('show');document.body.style.overflow='hidden';pane.scrollTop=0;article.scrollTop=0;
+  }
+  window.openLongReview=function(btn){
+    if(btn.closest('#cloze')){
+      const passage=btn.closest('article.passage');if(!passage)return;const h=passage.querySelector('h3');
+      showSplitReview((h?h.textContent.trim():'綜合測驗')+'｜完整解析',completedCloze(passage),buildQuestionsFromMinis(passage),window.focusOrigin==='wrong'?'返回錯題區':'返回作答');return;
+    }
+    if(btn.closest('#reading')){
+      const section=document.getElementById('reading'),p=document.createElement('div');p.className='review-passage';const pt=section.querySelector('.reading-article .passagetext');if(pt)p.innerHTML=pt.innerHTML;
+      const pane=document.createElement('div');pane.className='review-explain-pane';section.querySelectorAll('.reading-questions .qcard').forEach(card=>{const q=document.createElement('div');q.className='review-question';['.qnum','.stem','.opts','.answer'].forEach(sel=>{const x=card.querySelector(sel);if(x){const c=x.cloneNode(true);if(sel==='.answer')c.classList.add('show');q.appendChild(c)}});pane.appendChild(q)});
+      showSplitReview('素養閱讀｜完整解析',p,pane,window.focusOrigin==='wrong'?'返回錯題區':'返回作答');return;
+    }
+  };
+  const prevToggle=window.toggleAns;
+  window.toggleAns=function(btn){
+    const card=btn.closest('.qcard,.passage');const cat=card&&card.dataset.category;
+    if(card && (cat==='wordbank'||cat==='structure') && document.getElementById('focusOverlay').classList.contains('show')){
+      setInlineAnswers(card,true);
+      const h=card.querySelector('h3');
+      showSplitReview((h?h.textContent.trim():categoryName(cat))+'｜完整解析',completedInline(card),buildQuestionsFromAnswer(card),window.focusOrigin==='wrong'?'返回錯題區':'返回作答');
+      return;
+    }
+    return prevToggle(btn);
+  };
+  const oldClose=window.closeLongReview;
+  window.closeLongReview=function(){
+    const content=document.getElementById('reviewContent');content.className='review-scroll';
+    document.getElementById('reviewOverlay').classList.remove('show');document.body.style.overflow='';
+    if(document.getElementById('focusOverlay').classList.contains('show')) document.body.classList.add('focus-mode');
+  };
+})();
+</script>
+<style id="v24-long-focus-side-options">
+/* V24：文意選填／篇章結構「再次複習」放大畫面：左文章可捲動、右選項固定。
+   顯示答案後仍沿用 V23：左側完成文章、右側解析獨立捲動。 */
+@media (min-width: 900px){
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="structure"],
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="wordbank"]{
+    height:82vh;
+    max-height:82vh;
+    display:grid;
+    grid-template-columns:minmax(0,1.72fr) minmax(320px,.78fr);
+    grid-template-rows:auto minmax(0,1fr) auto;
+    grid-template-areas:
+      "title title"
+      "text bank"
+      "actions actions";
+    column-gap:24px;
+    row-gap:14px;
+    overflow:hidden;
+    align-items:stretch;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > h3,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > h3{
+    grid-area:title;
+    margin:0;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .passagetext,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .passagetext{
+    grid-area:text;
+    min-width:0;
+    min-height:0;
+    height:100%;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-gutter:stable;
+    padding:16px 18px 18px 2px;
+    margin:0;
+    line-height:1.82;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .bank,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .bank{
+    grid-area:bank;
+    position:static;
+    align-self:start;
+    width:auto;
+    min-width:0;
+    max-height:100%;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-gutter:stable;
+    margin:0;
+    padding:16px 18px;
+    line-height:1.72;
+    background:#f7faf8;
+    border:1px solid var(--line);
+    border-radius:14px;
+  }
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .card-actions,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .card-actions{
+    grid-area:actions;
+    margin-top:0!important;
+    justify-self:end;
+    align-self:end;
+  }
+  /* 原卡片答案區不佔再次複習版面；按顯示答案後由 V23 集中解析卡呈現。 */
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="structure"] > .answer,
+  body.focus-mode #focusOverlay.long-focus .passage[data-category="wordbank"] > .answer{
+    display:none!important;
+  }
+}
+@media (max-width:899px){
+  /* 小螢幕維持上下配置，避免左右欄過窄。 */
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="structure"],
+  body.focus-mode #focusOverlay.long-focus #focusContent > .passage[data-category="wordbank"]{
+    display:flex;
+    flex-direction:column;
+  }
+}
+</style>
+<style id="v26-desktop-tablet-concentrated">
+/* V27：解析視窗沿用題目放大卡片寬度；解析只切換內容，不突然放寬外框。 */
+@media (min-width: 901px){
+  .review-overlay{padding:22px 28px;}
+  .review-shell{
+    width:min(920px,86vw)!important;
+    height:min(82vh,820px)!important;
+    max-width:920px!important;
+  }
+  .review-body{
+    grid-template-columns:minmax(0,1.5fr) minmax(310px,.9fr)!important;
+    gap:12px!important;
+    padding:16px 18px 18px!important;
+  }
+  .review-passage{
+    width:100%!important;
+    max-width:650px!important;
+    padding:17px 18px!important;
+    font-size:1.01rem!important;
+    line-height:1.76!important;
+  }
+  .review-explain-pane{
+    padding-left:12px!important;
+    padding-right:2px!important;
+  }
+  .review-toolbar{padding:14px 18px!important;}
+}
+/* 平板橫向／較窄桌機：仍保留左右雙欄，但閱讀區維持集中。 */
+@media (min-width: 768px) and (max-width: 1100px){
+  .review-overlay{padding:16px;}
+  .review-shell{width:min(920px,90vw)!important;height:min(84vh,800px)!important;}
+  .review-body{grid-template-columns:minmax(0,1.42fr) minmax(290px,.92fr)!important;gap:10px!important;padding:14px!important;}
+  .review-passage{max-width:560px!important;padding:15px 16px!important;font-size:1rem!important;}
+  .review-explain-pane{padding-left:10px!important;}
+}
+/* 篇章結構一般頁：答案顯示後，右欄由選項切換成可捲動解析。 */
+@media (min-width: 768px){
+  #structure article.passage.structure-answer-mode{
+    grid-template-columns:minmax(0,1.62fr) minmax(330px,.82fr);
+    grid-template-areas:"text explain" "actions explain";
+    gap:16px 22px;
+  }
+  #structure article.passage.structure-answer-mode > h3{display:none;}
+  #structure article.passage.structure-answer-mode > .passagetext{
+    grid-area:text;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;padding-right:10px;
+  }
+  #structure article.passage.structure-answer-mode > .bank{display:none!important;}
+  #structure article.passage.structure-answer-mode > .card-actions{grid-area:actions;}
+  #structure article.passage.structure-answer-mode > .answer{display:none!important;}
+  #structure .structure-inline-explain{
+    grid-area:explain;min-width:0;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;
+    border-left:1px solid var(--line);padding:0 4px 12px 16px;
+  }
+  #structure .structure-inline-explain .detail-section{
+    background:#f7faf8;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 12px;
+  }
+  #structure .structure-inline-explain .detail-title{font-weight:900;color:var(--accent);margin-bottom:8px;}
+  #structure .structure-inline-explain .detail-body{line-height:1.72;}
+
+  /* V27：文意選填一般頁顯示答案後，同一張題目卡內切成左文章、右解析。 */
+  #wordbank article.passage.wordbank-answer-mode{
+    display:grid;grid-template-columns:minmax(0,2.05fr) minmax(285px,.95fr);
+    grid-template-areas:"text explain" "actions explain";gap:16px 18px;align-items:start;
+  }
+  #wordbank article.passage.wordbank-answer-mode > h3{display:none;}
+  #wordbank article.passage.wordbank-answer-mode > .passagetext{
+    grid-area:text;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;padding-right:10px;
+  }
+  #wordbank article.passage.wordbank-answer-mode > .bank{display:none!important;}
+  #wordbank article.passage.wordbank-answer-mode > .card-actions{grid-area:actions;}
+  #wordbank article.passage.wordbank-answer-mode > .answer{display:none!important;}
+  #wordbank .wordbank-inline-explain{
+    grid-area:explain;min-width:0;max-height:66vh;overflow-y:auto;scrollbar-gutter:stable;
+    border-left:1px solid var(--line);padding:0 4px 12px 14px;
+  }
+  #wordbank .wordbank-inline-explain .detail-section{
+    background:#f7faf8;border:1px solid var(--line);border-radius:14px;padding:13px 14px;margin:0 0 11px;
+  }
+  #wordbank .wordbank-inline-explain .detail-title{font-weight:900;color:var(--accent);margin-bottom:7px;}
+  #wordbank .wordbank-inline-explain .detail-body{line-height:1.68;}
+  #wordbank .wordbank-explain-item{margin:0 0 16px;padding-bottom:4px;border-bottom:1px solid var(--line);}
+  #wordbank .wordbank-explain-item:last-child{border-bottom:0;margin-bottom:0;}
+  #wordbank .wordbank-explain-head{font-weight:900;color:var(--ink);font-size:1.02rem;margin:0 0 5px;}
+  #wordbank .wordbank-explain-answer{font-weight:800;color:var(--accent);margin:0 0 9px;line-height:1.55;}
+}
+@media (max-width: 767px){
+  #wordbank article.passage.wordbank-answer-mode > .bank{display:none!important;}
+  #wordbank article.passage.wordbank-answer-mode > .answer{display:none!important;}
+  #wordbank .wordbank-inline-explain{margin-top:14px;padding:0;max-height:none;overflow:visible;border-left:0;}
+  #wordbank .wordbank-explain-item{margin:0 0 16px;}
+  #wordbank .wordbank-explain-head{font-weight:900;color:var(--ink);font-size:1.02rem;margin:0 0 5px;}
+  #wordbank .wordbank-explain-answer{font-weight:800;color:var(--accent);margin:0 0 9px;}
+}
+</style>
+<style id="lesson6-wordbank-fixed-options-layout">
+/* Lesson 3 V2：依 Lesson 2 V4 正式母版修正文意選填。
+   桌機／平板：左側文章獨立捲動，右側選項固定；顯示答案後沿用同寬雙欄解析。 */
+@media (min-width: 768px){
+  #wordbank article.passage:not(.wordbank-answer-mode){
+    display:grid;
+    grid-template-columns:minmax(0,2.05fr) minmax(285px,.95fr);
+    grid-template-rows:auto minmax(0,1fr) auto;
+    grid-template-areas:
+      "title title"
+      "text bank"
+      "actions bank";
+    column-gap:18px;
+    row-gap:14px;
+    align-items:stretch;
+    overflow:hidden;
+  }
+  #wordbank article.passage:not(.wordbank-answer-mode) > h3{grid-area:title;margin-bottom:0;}
+  #wordbank article.passage:not(.wordbank-answer-mode) > .passagetext{
+    grid-area:text;min-width:0;min-height:0;max-height:66vh;overflow-y:auto;
+    overscroll-behavior:contain;scrollbar-gutter:stable;padding-right:10px;margin:0;
+  }
+  #wordbank article.passage:not(.wordbank-answer-mode) > .bank{
+    grid-area:bank;position:static;align-self:start;min-width:0;width:auto;max-height:66vh;
+    overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;margin:0;
+  }
+  #wordbank article.passage:not(.wordbank-answer-mode) > .card-actions{grid-area:actions;margin-top:0;}
+  #wordbank article.passage:not(.wordbank-answer-mode) > .answer{display:none;}
+}
+</style>
+<script id="v26-structure-answer-switch">
+(function(){
+  const previous=window.toggleAns;
+  window.toggleAns=function(btn){
+    const card=btn.closest('.passage');
+    const isStructure=card && card.dataset.category==='structure';
+    const inFocus=!!btn.closest('#focusOverlay');
+    const result=previous(btn);
+    if(isStructure && !inFocus){
+      const ans=card.querySelector(':scope > .answer');
+      const showing=!!(ans && ans.classList.contains('show'));
+      let pane=card.querySelector(':scope > .structure-inline-explain');
+      if(showing){
+        if(!pane){
+          pane=document.createElement('div');
+          pane.className='structure-inline-explain';
+          const detail=ans && ans.querySelector('.detail-analysis');
+          if(detail) [...detail.children].forEach(x=>pane.appendChild(x.cloneNode(true)));
+          card.appendChild(pane);
+        }
+        card.classList.add('structure-answer-mode');
+      }else{
+        card.classList.remove('structure-answer-mode');
+        if(pane) pane.remove();
+      }
+    }
+    return result;
+  };
+})();
+</script>
+<script id="v27-wordbank-answer-switch-and-retry-fix">
+(function(){
+  const previous=window.toggleAns;
+  window.toggleAns=function(btn){
+    const card=btn.closest('.passage');
+    const isWordbank=card && card.dataset.category==='wordbank';
+    const inFocus=!!btn.closest('#focusOverlay');
+    const result=previous(btn);
+    if(isWordbank && !inFocus){
+      const ans=card.querySelector(':scope > .answer');
+      const showing=!!(ans && ans.classList.contains('show'));
+      let pane=card.querySelector(':scope > .wordbank-inline-explain');
+      if(showing){
+        if(!pane){
+          pane=document.createElement('div');
+          pane.className='wordbank-inline-explain';
+          ans.querySelectorAll(':scope > .mini').forEach((mini,index)=>{
+            const item=document.createElement('div');
+            item.className='wordbank-explain-item';
+            const qnum=(mini.querySelector('.qnum')?.textContent||String(index+1)).trim();
+            const head=document.createElement('div');
+            head.className='wordbank-explain-head';
+            head.textContent='第 '+qnum+' 題';
+            item.appendChild(head);
+            const answerLine=mini.querySelector(':scope > .answer > b');
+            if(answerLine){
+              const line=document.createElement('div');
+              line.className='wordbank-explain-answer';
+              line.innerHTML=answerLine.innerHTML;
+              item.appendChild(line);
+            }
+            const detail=mini.querySelector(':scope > .answer > .detail-analysis');
+            if(detail) [...detail.children].forEach(x=>item.appendChild(x.cloneNode(true)));
+            pane.appendChild(item);
+          });
+          card.appendChild(pane);
+        }
+        card.classList.add('wordbank-answer-mode');
+      }else{
+        card.classList.remove('wordbank-answer-mode');
+        if(pane) pane.remove();
+      }
+    }
+    return result;
+  };
+})();
+</script>
+<script id="l3-structure-return-to-practice">
+(function(){
+  const open = window.openFocus;
+  window.openFocus = function(btn,origin){
+    const card=btn.closest('.passage[data-category="structure"]');
+    if(card){
+      const answer=card.querySelector(':scope > .answer');
+      if(answer) answer.classList.remove('show');
+      const pane=card.querySelector(':scope > .structure-inline-explain');
+      if(pane) pane.remove();
+      card.classList.remove('structure-answer-mode');
+      setInlineAnswers(card,false);
+      const reveal=card.querySelector(':scope > .card-actions > .reveal');
+      if(reveal) reveal.textContent=reveal.dataset.originalLabel||'顯示答案';
+    }
+    return open(btn,origin);
+  };
+  const close = window.closeLongReview;
+  window.closeLongReview = function(){
+    const isStructure = document.getElementById('reviewOverlay').classList.contains('show')
+      && document.getElementById('reviewTitle').textContent.includes('篇章結構')
+      && document.getElementById('focusOverlay').classList.contains('show');
+    close();
+    if(isStructure){
+      const card=document.querySelector('#focusContent > .passage[data-category="structure"]');
+      if(card) setInlineAnswers(card,false);
+    }
+  };
+})();
+</script>
+<script id="l3-cloze-focus-review-bridge">
+function openClozeReview(btn){
+  const focusOverlay=document.getElementById('focusOverlay');
+  const inFocus=!!(focusOverlay && focusOverlay.classList.contains('show'));
+  if(inFocus){
+    closeFocus();
+  }
+  openLongReview(btn);
+}
+</script>
+<script id="l3-wordbank-inline-fill-only-script">
+(()=>{
+  const originals=new WeakMap();
+
+  function answerMap(article){
+    const map=new Map();
+    article.querySelectorAll(':scope > .answer > .mini').forEach(mini=>{
+      const n=Number((mini.querySelector('.qnum')?.textContent||'').match(/\d+/)?.[0]);
+      const text=mini.querySelector('.answer b')?.textContent||'';
+      const m=text.match(/答案[：:]\s*[A-J]\s*[—-]\s*([^　]+)/);
+      if(n && m) map.set(n,m[1].trim());
+    });
+    return map;
+  }
+
+  function fill(article){
+    const passage=article.querySelector(':scope > .passagetext');
+    if(!passage) return;
+    if(!originals.has(passage)) originals.set(passage,passage.innerHTML);
+    passage.innerHTML=originals.get(passage);
+    const answers=answerMap(article);
+    const walker=document.createTreeWalker(passage,NodeFilter.SHOW_TEXT);
+    const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      const text=node.nodeValue||'';
+      if(!/__\d+__/.test(text)) return;
+      const frag=document.createDocumentFragment();
+      let last=0;
+      text.replace(/__(\d+)__/g,(token,num,offset)=>{
+        if(offset>last) frag.appendChild(document.createTextNode(text.slice(last,offset)));
+        const span=document.createElement('span');
+        span.className='wordbank-fill-answer';
+        span.dataset.blank=String(num);
+        span.textContent=answers.get(Number(num))||token;
+        frag.appendChild(span);
+        last=offset+token.length;
+        return token;
+      });
+      if(last<text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag,node);
+    });
+  }
+
+  function restore(article){
+    const passage=article.querySelector(':scope > .passagetext');
+    if(passage && originals.has(passage)) passage.innerHTML=originals.get(passage);
+  }
+
+  document.addEventListener('click',e=>{
+    const btn=e.target.closest('#wordbank article.passage > .card-actions > .reveal');
+    if(!btn) return;
+    const article=btn.closest('article.passage');
+    requestAnimationFrame(()=>{
+      const ans=article.querySelector(':scope > .answer');
+      if(ans && ans.classList.contains('show')) fill(article); else restore(article);
+    });
+  });
+})();
+</script>
+<script src="../access-config.js"></script><script src="../access-control.js"></script><script>B1AccessV2.guardPage();</script></body></html>
